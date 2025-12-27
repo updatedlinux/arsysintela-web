@@ -1,0 +1,250 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Soluciones Arsys Intela{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body unic-body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-headding">
+          <h1>Soluciones Arsys Intela</h1>
+          <p>
+            Arsys Intela es un ecosistema de soluciones que combina infraestructura privada,
+            inteligencia artificial y automatización de espacios. Empezamos por donde más duele
+            en tu operación —comunicación, infraestructura o edificios— y construimos contigo
+            una arquitectura preparada para crecer.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una conversación</a>
+            <a href="/solutions/condominio360" class="theme-btn3">Ver Condominio360</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-main-img.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== STIKY AREA START =======-->
+<div class="stiky-sec sp">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="stiky-sec-boxs _relative">
+
+          <!-- Condominio360 - Solución destacada -->
+          <div class="stiky-single">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="headding">
+                  <h3>Condominio360 – Gestión moderna de condominios y edificios</h3>
+                  <div class="space16"></div>
+                  <p>
+                    Condominio360 es nuestra solución más madura y desplegada en producción. Es una
+                    plataforma integral para la administración de condominios, edificios y comunidades,
+                    que centraliza comunicación, cobranzas y procesos operativos en un solo lugar.
+                  </p>
+                  <div class="space16"></div>
+                  <p>
+                    Permite a administradores y juntas de condominio mantener informados a los residentes,
+                    gestionar pagos y morosidad, programar mantenimientos y generar reportes claros
+                    sobre la salud financiera y operativa de cada comunidad.
+                  </p>
+
+                  <div class="space20"></div>
+                  <ul class="list">
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Comunicación centralizada con residentes</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Gestión de cuotas, cobranzas y morosidad</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Registro de incidencias y órdenes de servicio</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Reportes financieros y operativos</li>
+                  </ul>
+                  <div class="space30"></div>
+
+                  <a href="/solutions/condominio360" class="theme-btn2">Ver Condominio360 en detalle</a>
+
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="stiky-sec-img">
+                  <img src="{{ config.ASSETS_ROOT }}/img/features/features-stiky1.png" alt="">
+                  <img class="shape" src="{{ config.ASSETS_ROOT }}/img/shapes/stiky-sec-shape2.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Assistant360 -->
+          <div class="stiky-single">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="headding">
+                  <h3>Assistant360 – Asistentes de IA para atención 24/7</h3>
+                  <div class="space16"></div>
+                  <p>
+                    Assistant360 automatiza la atención en canales como WhatsApp y la web, utilizando
+                    agentes de inteligencia artificial entrenados en la realidad de tu negocio. Responden
+                    preguntas frecuentes, recogen datos, derivan a humanos cuando es necesario y te
+                    entregan métricas claras de desempeño.
+                  </p>
+
+                  <div class="space20"></div>
+                  <ul class="list">
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Bots y agentes de IA personalizados con tu información</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Integración con WhatsApp y sitios web</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Escalamiento a agentes humanos cuando hace falta</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Métricas de conversaciones y niveles de servicio</li>
+                  </ul>
+                  <div class="space30"></div>
+
+                  <a href="/solutions/assistant360" class="others">Más sobre Assistant360</a>
+
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="stiky-sec-img">
+                  <img src="{{ config.ASSETS_ROOT }}/img/features/features-stiky2.png" alt="">
+                  <img class="shape" src="{{ config.ASSETS_ROOT }}/img/shapes/stiky-sec-shape2.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Intela Grid -->
+          <div class="stiky-single">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="headding">
+                  <h3>Intela Grid – Nube privada y on‑premise para tus sistemas críticos</h3>
+                  <div class="space16"></div>
+                  <p>
+                    Intela Grid es la capa de infraestructura privada de Arsys Intela. Diseñamos y
+                    operamos nubes privadas sobre baremetals y virtualización, desplegadas en
+                    datacenters de Venezuela, Estados Unidos o Europa según tus requisitos regulatorios
+                    y de latencia.
+                  </p>
+                  <div class="space16"></div>
+                  <p>
+                    El objetivo es que puedas correr tus aplicaciones, tus agentes de IA y tus sistemas
+                    de gestión con alta disponibilidad y soberanía de datos, manteniendo la visibilidad
+                    sobre costos y capacidades.
+                  </p>
+
+                  <div class="space20"></div>
+                  <ul class="list">
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Arquitecturas sobre baremetals y virtualización</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Despliegue en múltiples datacenters (Venezuela, EE. UU., Europa)</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Alta disponibilidad y monitoreo continuo</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Orientado a cargas sensibles y reguladas</li>
+                  </ul>
+                  <div class="space30"></div>
+
+                  <a href="/solutions/intela-grid" class="others">Más sobre Intela Grid</a>
+
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="stiky-sec-img">
+                  <img src="{{ config.ASSETS_ROOT }}/img/features/features-stiky3.png" alt="">
+                  <img class="shape" src="{{ config.ASSETS_ROOT }}/img/shapes/stiky-sec-shape2.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Intela Smart -->
+          <div class="stiky-single">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="headding">
+                  <h3>Intela Smart – Domótica y automatización de espacios</h3>
+                  <div class="space16"></div>
+                  <p>
+                    Intela Smart lleva la inteligencia de Arsys Intela a tus espacios físicos: edificios,
+                    oficinas y hogares. Integramos sensores, controles de acceso, iluminación y otros
+                    dispositivos para crear flujos de automatización conectados con tus sistemas de
+                    gestión y tus agentes de IA.
+                  </p>
+
+                  <div class="space20"></div>
+                  <ul class="list">
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Integración con sensores de movimiento, temperatura y otros</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Automatización de accesos, iluminación y escenarios</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Integración con Condominio360 y Assistant360</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Diseñado para proyectos residenciales y corporativos</li>
+                  </ul>
+                  <div class="space30"></div>
+
+                  <a href="/solutions/intela-smart" class="others">Más sobre Intela Smart</a>
+
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="stiky-sec-img">
+                  <img src="{{ config.ASSETS_ROOT }}/img/features/features-stiky1.png" alt="">
+                  <img class="shape" src="{{ config.ASSETS_ROOT }}/img/shapes/stiky-sec-shape2.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== STIKY AREA END =======-->
+
+<!--===== CTA FINAL START =======-->
+<div class="about-page-area2 _relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 m-auto text-center">
+        <div class="headding2">
+          <h2>¿Por dónde empezamos en tu caso?</h2>
+          <div class="space16"></div>
+          <p>
+            Podemos comenzar por tu punto más crítico: la gestión de condominios, la atención
+            al cliente, la infraestructura o la automatización de espacios. Agendemos una
+            conversación para entender tu contexto y diseñar un plan realista de adopción.
+          </p>
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una conversación</a>
+            <a href="/solutions/condominio360" class="theme-btn3">Ver Condominio360</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="about-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== CTA FINAL END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+
