@@ -1,0 +1,330 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}ServiExpress – Marketplace de servicios profesionales, potenciado por Arsys Intela{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body unic-body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-headding">
+          <h1>ServiExpress – Marketplace de servicios profesionales, potenciado por Arsys Intela</h1>
+          <p class="lead">
+            Una plataforma que conecta a personas y empresas con profesionales y oficios de
+            confianza, con pagos seguros y verificación de identidad, alojada sobre la
+            infraestructura privada de Arsys Intela.
+          </p>
+          <p>
+            ServiExpress es un marketplace independiente que opera como aliado estratégico de
+            Arsys Intela, aprovechando nuestra infraestructura y tecnologías de IA para ofrecer
+            una experiencia confiable y segura tanto para proveedores como para clientes.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="#" class="theme-btn2">Conocer ServiExpress</a>
+            <a href="#integracion-intela" class="theme-btn3">Ver cómo se integra con Arsys Intela</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-main-img.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== QUÉ ES SERVIEXPRESS START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Un marketplace para todo tipo de servicios</h2>
+          <div class="space16"></div>
+          <p>
+            ServiExpress es un marketplace de servicios que permite a usuarios y empresas
+            encontrar profesionales y oficios verificados para resolver necesidades del día a día.
+            Desde servicios legales y contables hasta reparaciones del hogar, salud y
+            mantenimiento, la plataforma conecta a oferentes y demandantes de forma segura
+            y transparente.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Cada proveedor cuenta con un perfil verificado y un historial de trabajos, de modo que
+            los clientes puedan elegir con confianza a quién contratar para cada necesidad.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Abogados, contadores y asesores financieros.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Ingenieros, arquitectos y servicios técnicos especializados.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Electricistas, plomeros, albañiles, herreros y carpinteros.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Mecánica, refrigeración y mantenimiento general.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Servicios de salud, enfermería y cuidado.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Repostería y otros oficios especializados.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="#" class="theme-btn2">Explorar ServiExpress</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== QUÉ ES SERVIEXPRESS END =======-->
+
+<!--===== CONFIANZA Y PAGOS SEGUROS START =======-->
+<div class="about-page-area2 _relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2">
+          <h2>Confianza, verificación y pagos protegidos</h2>
+          <div class="space16"></div>
+          <p>
+            ServiExpress garantiza transparencia y seguridad en cada transacción, protegiendo
+            tanto a proveedores como a clientes a través de procesos de verificación y
+            sistemas de pago seguros.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h3>Proceso de pago seguro</h3>
+          <div class="space16"></div>
+          <p>
+            ServiExpress actúa como consolidador entre el oferente y el cliente final. Los pagos
+            se procesan a través de la plataforma y solo se liberan al proveedor cuando el servicio
+            ha sido completado y el cliente confirma su satisfacción.
+          </p>
+          <div class="space16"></div>
+          <p>
+            La plataforma implementa procesos de verificación de identidad (KYC) para proveedores,
+            asegurando que los datos esenciales estén certificados y disponibles al momento de
+            contratar un servicio, lo que aumenta la seguridad para ambas partes.
+          </p>
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Pagos en moneda local y divisas.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Soporte para métodos de pago electrónicos y criptomonedas seleccionadas.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Fondos resguardados hasta la confirmación del servicio.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img2.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="about-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== CONFIANZA Y PAGOS SEGUROS END =======-->
+
+<!--===== IMPULSANDO EMPRENDEDORES START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Una vitrina digital para emprendedores formales y no formales</h2>
+          <div class="space16"></div>
+          <p>
+            ServiExpress está pensado para que tanto profesionales consolidados como emprendedores
+            emergentes puedan ofrecer sus servicios en un solo lugar. La plataforma les brinda
+            visibilidad, reputación basada en reseñas y una infraestructura de pagos segura,
+            sin necesidad de construir todo desde cero.
+          </p>
+          <div class="space16"></div>
+          <p>
+            El objetivo es democratizar el acceso a oportunidades de trabajo y permitir que más
+            personas puedan vivir de sus habilidades y oficios, con el respaldo de un entorno
+            tecnológico confiable.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Perfiles verificados que generan confianza en los clientes.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Sistema de reseñas y calificaciones transparente.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Herramientas de gestión para administrar solicitudes y pagos.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Acceso a una base de clientes potenciales sin inversión en marketing.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="#" class="theme-btn2">Registrarse como proveedor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== IMPULSANDO EMPRENDEDORES END =======-->
+
+<!--===== POTENCIADO POR ARSYS INTELA START =======-->
+<div class="about-page-area1 sp" id="integracion-intela">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img2.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Potenciado por la infraestructura y la IA de Arsys Intela</h2>
+          <div class="space16"></div>
+          <p>
+            Aunque ServiExpress es un marketplace independiente, su operación se apoya en el
+            ecosistema tecnológico de Arsys Intela para ofrecer una mejor experiencia a
+            proveedores y clientes.
+          </p>
+          <div class="space16"></div>
+          <p>
+            La integración con nuestras soluciones permite que ServiExpress escale con seguridad,
+            eficiencia y disponibilidad, mientras mantiene la privacidad y el control de datos
+            críticos.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> <strong>Intela Grid:</strong> La plataforma se hospeda sobre infraestructura privada,
+              con alta disponibilidad y control de datos.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> <strong>Assistant360:</strong> Los flujos de atención al cliente, soporte y consultas
+              frecuentes se gestionan con agentes de IA entrenados específicamente para el
+              marketplace.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> <strong>Intela Smart (opcional):</strong> Oferentes especializados en domótica y
+              automatización pueden integrar sus demostraciones y proyectos a través de la
+              plataforma.</li>
+          </ul>
+          <div class="space16"></div>
+          <p>
+            Además, los proveedores que forman parte de ServiExpress pueden acceder a beneficios
+            exclusivos dentro de Arsys Intela, como descuentos especiales en nuestras soluciones
+            de automatización y, en algunos casos, licencias promocionales de Assistant360 o
+            Intela Smart para potenciar sus propios negocios.
+          </p>
+          <div class="space30"></div>
+          <a href="/solutions" class="theme-btn2">Conocer el ecosistema Arsys Intela</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== POTENCIADO POR ARSYS INTELA END =======-->
+
+<!--===== RELACIÓN CON ARSYS INTELA START =======-->
+<div class="feratures-page-area sp">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-6">
+        <div class="headding2 features-left">
+          <h2>Un aliado estratégico dentro del ecosistema Arsys Intela</h2>
+          <div class="space16"></div>
+          <p>
+            A diferencia de Condominio360 o Assistant360, que son productos propios de Arsys Intela,
+            ServiExpress opera como un aliado estratégico y transversal. Comparte la misma visión
+            de tecnología al servicio de las personas, y se apoya en nuestra infraestructura e
+            inteligencia artificial para escalar con seguridad y eficiencia.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Desde Arsys Intela acompañamos su crecimiento como socio tecnológico, garantizando que
+            la plataforma pueda atender a cada vez más usuarios y proveedores sin comprometer la
+            calidad del servicio.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Esta relación de alianza permite que ServiExpress se enfoque en su misión de conectar
+            profesionales con clientes, mientras Arsys Intela proporciona la base tecnológica
+            sólida y escalable que requiere un marketplace moderno.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> ServiExpress es un marketplace independiente, no un módulo de Intela Suite.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Operación potenciada por la infraestructura y tecnologías de Arsys Intela.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Relación de alianza estratégica, no de dependencia operativa.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Beneficios mutuos para proveedores y usuarios del marketplace.</li>
+          </ul>
+          <div class="space30"></div>
+          <div class="">
+            <a href="/contact" class="theme-btn2">Hablar con Arsys Intela sobre alianzas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="image">
+          <img src="{{ config.ASSETS_ROOT }}/img/features/features-page-stapes1.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== RELACIÓN CON ARSYS INTELA END =======-->
+
+<!--===== CTA FINAL START =======-->
+<div class="email-innovation"
+     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2-w">
+          <h2>¿Quieres saber más sobre ServiExpress o explorar alianzas?</h2>
+          <div class="space16"></div>
+          <p>
+            Si diriges una comunidad, empresa o colectivo de profesionales y quieres impulsar
+            sus servicios a través de un marketplace confiable, podemos ayudarte a evaluar cómo
+            ServiExpress y Arsys Intela pueden trabajar en conjunto.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Hablar con Arsys Intela</a>
+            <a href="#" class="theme-btn3">Visitar ServiExpress</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA FINAL END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+
