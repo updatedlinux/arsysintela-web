@@ -1,9 +1,14 @@
 {% extends 'layouts/landing-layout.html' %}
 
-{% block title %}About Us{% endblock title %}
+{% block title %}Sobre Arsys Intela{% endblock title %}
 
 {% block icon %}
-<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/img/logo/titel1.png" type="image/x-icon">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
 {% endblock icon %}
 
 {% block body_attribute %}class="body2 body"{% endblock body_attribute %}
@@ -16,14 +21,18 @@
     <div class="row align-items-center">
       <div class="col-lg-6">
         <div class="main-headding">
-          <h1>About App</h1>
-          <p>Revolutionise & email marketing strategy with cutting-edge <br> software designed to elevate your
-            campaigns, our intuitive.</p>
+          <h1>Sobre Arsys Intela</h1>
+          <p>
+            Arsys Intela es un ecosistema de infraestructura privada, inteligencia artificial y
+            automatización creado para empresas que necesitan operar con soberanía de datos y
+            continuidad operativa. Diseñamos arquitecturas que combinan nubes privadas, agentes de IA,
+            gestión de comunidades y domótica avanzada en un mismo marco tecnológico.
+          </p>
 
           <div class="space30"></div>
           <div class="hero-btns">
-            <a href="/account" class="theme-btn2">Get Started Now</a>
-            <a href="/account" class="theme-btn3">Try For Free Now</a>
+            <a href="/contact" class="theme-btn2">Agendar una conversación</a>
+            <a href="/features" class="theme-btn3">Ver soluciones</a>
           </div>
         </div>
       </div>
@@ -96,18 +105,32 @@
       </div>
       <div class="col-lg-6">
         <div class="headding2">
-          <h2>Elevate Engagement: Introducing Of eSoft.</h2>
+          <h2>Nuestra historia: de la infraestructura a los ecosistemas inteligentes</h2>
           <div class="space16"></div>
-          <p>Revolutionise your approach to email marketing with eSoft. As pioneers the industry, we bring you a eSoft.
-            comprehensive solution that no only simplifies but an transforms best option elevate and engagement.</p>
+          <p>
+            Desde 2018, el equipo detrás de Arsys Intela ha trabajado en proyectos de infraestructura,
+            virtualización y automatización para empresas de distintos tamaños en Latinoamérica y Europa.
+            Lo que comenzó como un equipo enfocado en servicios de hosting y entornos on-premise fue
+            evolucionando hacia soluciones más completas de integración, observabilidad y alta
+            disponibilidad.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Con los años, vimos que muchas organizaciones compartían el mismo reto: querían aprovechar
+            la inteligencia artificial y la automatización, pero sin perder el control sobre sus datos ni
+            depender por completo de nubes públicas. Así nació Arsys Intela como tal: una capa unificada
+            que combina infraestructura privada, agentes de IA, gestión de comunidades y automatización
+            de espacios físicos.
+          </p>
 
           <ul class="list">
-            <li><span><i class="fa-solid fa-check"></i></span> Increased Organic Traffic</li>
-            <li><span><i class="fa-solid fa-check"></i></span> Regular Performance Monitoring</li>
-            <li><span><i class="fa-solid fa-check"></i></span> Improved Search Engine Rankings</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Infraestructura privada y on-premise con Intela Grid.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Atención con IA en WhatsApp y Web con Assistant360.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Gestión de comunidades y edificios con Condominio360.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Automatización de espacios con Intela Smart.</li>
           </ul>
           <div class="space30"></div>
-          <a href="/account" class="theme-btn2">Get Started Now</a>
+          <a href="/contact" class="theme-btn2">Agendar una conversación</a>
         </div>
       </div>
     </div>
@@ -121,10 +144,21 @@
     <div class="row">
       <div class="col-lg-6 m-auto text-center">
         <div class="headding2">
-          <h2>Email Excellence Starts Here</h2>
+          <h2>Nuestra experiencia en infraestructura, IA y automatización</h2>
           <div class="space16"></div>
-          <p>Revolutionise your approach to email marketing with eSoft. As pioneers the industry, we bring you a eSoft
-            comprehensive solution that only.</p>
+          <p>
+            A lo largo de estos años hemos participado en proyectos que van desde la operación de
+            nubes privadas sobre baremetals hasta la implementación de asistentes virtuales y sistemas
+            de automatización para edificios y condominios. Esta combinación nos permite diseñar
+            soluciones que no solo funcionan en el papel, sino que resisten el día a día operativo.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Nuestro foco principal está en Venezuela y Latinoamérica, con presencia y proyección hacia
+            España y otros mercados de habla hispana. A mediano plazo, Arsys Intela también se orienta
+            a estructuras internacionales más eficientes, con una visión clara de expansión hacia hubs
+            tecnológicos como Dubái.
+          </p>
         </div>
       </div>
     </div>
@@ -147,10 +181,9 @@
             </div>
             <div class="space20"></div>
             <div class="headding2">
-              <h4><a href="/features">Comprehensive Analytics:</a></h4>
+              <h4><a href="/solutions/intela-grid">Intela Grid:</a></h4>
               <div class="space10"></div>
-              <p>Gain valuable insights into your email performance. eSoft offers robust analytics and reporting
-                tools</p>
+              <p>Infraestructura privada y on-premise diseñada para empresas que requieren soberanía de datos y alta disponibilidad.</p>
             </div>
           </div>
 
@@ -160,10 +193,9 @@
             </div>
             <div class="space20"></div>
             <div class="headding2">
-              <h4><a href="/features">Effortless Automation:</a></h4>
+              <h4><a href="/solutions/assistant360">Assistant360:</a></h4>
               <div class="space10"></div>
-              <p>Gain valuable insights into your email performance. eSoft offers robust analytics and reporting
-                tools</p>
+              <p>Agentes de IA para automatizar la atención en WhatsApp y Web, entrenados con la información de tu negocio.</p>
             </div>
           </div>
 
@@ -173,10 +205,9 @@
             </div>
             <div class="space20"></div>
             <div class="headding2">
-              <h4><a href="/features">Personalised Targeting:</a></h4>
+              <h4><a href="/solutions/intela-smart">Intela Smart:</a></h4>
               <div class="space10"></div>
-              <p>Gain valuable insights into your email performance. eSoft offers robust analytics and reporting
-                tools</p>
+              <p>Automatización de espacios físicos: accesos, iluminación, sensores y sistemas de domótica integrados.</p>
             </div>
           </div>
 
@@ -196,14 +227,17 @@
     <div class="row">
       <div class="col-lg-5">
         <div class="headding2-w">
-          <h2>Email innovation: Craft marketing an success</h2>
+          <h2>Construimos contigo la base tecnológica de tu próxima década</h2>
           <div class="space16"></div>
-          <p>Email marketing journey transforms into a streamlined, an powerful experience. Our cutting-edge platform
-            eeSofts you with the tools to craft compelling, personalized</p>
+          <p>
+            Creemos en relaciones de largo plazo. Nuestro trabajo no termina con el despliegue inicial:
+            acompañamos a tu equipo para evolucionar la arquitectura, sumar nuevas automatizaciones
+            y mantener una operación estable, segura y preparada para crecer en nuevos mercados.
+          </p>
 
           <div class="space30"></div>
 
-          <a href="/account" class="theme-btn3">Sign Up For Free</a>
+          <a href="/contact" class="theme-btn2">Hablar con el equipo de Arsys Intela</a>
 
         </div>
       </div>
@@ -232,13 +266,15 @@
     <div class="row">
       <div class="col-lg-6 m-auto text-center">
         <div class="headding2">
-          <h2>Connect entire workflows</h2>
+          <h2>Conecta tus sistemas en un solo flujo de trabajo</h2>
           <div class="space10"></div>
-          <p>Join a growing community of satisfied customers! Over 4K+ users have already good chosen eSoft for its
-            reliability, performance.</p>
+          <p>
+            Arsys Intela se integra con CRMs, pasarelas de pago, sistemas contables, plataformas de
+            mensajería y otros componentes clave de tu operación. Nuestro objetivo es que puedas
+            automatizar sin perder visibilidad ni control, apoyándote en una arquitectura modular.
+          </p>
           <div class="space20"></div>
-          <a href="/features" class="theme-btn2">View All
-            Integrations</a>
+          <a href="/features" class="theme-btn2">Ver integraciones y ecosistema</a>
         </div>
       </div>
     </div>
