@@ -8,7 +8,7 @@ from jinja2 import TemplateNotFound
 
 @blueprint.route('/')
 def index():
-    return render_template('pages/index.html', segment='index')
+    return render_template('pages/index6.html', segment='index')
 
 
 @blueprint.route('/<template>')
