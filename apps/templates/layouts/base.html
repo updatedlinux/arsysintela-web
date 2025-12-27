@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" {% block html_attribute %}{% endblock html_attribute %}>
+<head>
+  <!-- Title Meta -->
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>{% block title %}{% endblock title %}</title>
+  {% block icon %} {% endblock icon %}
+
+  {% block css %}
+
+  {% block extra_css %} {% endblock extra_css %}
+
+  {% include 'partials/head-css.html' %}
+
+  {% endblock css %}
+
+</head>
+<body {% block body_attribute %}{% endblock body_attribute %}>
+
+{% include 'partials/preloader.html' %}
+
+{% block content %}{% endblock content %}
+
+{% block javascript %}
+
+{% include 'partials/footer-scripts.html' %}
+
+{% block extra_javascript %} {% endblock extra_javascript %}
+
+{% endblock javascript %}
+
+</body>
+</html>

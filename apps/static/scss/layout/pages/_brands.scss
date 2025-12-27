@@ -1,0 +1,84 @@
+@use '../../utils/' as * ;
+
+  /*
+ ::::::::::::::::::::::::::
+  BRAND AREA CSS
+ ::::::::::::::::::::::::::
+ */
+
+.brands {
+
+    .headding1 {
+        position: relative;
+        z-index: 9;
+        h6 {
+            color: var(--qt-text-h-text1);
+            font-size: var(--f-fs-font-fs18);
+            font-style: normal;
+            font-weight: var(--f-fw-blod);
+            line-height: var(--f-fs-font-fs18); /* 100% */
+            letter-spacing: -0.16px;
+            padding-top: 20px;
+
+            a.after {
+                color: var(--Project-Management-Color-Main-Color, #603BF3);
+                display: inline-block;
+                text-decoration: underline;
+            }
+        }
+    }
+    .brands-image {
+        margin-top: -100px;
+
+        @media #{$md} {
+            margin-top: 0;
+        }
+        @media #{$xs} {
+            margin-top: 0;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -400px;
+        left: 0;
+        height: 1200px;
+        width: 100%;
+        background-image: url(../img/bg/brand-bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: -2;
+    }
+
+    .brand-shape1 {
+        position: absolute;
+        left: 0;
+        top: 100px;
+        z-index: -1;
+    }
+
+    .brand-shape2 {
+        position: absolute;
+        left: 40%;
+        top: 100px;
+        z-index: -1;
+    }
+
+    .brand-shape3 {
+        position: absolute;
+        right: 0;
+        top: 100px;
+        z-index: -1;
+    }
+}
+
+  /*
+ ::::::::::::::::::::::::::
+  BRAND AREA CSS
+ ::::::::::::::::::::::::::
+ */

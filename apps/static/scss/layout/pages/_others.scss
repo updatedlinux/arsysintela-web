@@ -1,0 +1,1403 @@
+@use '../../utils/' as * ;
+
+  /*
+ ::::::::::::::::::::::::::
+  OTHERS AREA CSS
+ ::::::::::::::::::::::::::
+ */
+
+//=== others style 1 ===
+
+.cta-area {
+    .cta-area-bg {
+        position: relative;
+        padding: 20px;
+
+        &::after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: linear-gradient(95deg, #FFF -1681.92%, rgba(255, 255, 255, 0.00) 160.09%);
+            backdrop-filter: blur(120px);
+            z-index: -4;
+            
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 200px;
+            width: 160px;
+            border-radius: 20px;
+            background-color: var(--qt-bg-bg-10);
+            z-index: -7;
+        }
+
+
+        .cta-smoll-bg {
+            position: relative;
+            padding: 80px 0px;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background: var(--Project-Management-Color-Linner-Color, linear-gradient(95deg, #603BF3 0.75%, #8F00FF 101.34%));
+                backdrop-filter: blur(75px);
+                z-index: -2;
+            }
+        }
+    }
+}
+
+//=== others style 1 ===
+
+//=== others style 2 ===
+
+.email-innovation {
+    .theme-btn3 {
+        margin-left: 0;
+    }
+
+    .headding2-w {
+        padding: 60px 0;
+    }
+
+    .images {
+        position: relative;
+        height: 410px;
+
+        @media #{$md} {
+            height: 310px;
+        }
+
+        @media #{$xs} {
+            height: 200px;
+        }
+
+        .image1 {
+            text-align: end;
+            position: absolute;
+            bottom: -16px;
+            right: 0;
+            @media #{$md} {
+                bottom: 0;
+            }
+            @media #{$xs} {
+                bottom: 0;
+            }
+        }
+
+        .image2 {
+            position: absolute;
+            top: 0;
+            left: 30px;
+
+            @media #{$md} {
+                display: none;
+            }
+
+            @media #{$xs} {
+                display: none;
+            }
+        }
+
+        .image3 {
+            position: absolute;
+            bottom: 0;
+            left: -60px;
+        }
+    }
+}
+
+//=== others style 2 ===
+
+//=== apps style 3 ===
+
+.apps {
+    padding: 60px 0;
+
+    .apps-img1 {
+        img {
+            width: 100%;
+        }
+        margin-left: -130px;
+        margin-right: 50px;
+
+        @media #{$md} {
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 40px;
+        }
+        @media #{$xs} {
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 40px;
+        }
+    }
+
+    .apps-img2 {
+        img {
+            width: 100%;
+        }
+        margin-right: -120px;
+        margin-left: 50px;
+
+        @media #{$md} {
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        @media #{$xs} {
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+    }
+
+    .bottom-logo {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+//=== apps style 3 ===
+
+//=== stiky sec style ===
+
+.stiky-sec {
+    .stiky-sec-boxs {
+        position: relative;
+        .stiky-single {
+            background-color: var(--qt-bg-bg-w);
+            border-radius: 4px;
+            padding: 40px;
+            margin-top: 60px;
+
+            .headding {
+                h3 {
+                    color: var(--qt-text-h-text2);
+                    font-size: var(--f-fs-font-fs32);
+                    line-height: var(--f-fs-font-fs32);
+                    font-weight: var(--f-fw-semibold);
+                }
+
+                p {
+                    font-size: var(--f-fs-font-fs18);
+                    line-height: var(--f-fs-font-fs30);
+                    font-weight: var(--f-fw-regular);
+                    color: var(--qt-text-p-text3);
+                }
+
+                .list {
+                    li {
+                        font-size: var(--f-fs-font-fs18);
+                        font-weight: var(--f-fw-medium);
+                        line-height: var(--f-fs-font-fs18);
+                        color: var(--qt-text-h-text2);
+                        padding: 10px 0px;
+
+                        span {
+                            display: inline-block;
+                            height: 20px;
+                            width: 20px;
+                            border-radius: 50%;
+                            line-height: 20px;
+                            text-align: center;
+                            margin-right: 5px;
+                            font-size: 13px;
+                            color: var(--qt-bg-bg-w);
+                            background-color: var(--qt-text-h-text2);
+                        }
+                    }
+                }
+
+            }
+            
+
+            .stiky-sec-img {
+                position: relative;
+                text-align: right;
+                
+                .shape {
+                    position: absolute;
+                    top: -40px;
+                    right: -40px;
+                }
+            }
+
+            &:nth-child(1) {
+                position: sticky;
+                top: 150px;
+            }
+            &:nth-child(2) {
+                position: sticky;
+                top: 200px;
+            }
+            &:nth-child(3) {
+                position: sticky;
+                top: 250px;
+            }
+        }
+    }
+}
+
+
+//=== stiky sec style ===
+
+//=== brand logo sec style ===
+
+.brand-area3 {
+    .headding3 {
+        position: relative;
+        z-index: 99;
+        .learn {
+            color: var(--qt-bg-bg-8);
+            font-size: var(--f-fs-font-fs18);
+            line-height: var(--f-fs-font-fs18);
+            font-weight: var(--f-fw-semibold);
+            text-decoration: underline;
+
+            span {
+                display: inline-block;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    .big-logo {
+        margin-top: -100px;
+
+        @media #{$md} {
+            margin-top: 0;
+        }
+        @media #{$xs} {
+            margin-top: 0;
+        }
+        img {
+            width: 100%;
+        }
+    }
+}
+
+//=== brand log sec style ===
+
+//=== cta 3-2 area ===
+
+.cta3-3 {
+    padding: 80px 0px;
+}
+
+//=== cta 3-2 area ===
+
+//=== cta 2 area ===
+
+.cta2-area {
+    padding: 80px 0px 340px 0px;
+}
+
+//=== cta 2 area ===
+
+.cta2-main-image {
+    margin-top: -280px;
+    .cta2-images {
+        position: relative;
+
+        .shape1 {
+            position: absolute;
+            top: -140px;
+            left: -140px;
+
+            @media #{$xs} {
+                display: none;
+            }
+        }
+        .shape2 {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+
+            @media #{$xs} {
+                display: none;
+            }
+            
+        }
+    }
+}
+
+
+//=== solcial start ===
+
+.midea-markating {
+    background-color: var(--qt-bg-bg-16);
+    .image {
+        img {
+            width: 100%;
+        }
+    }
+
+    .media-box-all {
+        margin-left: 60px;
+
+        @media #{$md} {
+            margin-left: 0px;
+            margin-top: 40px;
+        }
+
+        @media #{$xs} {
+            margin-left: 0px;
+            margin-top: 40px;
+        }
+
+        .single-box {
+            background-color: var(--qt-text-h-text1);
+            border-radius: 4px;
+            padding: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: start;
+            transition: all .4s;
+
+            &:hover {
+                transition: all .4s;
+                transform: translateY(-10px);
+            }
+
+            .icon {
+                margin-right: 18px;
+                img {
+                    width: 90px;
+                }
+            }
+        }
+    }
+}
+
+//=== solcial end ===
+
+//=== integration start ===
+
+.integration {
+    .apps {
+        text-align: end;
+        margin-left: 100px;
+        img {
+            width: 100%;
+        }
+
+        @media #{$md} {
+            text-align: center;
+            margin-left: 0px;
+        }
+        @media #{$xs} {
+            text-align: center;
+            margin-left: 0;
+        }
+    }
+
+    .shape1 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -2;
+
+        @media #{$md} {
+            display: none;
+        }
+        @media #{$xs} {
+            display: none;
+        }
+    }
+}
+
+//=== integration end ===
+
+
+//=== download page start ===
+
+.download-blog-area{
+    .download-box {
+        margin-top: 30px;
+        padding: 24px;
+        background-color: var(--qt-text-h-text1);
+        border-radius: 4px;
+
+        .image {
+            img {
+                width: 100%;
+            }
+        }
+        .headding2 {
+            padding-top: 24px;
+
+            span.span {
+                background: #E3DFFE;
+            }
+
+            .buttons {
+                a {
+                    display: inline-block;
+                    transition: all .4s;
+                    margin-top: 10px;
+
+                    &:hover {
+                        transform: translateY(-5px);
+                        transition: all .4s;
+                    }
+                    &:nth-child(1) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        .bg {
+            background-color: #ECE9FE;
+            border-radius: 4px;
+            margin: 0px 5px;
+        }
+    }
+
+    .shape1 {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+    }
+
+    .shape2 {
+        position: absolute;
+        bottom: -100px;
+        left: 0;
+        z-index: -1;
+    }
+}
+
+
+  /*
+ ::::::::::::::::::::::::::
+  OTHERS AREA CSS
+ ::::::::::::::::::::::::::
+ */
+
+ 
+  /*
+ ::::::::::::::::::::::::::
+  ERROR AREA CSS
+ ::::::::::::::::::::::::::
+ */
+
+ .error-all {
+    .shape1 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .shape2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+ }
+ 
+  /*
+ ::::::::::::::::::::::::::
+  ERROR AREA CSS
+ ::::::::::::::::::::::::::
+ */
+
+// ---- time track style ----
+
+.time-track-steps {
+    .step-area {
+        padding: 80px 40px;
+        border-radius: 30px;
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 40px;
+            z-index: -5;
+        }
+
+        .heading5 {
+            z-index: 9;
+            position: relative;
+        }
+
+        .track-list {
+            li {
+                color: var(--Main-Text, #110D39);
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 18px; /* 100% */
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                span.check {
+                    display: inline-block;
+                    height: 20px;
+                    width: 20px;
+                    background: var(--Gradient, linear-gradient(90deg, #662FFF -17.5%, #EA25F5 100%));
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 20px;
+                    font-size: 12px;
+                    color: #fff;
+                    margin-right: 7px;
+                }
+            }
+        }
+        .main-image {
+            text-align: end;
+            position: relative;
+            z-index: 3;
+
+            @media #{$md} {
+                text-align: start;
+                margin-top: 30px;
+            }
+
+            @media #{$xs} {
+                text-align: start;
+                margin-top: 30px;
+            }
+
+            img {
+                position: relative;
+                z-index: 2;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                right: -80px;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                background-image: url(../img/bg/time-track-step-bg.png);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                transform: scale(1.5);
+                z-index: 1;
+
+                @media #{$md} {
+                    right: 0;
+                    transform: scale(1.2);
+                }
+
+                @media #{$xs} {
+                    right: 0;
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        &.step2 {
+            .main-image {
+                text-align: start;
+                position: relative;
+                z-index: 3;
+
+                @media #{$md} {
+                    margin-bottom: 30px;
+                }
+
+                @media #{$xs} {
+                    margin-bottom: 30px;
+                }
+    
+                img {
+                    position: relative;
+                    z-index: 2;
+                }
+    
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: -80px;
+                    top: 0;
+                    height: 100%;
+                    width: 100%;
+                    background-image: url(../img/bg/time-track-step-bg.png);
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    transform: scale(1.5);
+                    z-index: 1;
+
+                    @media #{$md} {
+                        left: 0;
+                        transform: scale(1.2);
+                    }
+
+                    @media #{$xs} {
+                        left: 0;
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ---- time track style ----
+
+// ---- apps 5 area style ----
+
+.apps5-area {
+    position: relative;
+
+    .apps-image {
+        position: relative;
+
+        img {
+            position: relative;
+            z-index: 8;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: -40px;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: url(../img/bg/time-track-step-bg.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: scale(1.1);
+            z-index: 1;
+
+            @media #{$md} {
+                left: 0;
+                transform: scale(1.2);
+            }
+
+            @media #{$xs} {
+                left: 0;
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+// ---- apps 5 area style ----
+
+// ---- brands 5 area style ----
+
+.brands-area6 {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url(../img/bg/brands6-bg.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -7;
+    }
+
+    .apps-images {
+        position: relative;
+        text-align: end;
+        @media #{$md} {
+            margin: 60px 0px 30px 0px;
+            text-align: start;
+        }
+
+        @media #{$xs} {
+            margin: 60px 0px 30px 0px;
+            text-align: start;
+        }
+
+
+        .image1 {
+            margin-right: 30px;
+            position: relative;
+
+            @media #{$md} {
+                margin-right: 0;
+                margin-left: 30px;
+            }
+
+            @media #{$xs} {
+                margin-right: 0;
+                margin-left: 0;
+            }
+    
+            .dot {
+                width: 15px;
+                height: 15px;
+                background-color: white;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                right: 60%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.1);
+                animation: orbit 6s linear infinite;
+                z-index: 1;
+                margin-right: -153px;
+
+                @media #{$md} {
+                    display: none;
+                }
+
+                @media #{$xs} {
+                    display: none;
+                }
+            }
+            
+            @keyframes orbit {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg) translateX(225px);
+                    box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.1),
+                    0 0 30px 30px rgba(255, 255, 255, 0.05),
+                    0 0 40px 40px rgba(255, 255, 255, 0.02);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg) translateX(225px);
+                    box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.1),
+                    0 0 30px 30px rgba(255, 255, 255, 0.05),
+                    0 0 40px 40px rgba(255, 255, 255, 0.02);
+                }
+            }
+        }
+
+        .image2 {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            z-index: 2;
+
+            @media #{$md} {
+                right: auto;
+                left: 0;
+            }
+
+            @media #{$xs} {
+                right: auto;
+                left: 0;
+                top: -10px;
+            }
+    
+        }
+        
+    }
+}
+
+// ---- brands 5 area style ----
+
+// ---- counter 5 area style ----
+
+.counters6 {
+    .counter-box {
+        margin-top: 30px;
+        text-align: center;
+        h2 {
+            color: var(--Text-Color, #0A0726);
+            font-size: 44px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 44px; /* 100% */
+            border-radius: 96px;
+            display: inline-block;
+            padding: 32px;
+            width: 100%;
+            @media #{$xs} {
+                font-size: 30px;
+                line-height: 30px;
+            }
+        }
+
+        p {
+            color: var(--Paragraph-Color, #4D4B5F);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 18px; /* 100% */
+            padding-top: 24px;
+        }
+
+        &.box1 {
+            h2 {
+                background: linear-gradient(105deg, #FEC8EA 9.22%, rgba(254, 200, 234, 0.00) 97.11%);
+            }
+        }
+
+        &.box2 {
+            h2 {
+                background: linear-gradient(105deg, #FFE5DC 9.22%, rgba(255, 229, 220, 0.00) 97.11%);
+            }
+        }
+
+        &.box3 {
+            h2 {
+                background: linear-gradient(105deg, #D5FDD7 9.22%, rgba(213, 253, 215, 0.00) 97.11%);
+            }
+        }
+
+        &.box4 {
+            h2 {
+                background: linear-gradient(99deg, #C8D1FE 10%, rgba(200, 209, 254, 0.00) 96.65%);
+            }
+        }
+
+    }
+}
+
+// ---- counter 5 area style ----
+
+// ---- eiditing 6 area style ----
+
+.editing6 {
+    background-color: #F6F7FF;
+    .editing-box {
+        margin-top: 30px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 7px;
+        padding: 30px 54px;
+        transition: all .4s;
+
+        .icon {
+            border: 1px solid #EDEDF0;
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 70px;
+            margin: auto;
+        }
+
+        &:hover {
+            transition: all .4s;
+            transform: translateY(-10px);
+        }
+    }
+}
+
+// ---- eiditing 6 area style ----
+
+// ---- features 6 area style ----
+
+.features6 {
+    .main-image {
+        margin-top: 60px;
+        &.right60 {
+            margin-right: 60px;
+            @media #{$md} {
+                margin-right: 0;
+            }
+            @media #{$xs} {
+                margin-right: 0;
+            }
+        }
+        &.left60 {
+            margin-left: 60px;
+            @media #{$md} {
+                margin-left: 0;
+            }
+            @media #{$xs} {
+                margin-left: 0;
+            }
+        }
+    }
+    .features-heading {
+        margin-top: 60px;
+    }
+}
+
+// ---- features 6 area style ----
+
+//===  buy sell area start ====
+
+.buy-sell {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 500px;
+  }
+  
+  .buy-sell-bottom {
+    position: relative;
+    margin-top: -220px;
+    z-index: 99;
+    .bg {
+      border-radius: 4px;
+      background: #FFF;
+      box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.06);
+      margin-right: -100px;
+      margin-left: -100px;
+      padding-left: 100px;
+      padding-right: 100px;
+      padding-bottom: 100px;
+      border-radius: 4px;
+      padding-top: 40px;
+  
+      .box-area-all {
+        position: relative;
+        z-index: 9;
+        .icon {
+          background: var(--Home-Page-7-Linner-Color, linear-gradient(90deg, #5132A6 0%, #726EFC 100%));
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 60px;
+          position: absolute;
+          right: 20px;
+          top: -80px;
+          transition: all .4s;
+  
+          @media #{$md} {
+            display: none;
+          }
+  
+          @media #{$xs} {
+            display: none;
+          }
+  
+          img {
+            transition: all .4s;
+          }
+        }
+  
+        .single-box {
+          background-color: #F3F4FF;
+          padding: 24px;
+          border-radius: 4px;
+          margin-top: 70px;
+          text-align: center;
+        }
+  
+        &.box-area-all2 {
+          position: relative;
+          .icon {
+            top: auto;
+            bottom: -80px;
+          }
+          .single-box {
+            margin-top: 0;
+          }
+        }
+  
+        &.box-area-all3 {
+          position: relative;
+          .icon {
+            right: auto;
+            left: 20px;
+          }
+        }
+        &.box-area-all4 {
+          position: relative;
+          .icon {
+            top: auto;
+            bottom: -80px;
+            right: auto;
+            left: 20px;
+          }
+  
+          .single-box {
+            margin-top: 0;
+          }
+        }
+  
+        &:hover {
+          .icon {
+            background: var(--Home-Page-7-Linner-Color, linear-gradient(90deg, #5132A6 0%, #726EFC 100%));
+            transition: all .4s;
+            img {
+              transition: all .4s;
+              filter: brightness(0) invert(1);
+              transform: rotateY(180deg);
+            }
+          }
+        }
+      }
+    }
+  
+    .service1-main-images {
+      position: relative;
+      margin: 60px 50px 0 50px;
+  
+      .main-img2 {
+        position: absolute;
+        bottom: 260px;
+        left: 90px;
+  
+        @media #{$xs} {
+          bottom: 160px;
+        }
+      }
+  
+      .image3 {
+        position: absolute;
+        top: 260px;
+        right: 30px;
+  
+        @media #{$xs} {
+          top: 180px;
+        }
+      }
+  
+      .shape1 {
+        position: absolute;
+        top: 62px;
+        left: -101px;
+  
+        @media #{$xs} {
+          display: none;
+        }
+      }
+  
+      .shape2 {
+        position: absolute;
+        top: 64px;
+        right: -109px;
+        @media #{$xs} {
+          display: none;
+        }
+      }
+  
+      .shape3 {
+        position: absolute;
+        bottom: 52px;
+        left: -104px;
+  
+        @media #{$xs} {
+          display: none;
+        }
+      }
+  
+      .shape4 {
+        position: absolute;
+        bottom: 51px;
+        right: -99px;
+  
+        @media #{$xs} {
+          display: none;
+        }
+      }
+  
+    }
+  }
+  
+  //===  buy sell area end ====
+
+  //===  apps 8 area start ====
+  
+  .apps8 {
+    position: relative;
+    padding: 60px 0px 0px 0px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url(../img/bg/apps8-bg.png);
+        background-position: center bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -6;
+      }
+
+      .images-all {
+        height: 650px;
+        position: relative;
+        @media #{$md} {
+            margin-bottom: 30px;
+        }
+
+        @media #{$xs} {
+            height: 400px;
+        }
+        .image2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+      }
+  }
+
+  //===  apps 8 area end ====
+
+  //===  compani 8 area start ====
+
+  .compani8 {
+    position: relative;
+
+    .images-all {
+        text-align: end;
+        position: relative;
+        @media #{$md} {
+            margin-top: 40px;
+        }
+        @media #{$xs} {
+            margin-top: 40px;
+        }
+
+        .image2 {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-left: 120px;
+            @media #{$xs} {
+                margin-left: 0;
+            }
+        }
+    }
+  }
+
+  //===  compani 8 area end ====
+
+    //===  autofill 8 area start ====
+  
+    .autofill {
+        position: relative;
+        padding: 60px 0px 0px 0px;
+    
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: url(../img/bg/apps8-bg.png);
+            background-position: center bottom;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: -6;
+          }
+    
+          .images-all {
+            height: 650px;
+            position: relative;
+            margin-right: 120px;
+            @media #{$md} {
+                margin-right: 0;
+                margin-bottom: 40px;
+            }
+
+            @media #{$xs} {
+                margin-right: 0;
+                margin-bottom: 40px;
+                height: 400px;
+            }
+            .image2 {
+                position: absolute;
+                top: 70px;
+                left: 0;
+            }
+          }
+        }
+    
+      //===  auto 8 area end ====
+
+
+      .buy-sell-bottom2 {
+        position: relative;
+        z-index: 99;
+        .bg {
+          .box-area-all {
+            position: relative;
+            z-index: 9;
+            .icon {
+              background: #7371FC;
+              height: 60px;
+              width: 60px;
+              border-radius: 50%;
+              text-align: center;
+              line-height: 60px;
+              position: absolute;
+              right: 20px;
+              top: -80px;
+              transition: all .4s;
+      
+              @media #{$md} {
+                display: none;
+              }
+      
+              @media #{$xs} {
+                display: none;
+              }
+      
+              img {
+                transition: all .4s;
+              }
+            }
+      
+            .single-box {
+              background-color: #F3F4FF;
+              padding: 24px;
+              border-radius: 4px;
+              margin-top: 70px;
+              text-align: center;
+            }
+      
+            &.box-area-all2 {
+              position: relative;
+              .icon {
+                top: auto;
+                bottom: -80px;
+              }
+              .single-box {
+                margin-top: 0;
+              }
+            }
+      
+            &.box-area-all3 {
+              position: relative;
+              .icon {
+                right: auto;
+                left: 20px;
+              }
+            }
+            &.box-area-all4 {
+              position: relative;
+              .icon {
+                top: auto;
+                bottom: -80px;
+                right: auto;
+                left: 20px;
+              }
+      
+              .single-box {
+                margin-top: 0;
+              }
+            }
+      
+            &:hover {
+              .icon {
+                background: #7371FC;
+                transition: all .4s;
+                img {
+                  transition: all .4s;
+                  filter: brightness(0) invert(1);
+                  transform: rotateY(180deg);
+                }
+              }
+            }
+          }
+        }
+      
+        .service1-main-images {
+          position: relative;
+          margin: 60px 50px 0 50px;
+      
+          .main-img2 {
+            position: absolute;
+            bottom: 110px;
+            left: 50px;
+      
+            @media #{$xs} {
+              bottom: 160px;
+            }
+          }
+      
+          .image3 {
+            position: absolute;
+            top: 260px;
+            right: 30px;
+      
+            @media #{$xs} {
+              top: 180px;
+            }
+          }
+      
+          .shape1 {
+            position: absolute;
+            top: 62px;
+            left: -101px;
+      
+            @media #{$xs} {
+              display: none;
+            }
+          }
+      
+          .shape2 {
+            position: absolute;
+            top: 64px;
+            right: -109px;
+            @media #{$xs} {
+              display: none;
+            }
+          }
+      
+          .shape3 {
+            position: absolute;
+            bottom: 52px;
+            left: -104px;
+      
+            @media #{$xs} {
+              display: none;
+            }
+          }
+      
+          .shape4 {
+            position: absolute;
+            bottom: 51px;
+            right: -99px;
+      
+            @media #{$xs} {
+              display: none;
+            }
+          }
+      
+        }
+      }
+      
+      //===  buy sell area 2 end ====
+
+      //===  hr solutions 9 start ====
+
+      .hr-solutions {
+        position: relative;
+        background-color: #F5F5FD;
+
+        .heading9 {
+            padding: 100px 0px;
+
+            @media #{$md} {
+                padding: 50px 0px;
+            }
+            @media #{$xs} {
+                padding: 50px 0px;
+            }
+        }
+      }
+
+      //===  hr solutions 9 end ====

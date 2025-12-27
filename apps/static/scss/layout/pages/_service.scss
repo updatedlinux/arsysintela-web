@@ -1,0 +1,383 @@
+@use '../../utils/' as * ;
+
+/*
+ ::::::::::::::::::::::::::
+  SERVICE AREA CSS
+ ::::::::::::::::::::::::::
+ */
+ 
+//======= service 3 ========
+
+.service3 {
+    .service-tabs-area {
+        .tabs-boxs {
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                li {
+                    button {
+                        background: none;
+                        padding: 28px;
+                        border: none;
+                        min-width: 224px;
+                        margin-top: 30px;
+                        border-radius: 4px;
+                        transition: all .4s;
+                        position: relative;
+
+                        span {
+                            color: var(--qt-text-h-text2);
+                            font-size: var(--f-fs-font-fs20);
+                            font-weight: var(--f-fw-semibold);
+                            line-height: var(--f-fs-font-fs20);
+                            display: inline-block;
+                            margin-top: 20px;
+                        }
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 4px;
+                            border-bottom: 7px solid var(--qt-bg-bg-9);
+                            border-top: 2px solid var(--qt-bg-bg-w);
+                            border-left: 2px solid var(--qt-bg-bg-w);
+                            border-right: 2px solid var(--qt-bg-bg-w);
+                        }
+
+                    }
+
+                    button.active {
+                        transition: all .4s;
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                            transition: all .4s;
+                            border-radius: 4px;
+                            border-bottom: 7px solid var(--qt-bg-bg-8);
+                            border-top: 2px solid var(--qt-bg-bg-8);
+                            border-left: 2px solid var(--qt-bg-bg-8);
+                            border-right: 2px solid var(--qt-bg-bg-8);
+                        }
+                    }
+                }
+            }
+        }
+
+        .tabs-item-area {
+            .tab-pane {
+                background-color: var(--qt-bg-bg-9);
+                padding: 60px;
+
+                @media #{$md} {
+                    padding: 20px;
+                }
+                @media #{$xs} {
+                    padding: 20px;
+                }
+
+                .service-3-bottom-area {
+                    .tab-bottom-headding {
+                        h3 {
+                            font-size: var(--f-fs-font-fs32);
+                            line-height: var(--f-fs-font-fs32);
+                            font-weight: var(--f-fw-semibold);
+                            color: var(--qt-text-h-text2);
+                        }
+                        p {
+                            color: var(--qt-text-p-text3);
+                            font-size: var(--f-fs-font-fs18);
+                            line-height: var(--f-fs-font-fs30);
+                            font-weight: var(--f-fw-regular);
+                        }
+
+                        .list {
+                            li {
+                                color: var(--qt-text-h-text2);
+                                font-size: var(--f-fs-font-fs18);
+                                line-height: var(--f-fs-font-fs18);
+                                font-weight: var(--f-fw-medium);
+                                padding: 10px 0;
+
+                                span {
+                                    display: inline-block;
+                                    height: 20px;
+                                    width: 20px;
+                                    border-radius: 50%;
+                                    background-color: #FAECEE;
+                                    line-height: var(--f-fs-font-fs12);
+                                    text-align: center;
+                                    font-size: 12px;
+                                    color: var(--qt-bg-bg-8);
+                                    margin-right: 6px;
+                                }
+                            }
+                        }
+                    }
+                    .tab-bottom-images {
+                        position: relative;
+
+                        @media #{$md} {
+                            margin-top: 40px;
+                        }
+                        @media #{$xs} {
+                            margin-top: 40px;
+                        }
+
+                        .img1 {
+                            text-align: end;
+                        }
+                        .img2 {
+                            position: absolute;
+                            bottom: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//======= service 3 ========
+
+//======= service 4 ========
+
+.service4 {
+    .service-box {
+        text-align: center;
+        background-color: var(--qt-bg-bg-16);
+        border-radius: 4px;
+        padding: 28px 22px;
+        transition: all .4s;
+        margin-top: 30px;
+
+        &:hover {
+            transform: translateY(-10px);
+            transition: all .4s;
+            background-color: var(--qt-bg-bg-15);
+
+            .icon {
+                img {
+                    transition: all .4s;
+                    filter: brightness(0) invert(1);
+                }
+            }
+
+            h4 {
+                a {
+                    transition: all .4s;
+                    color: var(--qt-text-h-text1);
+                }
+            }
+            p {
+                transition: all .4s;
+                color: #ffffffb8;
+            }
+        }
+
+        .icon {
+            margin-bottom: 24px;
+            img {
+                transition: all .4s;
+            }
+        }
+    }
+
+    .shape1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -2;
+
+        @media #{$md} {
+            display: none;
+        }
+        @media #{$xs} {
+            display: none;
+        }
+    }
+}
+
+//======= service 4 ========
+
+//======= service 3 ========
+
+.service5 {
+    background-color: #fff;
+    position: relative;
+
+    .heading5 {
+        p.title {
+            background: linear-gradient(90deg, rgba(102, 47, 255, 0.10) -17.5%, rgba(234, 37, 245, 0.10) 100%);
+        }
+    }
+    .service-tabs-area {
+        .tabs-boxs {
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                li {
+                    button {
+                        background: none;
+                        padding: 28px;
+                        border: none;
+                        min-width: 224px;
+                        margin-top: 30px;
+                        border-radius: 4px;
+                        transition: all .4s;
+                        position: relative;
+
+                        span {
+                            color: var(--qt-text-h-text2);
+                            font-size: var(--f-fs-font-fs20);
+                            font-weight: var(--f-fw-semibold);
+                            line-height: var(--f-fs-font-fs20);
+                            display: inline-block;
+                            margin-top: 20px;
+                        }
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 4px;
+                            border-bottom: 7px solid #eb25f511;
+                            border-top: 2px solid var(--qt-bg-bg-w);
+                            border-left: 2px solid var(--qt-bg-bg-w);
+                            border-right: 2px solid var(--qt-bg-bg-w);
+                        }
+
+                    }
+
+                    button.active {
+                        transition: all .4s;
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                            transition: all .4s;
+                            border-radius: 4px;
+                            border-top: 2px solid var(--Gradient, #EA25F5);
+                            border-right: 2px solid var(--Gradient, #EA25F5);
+                            border-bottom: 6px solid var(--Gradient, #EA25F5);
+                            border-left: 2px solid var(--Gradient, #EA25F5);
+                        }
+                    }
+                }
+            }
+        }
+
+        .tabs-item-area {
+            .tab-pane {
+                background-color: #F9F4FF;
+                padding: 60px;
+                border-radius: 30px;
+
+                @media #{$md} {
+                    padding: 20px;
+                }
+                @media #{$xs} {
+                    padding: 20px;
+                }
+
+                .service-3-bottom-area {
+                    .tab-bottom-headding {
+                        h3 {
+                            font-size: var(--f-fs-font-fs32);
+                            line-height: var(--f-fs-font-fs32);
+                            font-weight: var(--f-fw-semibold);
+                            color: var(--qt-text-h-text2);
+                        }
+                        p {
+                            color: var(--qt-text-p-text3);
+                            font-size: var(--f-fs-font-fs18);
+                            line-height: var(--f-fs-font-fs30);
+                            font-weight: var(--f-fw-regular);
+                        }
+
+                        .track-list {
+                            li {
+                                color: var(--Main-Text, #110D39);
+                                font-size: 18px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: 18px; /* 100% */
+                                margin-top: 20px;
+                                display: flex;
+                                align-items: center;
+                                span.check {
+                                    display: inline-block;
+                                    height: 20px;
+                                    width: 20px;
+                                    background: var(--Gradient, linear-gradient(90deg, #662FFF -17.5%, #EA25F5 100%));
+                                    border-radius: 50%;
+                                    text-align: center;
+                                    line-height: 20px;
+                                    font-size: 12px;
+                                    color: #fff;
+                                    margin-right: 7px;
+                                }
+                            }
+                        }
+                    }
+                    .tab-bottom-images {
+                        position: relative;
+
+                        @media #{$md} {
+                            margin-top: 40px;
+                        }
+                        @media #{$xs} {
+                            margin-top: 40px;
+                        }
+
+                        .img1 {
+                            text-align: end;
+                            margin-right: -60px;
+                        }
+                        .img2 {
+                            position: absolute;
+                            bottom: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .shape1 {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .shape2 {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+//======= service 3 ========
+
+/*
+ ::::::::::::::::::::::::::
+  SERVICE AREA CSS
+ ::::::::::::::::::::::::::
+ */

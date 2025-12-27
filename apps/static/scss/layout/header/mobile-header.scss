@@ -1,0 +1,117 @@
+@use '../../utils/' as * ;
+
+
+
+//===== mobile header style 1======
+
+.mobile-header {
+    .mobile-header-elements {
+        .mobile-logo {
+            img {
+                width: 126px;
+            }
+        }
+    }
+}
+
+.mobile-sidebar.mobile-sidebar3 {
+    background-color: var(--qt-bg-bg-8) !important;
+}
+
+.mobile-sidebar.mobile-sidebar1 {
+    background-color: var(--qt-bg-bg-3) !important;
+}
+
+.mobile-sidebar.mobile-sidebar4 {
+    background-color: var(--qt-bg-bg-7) !important;
+}
+
+.mobile-sidebar {
+        background-color: var(--qt-bg-bg-7);
+
+    .logo-m {
+        margin-top: -30px;
+        margin-bottom: 20px;
+    }
+
+    .theme-btn3 {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .contact-infos {
+        margin-top: 30px;
+        h3 {
+            font-size: var(--f-fs-font-fs24);
+            font-weight: var(--f-fw-semibold);
+            line-height: var(--f-fs-font-fs24);
+            color: var(--qt-text-h-text1);
+            padding-bottom: 12px;
+        }
+        .box {
+            display: flex;
+            align-items: start;
+            padding-top: 12px;
+            .icon {
+                span {
+                    display: inline-block;
+                    color: var(--qt-text-h-text1);
+                    font-size: var(--f-fs-font-fs18);
+                    margin-right: 12px;
+                }
+            }
+            .pera {
+                a {
+                    display: inline-block;
+                    font-size: var(--f-fs-font-fs16);
+                    line-height: var(--f-fs-font-fs24);
+                    font-weight: var(--f-fw-medium);
+                    color: #ffffffde; 
+                }
+            }
+        }
+
+        .icon-list {
+            padding-top: 10px;
+            li {
+                display: inline-block;
+                padding: 0px 3px;
+                a {
+                    display: inline-block;
+                    height: 40px;
+                    width: 40px;
+                    text-align: center;
+                    line-height: 20px;
+                    color: var(--qt-text-h-text3);
+                    position: relative;
+        
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        top: 0;
+                        left: 0;
+                        z-index: -2;
+                        border-radius: 50%;
+                        transition: all .4s;
+                        background-color: #ffffff;
+                    }
+        
+                    &:hover {
+                        color: var(--qt-text-h-text1);
+                        transition: all .4s;
+                        &::after {
+                            transition: all .4s;
+                            background: var(--qt-bg-bg-8);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//===== mobile header style 1======

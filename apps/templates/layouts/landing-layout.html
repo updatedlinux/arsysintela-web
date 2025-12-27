@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block html_attribute %}{% endblock html_attribute %}
+
+{% block title %}{% endblock title %}
+
+{% block icon %}{% endblock icon %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block body_attribute %}{% endblock body_attribute %}
+
+{% block content %}
+
+{% include 'partials/navbar.html' %}
+{% include 'partials/mobile-header.html' %}
+
+{% block page_content %}{% endblock page_content %}
+
+{% include 'partials/cta.html' %}
+{% include 'partials/footer.html' %}
+
+{% block modal %}{% endblock modal %}
+
+{% endblock content %}
+
+{% block extra_javascript %}{% endblock extra_javascript %}

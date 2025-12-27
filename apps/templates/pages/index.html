@@ -1,0 +1,1016 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Web Page Builder{% endblock title %}
+
+{% block icon %}
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/img/logo/title5.png" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body"{% endblock body_attribute %}
+
+{% block content %}
+
+<!--=====HEADER START=======-->
+<header>
+  <div class="header-area header-area6 header-area-all d-none d-lg-block" id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="header-elements">
+            <div class="site-logo home1-site-logo">
+              <a href="/index"
+              ><img src="{{ config.ASSETS_ROOT }}/img/logo/header-logo6.png" alt="">
+              </a>
+            </div>
+
+
+            <div class="main-menu-ex main-menu-ex1">
+              <ul>
+
+                <li><a href="#">Home <i class="fa-solid fa-angle-down"></i></a>
+                  <div class="tp-submenu">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="all-images-menu">
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo1.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index1" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index" class="bottom-heading">01.
+                              Time Tracker</a>
+                          </div>
+
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo2.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index2">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index2" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index2" class="bottom-heading">02.
+                              Web Page Builder</a>
+                          </div>
+
+
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo3.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index3">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index3" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index3" class="bottom-heading">03.
+                              POS Software</a>
+                          </div>
+
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo4.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index4">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index4" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index4" class="bottom-heading">04.
+                              Password Manager</a>
+                          </div>
+
+                          <div class="homemenu-thumb" style="margin: 0 0 20px 0;">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo5.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index5">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index5" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index5" class="bottom-heading">05.
+                              HR Software</a>
+                          </div>
+                        </div>
+
+                        <div class="all-images-menu">
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo6.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index6">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index6" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index6" class="bottom-heading">06.
+                              Email Marketing</a>
+                          </div>
+
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo7.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index7">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index7" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index7" class="bottom-heading">7.
+                              Project Management</a>
+                          </div>
+
+
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo8.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index8">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index8" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index8" class="bottom-heading">08.
+                              SEO Software</a>
+                          </div>
+
+                          <div class="homemenu-thumb">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/demo9.jpg" alt="">
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/index9">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1"
+                                 href="/single-index9" target="_blank">One
+                                page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/index9" class="bottom-heading">09.
+                              Social Media</a>
+                          </div>
+
+                          <div class="homemenu-thumb" style="margin: 0 0 20px 0;">
+                            <div class="img1">
+                              <img src="{{ config.ASSETS_ROOT }}/img/demo/rtl.png" alt="">
+                            </div>
+                            <div class="text">
+                              <h2>RTL</h2>
+                            </div>
+                            <div class="homemenu-btn">
+                              <a class="header-btn1" href="/rtl">Multi
+                                Page <i class="fa-solid fa-arrow-right"></i></a>
+                              <div class="space16"></div>
+                              <a class="header-btn1" href="/single-rtl"
+                                 target="_blank">One page <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <a href="/rtl" class="bottom-heading">10. RTL
+                              Version</a>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li><a href="/about">About Us</a></li>
+
+                <li class="dropdown-menu-parrent"><a href="#">Pages <i class="fa-solid fa-angle-down"></i></a>
+                  <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/testimonial">Testimonial</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/download">Download</a></li>
+                    <li><a href="/error">404</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown-menu-parrent"><a href="#">Blog <i class="fa-solid fa-angle-down"></i></a>
+                  <ul>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/blog-details-sidebar-left">Details
+                      Left</a></li>
+                    <li><a href="/blog-details-sidebar-right">Details
+                      Right</a></li>
+                    <li><a href="/blog-details">Blog Details</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown-menu-parrent"><a href="#">Account <i class="fa-solid fa-angle-down"></i></a>
+                  <ul>
+                    <li><a href="/account">Create Account</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/forgot">Forgot</a></li>
+                    <li><a href="/reset">Reset</a></li>
+                    <li><a href="/verify">Verify Email</a></li>
+                    <li><a href="/form-success">Success</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="header4-buttons">
+              <a href="/account" class="theme-btn8"><span class="tb8">Get Started Now <span
+                class="arrow"><i class="fa-solid fa-arrow-right"></i></span></span></a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!--=====HEADER END=======-->
+
+
+<!--=====Mobile header start=======-->
+<div class="mobile-header mobile-header3 d-block d-lg-none ">
+  <div class="container-fluid">
+    <div class="col-12">
+      <div class="mobile-header-elements">
+        <div class="mobile-logo">
+          <a href="/index1"><img
+            src="{{ config.ASSETS_ROOT }}/img/logo/header-logo2.png" alt=""></a>
+        </div>
+        <div class="mobile-nav-icon">
+          <i class="fa-duotone fa-bars-staggered"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-sidebar mobile-sidebar4 d-block d-lg-none">
+  <div class="logo-m">
+    <a href="/index"><img src="{{ config.ASSETS_ROOT }}/img/logo/header-logo1.png"
+                                                                         alt=""></a>
+  </div>
+  <div class="menu-close">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+  <div class="mobile-nav">
+
+    <ul>
+      <li class="has-dropdown"><a href="#">Home </a>
+        <ul class="sub-menu">
+          <li class="has-dropdown has-dropdown1"><a href="/index4">Multipage</a>
+            <ul class="sub-menu">
+              <li><a href="/index">Home 1</a></li>
+              <li><a href="/index2">Home 2</a></li>
+              <li><a href="/index3">Home 3</a></li>
+              <li><a href="/index4">Home 4</a></li>
+              <li><a href="/index5">Home 5</a></li>
+              <li><a href="/index6">Home 6</a></li>
+              <li><a href="/index7">Home 7</a></li>
+              <li><a href="/index8">Home 8</a></li>
+              <li><a href="/index9">Home 9</a></li>
+              <li><a href="/rtl">RTL</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown has-dropdown1"><a href="/index4">Landing
+            Page</a>
+            <ul class="sub-menu">
+              <li><a href="/single-index1">Home 1</a></li>
+              <li><a href="/single-index2">Home 2</a></li>
+              <li><a href="/single-index3">Home 3</a></li>
+              <li><a href="/single-index4">Home 4 </a></li>
+              <li><a href="/single-index5">Home 5 </a></li>
+              <li><a href="/single-index6">Home 6 </a></li>
+              <li><a href="/single-index7">Home 7 </a></li>
+              <li><a href="/single-index8">Home 8 </a></li>
+              <li><a href="/single-index9">Home 9 </a></li>
+              <li><a href="/single-rtl">RTL </a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><a href="/about">About Us</a></li>
+      <li class="has-dropdown"><a href="#">Pages</a>
+        <ul class="sub-menu">
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/testimonial">Testimonial</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/download">Download</a></li>
+          <li><a href="/error">404</a></li>
+        </ul>
+      </li>
+
+      <li class="has-dropdown"><a href="#">Blog</a>
+        <ul class="sub-menu">
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/blog-details-sidebar-left">Details Left</a></li>
+          <li><a href="/blog-details-sidebar-right">Details Right</a>
+          </li>
+          <li><a href="/blog-details">Blog Details</a></li>
+        </ul>
+      </li>
+
+      <li class="has-dropdown"><a href="#">Account</a>
+        <ul class="sub-menu">
+          <li><a href="/account">Create Account</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/forgot">Forgot</a></li>
+          <li><a href="/reset">Reset</a></li>
+          <li><a href="/verify">Verify Email</a></li>
+          <li><a href="/form-success">Success</a></li>
+        </ul>
+      </li>
+
+    </ul>
+
+    <a class="sidebar1-btn"
+       href="/contact"><span>Book a Consultation</span> <span
+      class="arrow"><i class="fa-regular fa-arrow-right"></i></span> </a>
+
+    <div class="contact-infos">
+      <h3>Contact Info</h3>
+      <div class="box">
+        <div class="icon">
+          <span><i class="fa-regular fa-phone"></i></span>
+        </div>
+        <div class="pera">
+          <a href="tel:921-888-0022">921-888-0022</a>
+        </div>
+      </div>
+      <div class="box">
+        <div class="icon">
+          <span><i class="fa-regular fa-envelope"></i></span>
+        </div>
+        <div class="pera">
+          <a href="mailto:example@visafast.com">example@visafast.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-infos">
+      <h3>Our Location</h3>
+      <div class="box">
+        <div class="icon">
+          <span><i class="fa-regular fa-location-dot"></i></span>
+        </div>
+        <div class="pera">
+          <a href="#">55 East Birchwood Ave.Brooklyn, <br>
+            New York 11201,United States</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-infos">
+      <h3>Our Location</h3>
+      <ul class="icon-list">
+        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!--=====Mobile header end=======-->
+
+<!--===== HERO AREA START =======-->
+<div class="hero-area6">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <div class="main-heading">
+            <span class="span" data-aos="fade-left" data-aos-duration="700"><img
+              src="{{ config.ASSETS_ROOT }}/img/icons/main-span6.png"
+              alt=""> Top Choice For 5,800+ Websites Worldwide</span>
+          <h1 class="text-anime-style-3">Build Your Website With eSoft Builder</h1>
+          <div class="space16"></div>
+          <p data-aos="fade-right" data-aos-duration="700">eSoft takes the Customizer to the next level so you can
+            customize every aspect your website single interface.</p>
+          <div class="space30"></div>
+          <div class="buttons" data-aos="fade-right" data-aos-duration="900">
+            <a href="/account" class="theme-btn8"><span class="tb8">Get Started Now <span
+              class="arrow"><i
+              class="fa-solid fa-arrow-right"></i></span></span></a>
+            <div class="video-action-btn1 popup-youtube">
+              <div class="">
+                <a id="play-video" class="video-play-button play-btn"
+                   href="https://www.youtube.com/watch?v=Y8XpQpW5OVY">
+                  <span></span>
+                </a>
+              </div>
+              <div class="video-btn-pera">
+                <p>Play Video</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="images-all" data-aos="zoom-out" data-aos-duration="800">
+          <div class="image1">
+            <img src="{{ config.ASSETS_ROOT }}/img/hero/hero6-img1.png" alt="">
+          </div>
+          <div class="image2 animate1">
+            <img src="{{ config.ASSETS_ROOT }}/img/hero/hero6-img2.png" alt="">
+          </div>
+          <div class="image3 shape-animaiton2">
+            <img src="{{ config.ASSETS_ROOT }}/img/hero/hero6-img3.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== COUNTERS AREA START =======-->
+<div class="counters6 sp">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 m-auto text-center">
+        <div class="heading6">
+          <h3 class="text-anime-style-3">Trusted by Top Choice For 5,800+ Websites Worldwide</h3>
+        </div>
+      </div>
+    </div>
+    <div class="space30"></div>
+    <div class="row">
+      <div class="col-lg-3 col-6">
+        <div class="counter-box box1" data-aos="zoom-out" data-aos-duration="700">
+          <h2><span class="counter">16</span> M+</h2>
+          <p>Built With Elementor</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="counter-box box2" data-aos="zoom-out" data-aos-duration="900">
+          <h2><span class="counter">6.5</span> K+</h2>
+          <p>5 Star Reviews</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="counter-box box3" data-aos="zoom-out" data-aos-duration="1100">
+          <h2><span class="counter">100</span>+</h2>
+          <p>5 Star Reviews</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="counter-box box4" data-aos="zoom-out" data-aos-duration="1200">
+          <h2><span class="counter">16</span>Sec.</h2>
+          <p>15 Second An Elementor</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== COUNTERS AREA END =======-->
+
+<!--===== EDITING AREA START =======-->
+<div class="editing6 sp">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="heading6">
+          <span class="title"><img src="{{ config.ASSETS_ROOT }}/img/icons/span-image6.png" alt=""></span>
+          <h2 class="text-anime-style-3">Powerful Visual Editing For Your Entire Website</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in-up" data-aos-duration="600">
+        <div class="editing-box">
+          <div class="icon">
+            <img src="{{ config.ASSETS_ROOT }}/img/icons/editing6-icon1.svg" alt="">
+          </div>
+          <div class="space16"></div>
+          <div class="heading6">
+            <h4><a href="/features">Drag & Drop Editing</a></h4>
+            <div class="space16"></div>
+            <p>Drag a "Text Editor" widget from the sidebar and drop it into the desired section or column on your
+              page.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in-up" data-aos-duration="900">
+        <div class="editing-box">
+          <div class="icon">
+            <img src="{{ config.ASSETS_ROOT }}/img/icons/editing6-icon2.svg" alt="">
+          </div>
+          <div class="space16"></div>
+          <div class="heading6">
+            <h4><a href="/features">True Visual Editing</a></h4>
+            <div class="space16"></div>
+            <p>Design your page in real time and see the results instantly. Create an customize your all landing
+              pages.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in-up" data-aos-duration="1100">
+        <div class="editing-box">
+          <div class="icon">
+            <img src="{{ config.ASSETS_ROOT }}/img/icons/editing6-icon3.svg" alt="">
+          </div>
+          <div class="space16"></div>
+          <div class="heading6">
+            <h4><a href="/features">Custom CSS Control</a></h4>
+            <div class="space16"></div>
+            <p>Developers can easily combine Divi's visual design controls with their own custom CSS, eSoft interface
+              is best.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in-up" data-aos-duration="700">
+        <div class="editing-box">
+          <div class="icon">
+            <img src="{{ config.ASSETS_ROOT }}/img/icons/editing6-icon4.svg" alt="">
+          </div>
+          <div class="space16"></div>
+          <div class="heading6">
+            <h4><a href="/features">Responsive Editing</a></h4>
+            <div class="space16"></div>
+            <p>eSoft Building beautiful responsive websites is easy. Divi is responsive by nature & also gives full
+              control.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in-up" data-aos-duration="1100">
+        <div class="editing-box">
+          <div class="icon">
+            <img src="{{ config.ASSETS_ROOT }}/img/icons/editing6-icon5.svg" alt="">
+          </div>
+          <div class="space16"></div>
+          <div class="heading6">
+            <h4><a href="/features">Copy/Paste Design</a></h4>
+            <div class="space16"></div>
+            <p> eSoft Save and manage unlimited custom designs. Easily re-use them to jump-start new home pages.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="zoom-in-up" data-aos-duration="800">
+        <div class="editing-box">
+          <div class="icon">
+            <img src="{{ config.ASSETS_ROOT }}/img/icons/editing6-icon6.svg" alt="">
+          </div>
+          <div class="space16"></div>
+          <div class="heading6">
+            <h4><a href="/features">Global Element Styles</a></h4>
+            <div class="space16"></div>
+            <p>Manage your entire website's design using global elements and website-wide design settings.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== EDITING AREA END =======-->
+
+<!--===== FEATURES AREA START =======-->
+<div class="features6 sp">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="heading6">
+          <span class="title"><img src="{{ config.ASSETS_ROOT }}/img/icons/span-image6.png" alt=""></span>
+          <h2 class="text-anime-style-3">eSoft Builder Features</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-image right60" data-aos="zoom-out" data-aos-duration="800">
+          <img src="{{ config.ASSETS_ROOT }}/img/others/features6-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-lg-5">
+        <div class="heading6 features-heading">
+          <span class="span3" data-aos="fade-left" data-aos-duration="700">Page Builder</span>
+          <h3 class="text-anime-style-3">Front/Back End Page Builder</h3>
+          <div class="space16"></div>
+          <p data-aos="fade-left" data-aos-duration="900">Build a responsive website and manage your content easily
+            with intuitive WordPress Front end editor. No programming knowledge required – create stunning and
+            beautiful pages with award-winning drag and drop builder.</p>
+          <div class="space30"></div>
+          <div class="" data-aos="fade-left" data-aos-duration="900">
+            <a href="/features" class="theme-btn9"><span class="tb8">Get More Info <span
+              class="arrow"><i
+              class="fa-solid fa-arrow-right"></i></span></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <div class="heading6 features-heading">
+          <span class="span3" data-aos="fade-right" data-aos-duration="700">Any Color Choose</span>
+          <h3 class="text-anime-style-3">Roll Your Own Colour Theme</h3>
+          <div class="space16"></div>
+          <p data-aos="fade-right" data-aos-duration="900">Built-in Skin Builder: Use the built-in skin builder to
+            tweak eSoft Page Builder design options and elements styling, making a perfect match with your brand
+            identity.</p>
+          <div class="space30"></div>
+          <div class="" data-aos="fade-right" data-aos-duration="1100">
+            <a href="/features" class="theme-btn9"><span class="tb8">Get More Info <span
+              class="arrow"><i
+              class="fa-solid fa-arrow-right"></i></span></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-lg-6">
+        <div class="main-image right60" data-aos="zoom-out" data-aos-duration="1000">
+          <img src="{{ config.ASSETS_ROOT }}/img/others/features6-img2.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-image right60" data-aos="zoom-out" data-aos-duration="1100">
+          <img src="{{ config.ASSETS_ROOT }}/img/others/features6-img3.png" alt="">
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-lg-5">
+        <div class="heading6 features-heading">
+          <span class="span3" data-aos="fade-left" data-aos-duration="700">Any Theme Design</span>
+          <h3 class="text-anime-style-3">For Any WordPress Theme</h3>
+          <div class="space16"></div>
+          <p data-aos="fade-left" data-aos-duration="900">Every website design needs to be unique. With WPBakery Page
+            Builder, you can work with any WordPress theme of your choice. This powerful tool allows you to create
+            responsive an stunning layouts without any coding knowledge.</p>
+          <div class="space30"></div>
+          <div class="" data-aos="fade-left" data-aos-duration="1000">
+            <a href="/features" class="theme-btn9"><span class="tb8">Get More Info <span
+              class="arrow"><i
+              class="fa-solid fa-arrow-right"></i></span></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <div class="heading6 features-heading">
+          <span class="span3" data-aos="fade-right" data-aos-duration="700">Template Library</span>
+          <h3 class="text-anime-style-3">eSoft Builder Template Library</h3>
+          <div class="space16"></div>
+          <p data-aos="fade-right" data-aos-duration="900">Access premium class templates via the online Template
+            Library and build your pages in seconds. Download any template you like without any restrictions. Template
+            Library gets constantly updated with new templates.</p>
+          <div class="space30"></div>
+          <div class="" data-aos="fade-right" data-aos-duration="1000">
+            <a href="/features" class="theme-btn9"><span class="tb8">Get More Info <span
+              class="arrow"><i
+              class="fa-solid fa-arrow-right"></i></span></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-lg-6">
+        <div class="main-image right60" data-aos="zoom-out" data-aos-duration="800">
+          <img src="{{ config.ASSETS_ROOT }}/img/others/features6-img4.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-image right60" data-aos="zoom-out" data-aos-duration="1000">
+          <img src="{{ config.ASSETS_ROOT }}/img/others/features6-img5.png" alt="">
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-lg-5">
+        <div class="heading6 features-heading">
+          <span class="span3" data-aos="fade-left" data-aos-duration="700">any layout available</span>
+          <h3 class="text-anime-style-3">Any Mobile/Laptop Layouts</h3>
+          <div class="space16"></div>
+          <p data-aos="fade-left" data-aos-duration="900">WPBakery Page Builder ensures your website looks perfect on
+            every device, whether it’s a mobile phone, tablet, laptop. The responsive design capabilities allow you
+            create layouts.</p>
+          <div class="space30"></div>
+          <div class="" data-aos="fade-left" data-aos-duration="1000">
+            <a href="/features" class="theme-btn9"><span class="tb8">Get More Info <span
+              class="arrow"><i
+              class="fa-solid fa-arrow-right"></i></span></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--===== FEATURES AREA END =======-->
+
+<!--===== BRANDS AREA START =======-->
+<div class="brands-area6 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <div class="heading6-w">
+          <span class="span2" data-aos="fade-left" data-aos-duration="700">Integration brands</span>
+          <h2 class="text-anime-style-3">Integrate Your eSoft Builder With 3K App</h2>
+          <div class="space16"></div>
+          <p data-aos="fade-left" data-aos-duration="900">Seamlessly integrate your eSoft Builder with the 3K App to
+            elevate your workflow and enhance productivity. By combining the powerful design capabilities of eSoft
+            Builder with the robust features of the 3K Apps.</p>
+          <div class="space30"></div>
+          <div class="" data-aos="fade-left" data-aos-duration="1000">
+            <a href="/account" class="theme-btn8"><span class="tb8">Get Started, It’s Free <span
+              class="arrow"><i
+              class="fa-solid fa-arrow-right"></i></span></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1"></div>
+      <div class="col-lg-6">
+        <div class="apps-images">
+          <div class="image1">
+            <img src="{{ config.ASSETS_ROOT }}/img/bg/apps5-shape-bg.png" alt="">
+            <div class="dot"></div>
+          </div>
+          <div class="image2">
+            <img src="{{ config.ASSETS_ROOT }}/img/others/apps5.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== BRANDS AREA END =======-->
+
+<!--===== FAQ AREA START =======-->
+<div class="faq6 sp">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 m-auto text-center">
+        <div class="heading6">
+          <span class="span">FAQ Question</span>
+          <h2 class="text-anime-style-3">Frequently Asked Question</h2>
+        </div>
+
+        <div class="space40"></div>
+
+        <div class="accordion accordion1" id="accordionExample">
+          <div class="accordion-item active" data-aos="fade-up" data-aos-duration="700">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                      aria-expanded="true" aria-controls="collapseOne">
+                What is blockchain technology
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                 data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                It's very simple! Register here. In your personal account, create wallet where you can store your FOX
+                tokens. Then just send any amount to the displayed address in the your office.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item" data-aos="fade-up" data-aos-duration="900">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                what is the value of fOX tokens?
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                 data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                It's very simple! Register here. In your personal account, create wallet where you can store your FOX
+                tokens. Then just send any amount to the displayed address in the your office.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item" data-aos="fade-up" data-aos-duration="1100">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                I use cryptocurrency participate in the ICO?
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                 data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                It's very simple! Register here. In your personal account, create wallet where you can store your FOX
+                tokens. Then just send any amount to the displayed address in the your office.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-aos="fade-up" data-aos-duration="1300">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                What Is Cryptocurrency?
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                 data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                It's very simple! Register here. In your personal account, create wallet where you can store your FOX
+                tokens. Then just send any amount to the displayed address in the your office.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                how does cryptocurrency work?
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                 data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                It's very simple! Register here. In your personal account, create wallet where you can store your FOX
+                tokens. Then just send any amount to the displayed address in the your office.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== FAQ AREA END =======-->
+
+<!--===== CTA AREA START =======-->
+<div class="cta6">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <div class="heading6-w">
+          <span class="span">Integration brands</span>
+          <h2>Access A Library Of <br> Pre-Built Templates</h2>
+          <div class="space16"></div>
+          <p>Seamlessly integrate your eSoft Builder with the 3K App <br> to elevate your workflow and enhance of
+            productivity.</p>
+          <div class="space30"></div>
+          <a href="/account" class="theme-btn8"><span class="tb8">Get Started, It’s Free <span
+            class="arrow"><i
+            class="fa-solid fa-arrow-right"></i></span></span></a>
+        </div>
+      </div>
+      <div class="col-lg-1">
+
+      </div>
+
+      <div class="col-lg-6">
+        <div class="cta6-images">
+          <div class="image1">
+            <img src="{{ config.ASSETS_ROOT }}/img/others/cta6-img.png" alt="">
+          </div>
+          <div class="image2">
+            <img src="{{ config.ASSETS_ROOT }}/img/shapes/cta6-shape.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA AREA END =======-->
+
+<!--===== FOOTER AREA START =======-->
+<div class="footer6 _relative">
+  <div class="container bg">
+    <div class="row">
+
+      <div class="col-lg-5">
+        <div class="subscribe-area">
+          <h5>Subscribe to our newsletter</h5>
+          <p>eSoft has exceeded our expectations every way. The ease with & which Search Engine</p>
+          <div class="input-area">
+            <input type="email" placeholder="Email Address">
+            <div class="button">
+              <button class="theme-btn9"><span class="tb8">Get Started Now <span class="arrow"><i
+                class="fa-solid fa-arrow-right"></i></span></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg col-md-6 col-6">
+        <div class="single-footer-items">
+          <h3>Resources</h3>
+
+          <ul class="menu-list">
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Affiliates</a></li>
+            <li><a href="#">Partnerships</a></li>
+            <li><a href="#">Perks & Benefits</a></li>
+            <li><a href="#">Api docs</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="col-lg col-md-6 col-6">
+        <div class="single-footer-items">
+          <h3>Download</h3>
+
+          <ul class="menu-list">
+            <li><a href="#">iPhone & iPad</a></li>
+            <li><a href="#">Android</a></li>
+            <li><a href="#">MacOS</a></li>
+            <li><a href="#">Window</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="single-footer-items">
+          <h3>Social Links</h3>
+
+          <ul class="social-icons">
+            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="space40"></div>
+
+    <div class="copyright-area">
+      <div class="row align-items-center">
+        <div class="col-md-5">
+          <div class="logo">
+            <a href="/index"><img
+              src="{{ config.ASSETS_ROOT }}/img/logo/footer-logo6.png" alt=""></a>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="coppyright text-right">
+            <a href="#">@2024 eSoft</a>
+            <a href="#">Security</a>
+            <a href="#">Your Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--===== FOOTER AREA END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock content %}
+

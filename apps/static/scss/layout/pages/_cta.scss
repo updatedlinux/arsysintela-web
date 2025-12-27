@@ -1,0 +1,326 @@
+@use '../../utils/' as * ;
+
+  /*
+ ::::::::::::::::::::::::::
+  CTA AREA CSS
+ ::::::::::::::::::::::::::
+ */
+
+//=== cta style 1 ===
+
+.cta1 {
+    padding: 80px 0;
+
+    .buttons {
+        .btn.btn2 {
+            img {
+               margin-top: -3px;
+               margin-right: 5px;
+            }
+        } 
+    }
+}
+
+//=== cta style 1 ===
+
+//=== cta style 3 ===
+
+.cta3 {
+    padding: 70px 0px;
+
+    .cta3-subscribe {
+        text-align: end;
+        position: relative;
+        .input {
+            input {
+                border: none;
+                border-radius: 4px;
+                padding: 19px;
+                width: 100%;
+                &::placeholder {
+                    font-size: var(--f-fs-font-fs16);
+                    font-weight: var(--f-fw-medium);
+                    line-height: var(--f-fs-font-fs26);
+                    color: var(--qt-text-p-text3);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .button {
+            position: absolute;
+            top: 5px;
+            right: 4px;
+        }
+
+        @media #{$md} {
+            margin-top: 30px;
+        }
+        @media #{$xs} {
+            margin-top: 30px;
+        }
+    }
+}
+
+//=== cta style 3 ===
+
+//=== cta style 4 ===
+
+.cta4 {
+    padding: 80px 0px;
+    .buttons {
+        margin-top: 30px;
+    }
+}
+
+//=== cta style 4 ===
+
+//=== cta style 5 ===
+
+.cta5 {
+    position: relative;
+    .cta5-bg {
+        position: relative;
+        border-radius: 30px;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: url(../img/bg/cta5-bg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            z-index: -6;
+        }
+
+        .heading5-w {
+            padding: 60px;
+
+            @media #{$md} {
+                padding: 30px;
+            }
+            @media #{$xs} {
+                padding: 30px;
+            }
+        }
+
+        .main-image {
+            position: relative;
+            text-align: end;
+            margin-top: 70px;
+            margin-right: 30px;
+            @media #{$md} {
+                text-align: start;
+                margin-left: 30px;
+                margin-top: 30px;
+            }
+            @media #{$xs} {
+                text-align: start;
+                margin-left: 30px;
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+//=== cta style 5 ===
+
+//=== cta style 6 ===
+
+.cta6 {
+    position: relative;
+    padding: 80px 0px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url(../img/bg/cta6-bg.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -6;
+    }
+
+    .cta6-images {
+        position: relative;
+
+        @media #{$md} {
+            margin-top: 40px;
+        }
+
+        @media #{$xs} {
+            margin-top: 40px;
+        }
+
+        .image2 {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            z-index: -1;
+        }
+    }
+}
+
+//=== cta style 6 ===
+
+//=== cta style 7 ===
+
+.cta7 {
+    position: relative;
+    padding: 100px 0px;
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url(../img/bg/cta7-bg.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -6;
+    }
+    .cta-heading {
+        span.span {
+            color: #FFF;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px; /* 100% */
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        h2 {
+            color: #FFF;
+            font-size: 70px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 80px; /* 114.286% */
+            text-transform: capitalize;
+
+            @media #{$md} {
+                font-size: 40px;
+                line-height: 48px;
+            }
+
+            @media #{$xs} {
+                font-size: 40px;
+                line-height: 48px;
+            }
+        }
+
+        .buttons {
+            margin-top: 36px;
+
+            a {
+                display: inline-block;
+                transition: all .4s;
+                &:hover {
+                    transition: all .4s;
+                    transform: translateY(-5px);
+                }
+
+                &:nth-child(1) {
+                    margin-right: 16px;
+                    @media #{$xs} {
+                        margin-right: 0;
+                        margin-bottom: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    .image-shape1 {
+        position: absolute;
+        left: -20px;
+        top: 0;
+        @media #{$md} {
+            display: none;
+        }
+
+        @media #{$xs} {
+            display: none;
+        }
+    }
+
+    .image-shape2 {
+        position: absolute;
+        right: -20px;
+        top: 0;
+
+        @media #{$md} {
+            display: none;
+        }
+
+        @media #{$xs} {
+            display: none;
+        }
+    }
+}
+
+//=== cta style 7 ===
+
+//=== cta style 8 ===
+
+.cta8 {
+    position: relative;
+    padding: 80px 0px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url(../img/bg/cta8-bg.png);
+        background-position: center bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -6;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media #{$xs} {
+            display: block;
+        }
+
+        a {
+            &:nth-last-child(1){
+                margin-left: 24px;
+                @media #{$xs} {
+                    margin-left: 0;
+                    margin-top: 20px;
+                    margin-right: 50px;
+                }
+            }
+        }
+    }
+}
+
+//=== cta style 8 ===
+
+  /*
+ ::::::::::::::::::::::::::
+  CTA AREA CSS
+ ::::::::::::::::::::::::::
+ */

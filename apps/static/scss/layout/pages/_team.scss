@@ -1,0 +1,135 @@
+@use '../../utils/' as * ;
+
+  /*
+ ::::::::::::::::::::::::::
+  TEAM AREA CSS
+ ::::::::::::::::::::::::::
+ */
+
+//=== team style 1 start ===
+
+.team-collaboration {
+    .single-box {
+        display: flex;
+        align-items: center;
+        background-color: var(--qt-bg-bg-4);
+        border-radius: 4px;
+        padding: 12px;
+        margin-top: 24px;
+        transition: all .4s;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            z-index: 1;
+            opacity: 0;
+            transition: all .4s;
+            background: linear-gradient(95deg, #603BF3 0.75%, #8F00FF 101.34%);
+        }
+
+        .pera {
+            color: #FFF;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 16px; /* 100% */
+            position: relative;
+            z-index: 2;
+        }
+
+        .icon {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            background-color: #ffffff2d;
+            margin-right: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        &:hover {
+            transition: all .4s;
+
+            &::after {
+                opacity: 1;
+                transition: all .4s;
+            }
+        }
+    }
+
+    .team-all-images {
+        position: relative;
+        .image1 {
+            text-align: right;
+            position: relative;
+            margin-left: 160px;
+
+            @media #{$md} {
+                margin-top: 30px;
+            }
+
+            @media #{$xs} {
+                margin-left: 0px;
+                margin-top: 30px;
+            }
+
+            img {
+                width: 100%;
+                padding: 20px;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                border-radius: 4px;
+                border: 1px solid rgba(255, 255, 255, 0.20);
+                background: linear-gradient(99deg, #FFF -1001.54%, rgba(255, 255, 255, 0.00) 127.88%);
+                backdrop-filter: blur(102px);
+                z-index: -2;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 200px;
+                width: 160px;
+                border-radius: 20px;
+                background-color: var(--qt-bg-bg-10);
+                z-index: -3;
+            }
+
+        }
+
+        .image2 {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;   
+
+            @media #{$xs} {
+                position: static;
+            }
+        }
+    }
+}
+
+//=== team style 1 start ===
+
+  /*
+ ::::::::::::::::::::::::::
+  TEAM AREA CSS
+ ::::::::::::::::::::::::::
+ */
