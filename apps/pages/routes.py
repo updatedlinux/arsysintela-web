@@ -11,6 +11,30 @@ def index():
     return render_template('pages/index6.html', segment='index')
 
 
+@blueprint.route('/solutions/<solution_name>')
+def solution_page(solution_name):
+    try:
+        # Map solution names to template files
+        solution_templates = {
+            'assistant360': 'assistant360.html',
+            'condominio360': 'condominio360.html',
+            'serviexpress': 'serviexpress.html',
+            'intela-grid': 'intela-grid.html',
+            'intela-smart': 'intela-smart.html',
+        }
+        
+        template = solution_templates.get(solution_name)
+        if template:
+            segment = get_segment(request)
+            return render_template("pages/" + template, segment=segment)
+        else:
+            return render_template('pages/page-404.html'), 404
+    except TemplateNotFound:
+        return render_template('pages/page-404.html'), 404
+    except:
+        return render_template('pages/page-500.html'), 500
+
+
 @blueprint.route('/<template>')
 def route_template(template):
     try:

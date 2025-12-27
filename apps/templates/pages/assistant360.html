@@ -1,0 +1,356 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Assistant360 – Agentes de IA para atención, ventas y cobranzas{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body unic-body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-headding">
+          <h1>Assistant360 – Agentes de IA para atención, ventas y cobranzas</h1>
+          <p>
+            Assistant360 es la plataforma de Agentes de IA de Arsys Intela, diseñada para que tu
+            negocio pueda atender clientes 24/7 en WhatsApp y en tu sitio web. Más allá de responder
+            preguntas frecuentes, nuestros agentes ejecutan acciones, califican oportunidades y
+            escalan a humanos cuando hace falta, todo desde un panel centralizado.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una demo</a>
+            <a href="#casos-de-uso" class="theme-btn3">Ver casos de uso</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-main-img.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== ABOUT PAGE AREA START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>De chatbots a Agentes de IA: atención inteligente que escala</h2>
+          <div class="space16"></div>
+          <p>
+            Assistant360 nació como una plataforma de chatbots enfocados en responder preguntas
+            frecuentes y enrutar conversaciones. Hoy evolucionó hacia una plataforma de Agentes de IA
+            que entienden lenguaje natural, ejecutan acciones y se integran con tus sistemas para
+            ofrecer una experiencia de atención completa.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Con Assistant360 puedes crear varios agentes por negocio —uno para soporte, otro para
+            ventas, otro para cobranzas— y supervisar todas las conversaciones desde un panel
+            centralizado. Cuando el agente no puede resolver algo, escala automáticamente a un
+            humano sin perder el contexto.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Agentes de IA entrenados en la realidad de tu negocio.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Respuestas en lenguaje natural, no solo menús predefinidos.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Ejecución de acciones: reservas, pedidos, recordatorios, consultas de estado.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Panel administrativo para supervisar conversaciones, estadísticas y tomar control.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Escalamiento inteligente a agentes humanos cuando es necesario.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/contact" class="theme-btn2">Agendar una demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== ABOUT PAGE ATEA END =======-->
+
+<!--===== CASOS DE USO START =======-->
+<div class="about-page-area2 _relative" id="casos-de-uso">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2">
+          <h2>Casos de uso: atención, ventas y cobranzas en un solo lugar</h2>
+          <div class="space16"></div>
+          <p>
+            Assistant360 está diseñado para cubrir los tres pilares de la relación con tus clientes:
+            atender sus dudas, capturar oportunidades de venta y hacer seguimiento de pagos y
+            compromisos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="about-page-boxs">
+          <div class="single-box">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2">
+              <h4>Soporte y atención al cliente</h4>
+              <div class="space10"></div>
+              <p>
+                Responde dudas frecuentes sobre productos, servicios, horarios, ubicación y políticas.
+                Consulta el estado de pedidos o reservas integrándose con tus sistemas. Ofrece una
+                experiencia de atención rápida y consistente, liberando a tu equipo humano para casos
+                más complejos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="about-page-boxs">
+          <div class="single-box">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon2.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2">
+              <h4>Ventas y generación de leads</h4>
+              <div class="space10"></div>
+              <p>
+                Captura información de clientes interesados, envía catálogos o menús, califica el nivel
+                de interés y pasa las oportunidades calientes a tu equipo de ventas. Assistant360 actúa
+                como tu primer filtro comercial, disponible 24/7.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="about-page-boxs">
+          <div class="single-box">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon3.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2">
+              <h4>Cobranzas y recordatorios</h4>
+              <div class="space10"></div>
+              <p>
+                Envía recordatorios de pago, confirma recepción de transferencias y hace seguimiento
+                postventa. Automatiza la gestión de morosidad sin perder el tono humano, y escala a
+                cobranza manual cuando el caso lo requiere.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="about-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== CASOS DE USO END =======-->
+
+<!--===== CANALES START =======-->
+<div class="stiky-sec sp">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="stiky-sec-boxs _relative">
+
+          <div class="stiky-single">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="headding">
+                  <h3>Canales donde tus clientes ya están</h3>
+                  <div class="space16"></div>
+                  <p>
+                    Assistant360 opera principalmente en dos canales clave para la atención digital:
+                    WhatsApp Business y webchat en tu sitio web.
+                  </p>
+                  <div class="space16"></div>
+                  <p>
+                    WhatsApp es el canal preferido por la mayoría de los clientes en Latinoamérica y España.
+                    Con Assistant360, tu negocio puede tener presencia activa en WhatsApp sin necesidad de
+                    que un humano esté disponible todo el tiempo. El webchat, por su parte, permite capturar
+                    consultas directamente desde tu sitio, con la misma inteligencia y capacidad de escalamiento.
+                  </p>
+
+                  <div class="space20"></div>
+                  <ul class="list">
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> WhatsApp Business: canal principal, integrado con la API oficial de Meta.</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Webchat: widget personalizable para tu sitio web.</li>
+                    <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Mismo agente de IA operando en ambos canales, con historial unificado.</li>
+                  </ul>
+                  <div class="space30"></div>
+
+                  <a href="/contact" class="theme-btn2">Agendar una demo</a>
+
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="stiky-sec-img">
+                  <img src="{{ config.ASSETS_ROOT }}/img/features/features-stiky1.png" alt="">
+                  <img class="shape" src="{{ config.ASSETS_ROOT }}/img/shapes/stiky-sec-shape2.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CANALES END =======-->
+
+<!--===== INTEGRACIONES START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img2.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Integrado con el resto de tu operación</h2>
+          <div class="space16"></div>
+          <p>
+            Assistant360 no vive aislado. Se integra con Condominio360 para atender consultas de
+            residentes, con Intela Smart para ejecutar acciones sobre dispositivos automatizados,
+            y con tus sistemas internos (CRMs, ERPs, pasarelas de pago) para ofrecer respuestas
+            en tiempo real.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Si tu infraestructura corre sobre Intela Grid, Assistant360 puede operar completamente
+            dentro de tu nube privada, garantizando soberanía de datos y cumplimiento regulatorio.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Integración con Condominio360 para atención en comunidades.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Integración con Intela Smart para control de dispositivos vía chat.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Conexión con CRMs, sistemas de tickets, pasarelas de pago y más.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Despliegue sobre Intela Grid para máxima privacidad y control.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/solutions" class="theme-btn2">Ver todas las soluciones</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== INTEGRACIONES END =======-->
+
+<!--===== PLANES START =======-->
+<div class="feratures-page-area sp">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-6">
+        <div class="headding2 features-left">
+          <h2>Planes flexibles según el tamaño de tu operación</h2>
+          <div class="space16"></div>
+          <p>
+            Assistant360 se ofrece bajo un modelo de suscripción mensual por empresa, con planes
+            diferenciados según el volumen de conversaciones, número de canales activos y
+            funcionalidades avanzadas que necesites.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Cada plan incluye un número de conversaciones mensuales, acceso al panel administrativo,
+            soporte técnico y actualizaciones continuas. Si tu operación crece y superas los límites
+            del plan, puedes escalar fácilmente al siguiente nivel o contratar bloques adicionales
+            de uso.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Además, ofrecemos un servicio opcional de onboarding para configurar tus primeros agentes
+            de IA, entrenarlos con tu información y dejarte operativo desde el día uno.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Plan Básico: ideal para negocios pequeños (1 canal, volumen limitado).</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Plan Profesional: para empresas medianas (múltiples canales, integraciones).</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Plan Enterprise: para operaciones grandes (volumen alto, soporte prioritario, despliegue privado).</li>
+          </ul>
+          <div class="space30"></div>
+          <div class="">
+            <a href="/contact" class="theme-btn2">Solicitar propuesta personalizada</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="image">
+          <img src="{{ config.ASSETS_ROOT }}/img/features/features-page-stapes1.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== PLANES END =======-->
+
+<!--===== CTA FINAL START =======-->
+<div class="email-innovation"
+     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2-w">
+          <h2>¿Listo para automatizar tu atención sin perder el toque humano?</h2>
+          <div class="space16"></div>
+          <p>
+            Agendemos una conversación para entender tu operación actual, diseñar los agentes de IA
+            que necesitas y mostrarte cómo Assistant360 puede integrarse con el resto de tu ecosistema
+            tecnológico.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una demo de Assistant360</a>
+            <a href="/solutions" class="theme-btn3">Ver todas las soluciones</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA FINAL END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+
