@@ -321,7 +321,7 @@ SECRET_KEY=<tu-clave-secreta-generada>
 
 ## Soporte
 
-Para más información sobre Arsys Intela, visita [tu-sitio-web.com](https://tu-sitio-web.com)
+Para más información sobre Arsys Intela, visita [arsysintela.com](https://arsysintela.com)
 
 ---
 
