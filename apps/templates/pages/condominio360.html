@@ -1,0 +1,321 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Condominio360 – Gestión inteligente para comunidades modernas{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body unic-body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-headding">
+          <h1>Condominio360 – Gestión inteligente para comunidades modernas</h1>
+          <p class="lead">
+            La plataforma definitiva para administrar condominios, edificios y urbanizaciones.
+            Centraliza cobranzas, automatiza accesos y mejora la convivencia con transparencia total.
+          </p>
+          <p>
+            Condominio360 es la solución integral de Arsys Intela para la gestión de comunidades residenciales.
+            Diseñada específicamente para resolver los desafíos reales de administradoras y juntas de condominio
+            en Latinoamérica, centraliza toda la operación en una plataforma unificada y fácil de usar.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Solicitar Demo / Cotización</a>
+            <a href="#features" class="theme-btn3">Ver Funcionalidades</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-main-img.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== SOLUCIÓN PROBADA START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Transparencia y control en la palma de tu mano</h2>
+          <div class="space16"></div>
+          <p>
+            Condominio360 no es solo un software; es un ecosistema diseñado para resolver los
+            problemas reales de las juntas de condominio y administradoras en Latinoamérica.
+            Desde la gestión de morosidad hasta el control de acceso en garitas, todo ocurre
+            en una plataforma unificada.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Ya está operativo en comunidades reales, transformando la forma en que se gestionan
+            condominios y urbanizaciones. Condominio360 centraliza la administración, la seguridad
+            y la comunicación, ofreciendo transparencia total tanto para los administradores como
+            para los residentes.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Plataforma probada en comunidades reales y operativa.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Gestión integral: finanzas, seguridad, comunicación y mantenimiento.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Transparencia total para administradores y residentes.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Diseñado específicamente para el mercado latinoamericano.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Interfaz intuitiva accesible desde cualquier dispositivo.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/contact" class="theme-btn2">Solicitar una demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== SOLUCIÓN PROBADA END =======-->
+
+<!--===== FUNCIONALIDADES CLAVE START =======-->
+<div class="about-page-area2 _relative" id="features">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2">
+          <h2>Funcionalidades clave para una gestión integral</h2>
+          <div class="space16"></div>
+          <p>
+            Condominio360 cubre todos los aspectos de la gestión de comunidades residenciales,
+            desde las finanzas hasta la seguridad y la comunicación, todo en una sola plataforma.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row d-flex flex-wrap align-items-stretch">
+      <div class="col-lg-6 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Gestión Financiera y Cobranzas</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Emisión de avisos de cobro automáticos, control de morosidad y conciliación bancaria.
+                Reportes financieros transparentes para la junta y residentes, con historial completo
+                de pagos y estados de cuenta disponibles en tiempo real.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon2.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Control de Acceso y Seguridad</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Registro de visitantes y proveedores, integración con sistemas de apertura remota y cámaras.
+                Historial de ingresos y egresos en tiempo real, con notificaciones automáticas para
+                residentes y administración.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon3.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Comunicación y Convivencia</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Cartelera digital y notificaciones push/WhatsApp. Reservación de áreas comunes (piscina,
+                salones, canchas). Encuestas y votaciones digitales para asambleas, facilitando la
+                participación de todos los residentes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Gestión de Mantenimiento</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Registro de incidencias y órdenes de servicio, seguimiento a proveedores y preventivos
+                de infraestructura. Historial completo de mantenimientos y programación de tareas
+                recurrentes para garantizar el buen estado de las instalaciones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="about-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== FUNCIONALIDADES CLAVE END =======-->
+
+<!--===== INTEGRACIÓN ECOSISTEMA START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img2.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Potenciado por Inteligencia Artificial e Infraestructura Privada</h2>
+          <div class="space16"></div>
+          <p>
+            Lo que hace único a Condominio360 es su integración con el resto de nuestras soluciones,
+            creando un ecosistema completo que potencia cada funcionalidad.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Cuando Condominio360 se combina con Assistant360, Intela Smart e Intela Grid, obtienes
+            una solución integral que va más allá de la gestión tradicional, incorporando inteligencia
+            artificial y automatización en cada proceso.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> <strong>+ Assistant360:</strong> Los residentes pueden consultar su saldo o reportar una avería hablando con un agente de IA por WhatsApp.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> <strong>+ Intela Smart:</strong> Automatización de iluminación en áreas comunes y sensores de seguridad integrados a la plataforma.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> <strong>+ Intela Grid:</strong> Tus datos financieros y registros de seguridad residen en una infraestructura privada y segura.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/solutions" class="theme-btn2">Conocer el ecosistema completo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== INTEGRACIÓN ECOSISTEMA END =======-->
+
+<!--===== MODELO DE SUSCRIPCIÓN START =======-->
+<div class="feratures-page-area sp">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-6">
+        <div class="headding2 features-left">
+          <h2>Un plan a la medida de tu comunidad</h2>
+          <div class="space16"></div>
+          <p>
+            Condominio360 se ofrece bajo un modelo de suscripción mensual adaptado al número de
+            unidades de tu condominio o urbanización. Sin costos ocultos, con actualizaciones
+            permanentes y soporte técnico especializado.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Cada plan incluye acceso completo a todas las funcionalidades de la plataforma, soporte
+            técnico prioritario y capacitación para administradores. A medida que tu comunidad crece,
+            puedes escalar fácilmente tu plan sin interrupciones.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Además, ofrecemos un servicio opcional de onboarding para configurar tu comunidad,
+            migrar datos históricos y dejar tu administración operativa desde el día uno.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Planes escalables según el número de unidades residenciales.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Sin costos ocultos ni cargos por transacciones.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Actualizaciones continuas y nuevas funcionalidades incluidas.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Soporte técnico especializado y capacitación para administradores.</li>
+          </ul>
+          <div class="space30"></div>
+          <div class="">
+            <a href="/contact" class="theme-btn2">Solicitar cotización personalizada</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="image">
+          <img src="{{ config.ASSETS_ROOT }}/img/features/features-page-stapes1.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== MODELO DE SUSCRIPCIÓN END =======-->
+
+<!--===== CTA FINAL START =======-->
+<div class="email-innovation"
+     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2-w">
+          <h2>¿Listo para transformar la gestión de tu comunidad?</h2>
+          <div class="space16"></div>
+          <p>
+            Únete a las administradoras y juntas de condominio que ya están optimizando su
+            tiempo y mejorando la transparencia con Condominio360.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Hablar con un asesor</a>
+            <a href="/solutions" class="theme-btn3">Ver todas las soluciones</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA FINAL END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+
