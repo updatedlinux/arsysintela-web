@@ -16,7 +16,7 @@
 {% block page_content %}
 
 <!--===== HERO AREA START =======-->
-<div class="pages-hero">
+<div class="pages-hero contact-hero">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 m-auto text-center">
@@ -37,9 +37,9 @@
 <!--===== HERO AREA END =======-->
 
 <!--===== CONTACT PAGE AREA START =======-->
-<div class="contact-page-area sp">
+<div class="contact-page-area sp contact-form-section">
   <div class="container">
-    <div class="space60"></div>
+    <div class="space30"></div>
     <div class="contact-form-all">
       <div class="row align-items-center">
         <div class="col-lg-7">
@@ -167,12 +167,25 @@
 <div id="assistant360-modal" class="modal-chat" style="display: none;">
   <div class="modal-chat-content">
     <span class="close-chat" id="close-assistant360-chat">&times;</span>
-    <h3>Chat en vivo con Assistant360</h3>
-    <div id="assistant360-embed">
-      <!-- Aquí se embebe el iframe o widget de Assistant360 cuando esté listo -->
-      <p style="text-align: center; padding: 40px;">
-        Cargando chat...
+    <div class="modal-chat-header">
+      <i class="fas fa-robot"></i>
+      <h3>Chat en vivo con Assistant360</h3>
+    </div>
+    <div class="modal-chat-body">
+      <p>
+        <strong>Próximamente:</strong> Chat en vivo con Assistant360.
       </p>
+      <p>
+        Por ahora, completa el formulario de contacto y nos pondremos en contacto
+        contigo lo antes posible.
+      </p>
+      <p style="margin-top: 20px;">
+        <em>Estamos trabajando para ofrecerte atención instantánea con nuestros
+        agentes de IA.</em>
+      </p>
+    </div>
+    <div class="modal-chat-footer">
+      <button class="theme-btn2" id="go-to-form">Ir al formulario</button>
     </div>
   </div>
 </div>
@@ -180,6 +193,12 @@
 
 <!--===== ESTILOS Y SCRIPTS START =======-->
 <style>
+/* Reducir espaciado del hero de contacto */
+.contact-hero {
+  padding: 100px 0 60px 0;
+  margin-bottom: 40px;
+}
+
 .chat-button-placeholder {
   position: fixed;
   bottom: 30px;
@@ -216,21 +235,38 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-chat-content {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 16px;
   width: 90%;
   max-width: 500px;
-  max-height: 80vh;
-  overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   position: relative;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .close-chat {
@@ -239,27 +275,60 @@
   right: 20px;
   font-size: 28px;
   font-weight: bold;
-  color: #aaa;
+  color: white;
   cursor: pointer;
   z-index: 10;
+  transition: transform 0.2s ease;
 }
 
 .close-chat:hover {
-  color: #000;
+  transform: scale(1.2);
 }
 
-.modal-chat-content h3 {
-  padding: 20px;
-  margin: 0;
+.modal-chat-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 30px 20px;
   text-align: center;
+  position: relative;
 }
 
-#assistant360-embed {
-  padding: 20px;
-  height: 400px;
-  overflow-y: auto;
+.modal-chat-header i {
+  font-size: 48px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.modal-chat-header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.modal-chat-body {
+  padding: 30px;
+  text-align: center;
+  line-height: 1.8;
+  color: #333;
+}
+
+.modal-chat-body p {
+  margin-bottom: 15px;
+}
+
+.modal-chat-body strong {
+  color: #667eea;
+}
+
+.modal-chat-footer {
+  padding: 20px 30px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+.modal-chat-footer .theme-btn2 {
+  margin: 0;
 }
 
 @media (max-width: 767px) {
@@ -274,17 +343,18 @@
     width: 95%;
     max-height: 90vh;
   }
+  
+  .contact-hero {
+    padding: 80px 0 40px 0;
+    margin-bottom: 30px;
+  }
 }
 </style>
 
 <script>
 // Abrir modal de chat
 document.getElementById('open-assistant360-chat').addEventListener('click', function() {
-  // Placeholder: aquí se abrirá el modal con el chat embebido de Assistant360
-  alert('Próximamente: Chat en vivo con Assistant360.\n\nPor ahora, completa el formulario y te contactaremos.');
-  
-  // Cuando esté listo el chat, reemplaza el alert por:
-  // document.getElementById('assistant360-modal').style.display = 'flex';
+  document.getElementById('assistant360-modal').style.display = 'flex';
 });
 
 // Cerrar modal de chat
@@ -298,6 +368,16 @@ window.addEventListener('click', function(event) {
   if (event.target === modal) {
     modal.style.display = 'none';
   }
+});
+
+// Botón "Ir al formulario"
+document.getElementById('go-to-form').addEventListener('click', function() {
+  document.getElementById('assistant360-modal').style.display = 'none';
+  // Scroll suave hacia el formulario
+  document.querySelector('.contact-form-section').scrollIntoView({ 
+    behavior: 'smooth',
+    block: 'start'
+  });
 });
 </script>
 <!--===== ESTILOS Y SCRIPTS END =======-->
