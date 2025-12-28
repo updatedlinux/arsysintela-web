@@ -80,3 +80,20 @@ def get_segment(request):
 
     except:
         return None
+
+
+@blueprint.route('/debug-ip')
+def debug_ip():
+    """
+    Ruta de debug para verificar que la IP real del cliente se está capturando correctamente.
+    Útil para verificar la configuración de ProxyFix y forwarded_allow_ips.
+    Puede eliminarse en producción.
+    """
+    return {
+        "remote_addr": request.remote_addr,
+        "x_forwarded_for": request.headers.get("X-Forwarded-For"),
+        "x_real_ip": request.headers.get("X-Real-IP"),
+        "x_forwarded_proto": request.headers.get("X-Forwarded-Proto"),
+        "x_forwarded_host": request.headers.get("X-Forwarded-Host"),
+        "x_forwarded_port": request.headers.get("X-Forwarded-Port"),
+    }

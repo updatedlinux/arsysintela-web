@@ -5,6 +5,7 @@ import os
 from   flask_migrate import Migrate
 from   flask_minify  import Minify
 from   sys import exit
+from   werkzeug.middleware.proxy_fix import ProxyFix
 
 from apps.config import config_dict
 from apps import create_app, db
@@ -24,6 +25,22 @@ except KeyError:
     exit('Error: Invalid <config_mode>. Expected values [Debug, Production] ')
 
 app = create_app(app_config)
+
+# Configurar ProxyFix para respetar encabezados X-Forwarded-* de Nginx Proxy Manager
+# x_for=1: usar X-Forwarded-For (1 proxy: Nginx Proxy Manager)
+# x_proto=1: usar X-Forwarded-Proto (HTTP/HTTPS)
+# x_host=1: usar X-Forwarded-Host
+# x_port=1: usar X-Forwarded-Port
+# x_prefix=1: usar X-Forwarded-Prefix
+app.wsgi_app = ProxyFix(
+    app.wsgi_app,
+    x_for=1,
+    x_proto=1,
+    x_host=1,
+    x_port=1,
+    x_prefix=1
+)
+
 Migrate(app, db)
 
 if not DEBUG:
