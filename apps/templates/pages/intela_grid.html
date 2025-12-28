@@ -1,0 +1,441 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Intela Grid – Infraestructura híbrida para tus sistemas críticos{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body unic-body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-headding">
+          <h1>Intela Grid – Infraestructura híbrida para tus sistemas críticos</h1>
+          <p class="lead">
+            Una suite de soluciones de infraestructura tecnológica híbrida (Cloud / On-Premises),
+            con centros de datos en Europa, Estados Unidos y Venezuela, diseñada para garantizar
+            soberanía de datos, seguridad y alta disponibilidad para tus aplicaciones y SaaS.
+          </p>
+          <p>
+            Intela Grid es la capa de infraestructura de Arsys Intela, diseñada para organizaciones
+            que requieren control total sobre sus datos, cumplimiento regulatorio y rendimiento
+            predecible. Combinamos la flexibilidad de la nube con el control del entorno on-premise.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Diseñar mi arquitectura con Intela Grid</a>
+            <a href="#opciones-despliegue" class="theme-btn3">Ver opciones de despliegue</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-main-img.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== CLOUD ON-PREMISE START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Cloud y On‑Premises, en tus propios términos</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Grid combina la flexibilidad de la nube con el control del entorno on‑premise.
+            Operamos en centros de datos ubicados en Europa, Estados Unidos y Venezuela, lo que
+            permite adaptar cada despliegue a tus requisitos regulatorios, de latencia y
+            soberanía de datos.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Podemos alojar tus cargas en nuestra infraestructura, en instalaciones propias del
+            cliente o en esquemas híbridos donde parte de la operación vive on‑premise y otra
+            parte en la nube, manteniendo una arquitectura coherente y monitoreada.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Centros de datos en Europa, Estados Unidos y Venezuela.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Despliegues híbridos que combinan nube y on-premise.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Soberanía de datos adaptada a requisitos regulatorios locales.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Control total sobre la ubicación y gestión de tus datos.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Arquitecturas coherentes y monitoreadas en todos los entornos.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/contact" class="theme-btn2">Consultar opciones de despliegue</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CLOUD ON-PREMISE END =======-->
+
+<!--===== TECNOLOGÍAS VIRTUALIZACIÓN START =======-->
+<div class="about-page-area2 _relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2">
+          <h2>Tecnologías abiertas por defecto, enterprise cuando lo necesitas</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Grid se apoya en tecnologías de virtualización de primer nivel. Por defecto
+            priorizamos opciones abiertas y eficientes en costos, y cuando tu operación lo
+            requiere, integramos soluciones propietarias de clase enterprise.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row d-flex flex-wrap align-items-stretch">
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Proxmox (incluido)</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Virtualizador recomendado por defecto, sin costo adicional de licencia para el cliente.
+                Ideal para la mayoría de cargas de trabajo, con excelente rendimiento y gestión
+                simplificada.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon2.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>OpenStack (costo de implementación)</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Ideal para entornos con múltiples nubes privadas y necesidades avanzadas de orquestación.
+                Perfecto para organizaciones que requieren control granular y escalabilidad masiva.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon3.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>VMware (bajo licencia Broadcom)</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Para organizaciones que ya estandarizaron sobre VMware y requieren compatibilidad total.
+                Solución enterprise con soporte completo y herramientas de gestión avanzadas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row">
+      <div class="col-lg-10 m-auto">
+        <div class="headding2 text-center">
+          <p>
+            También ofrecemos servidores baremetal en modalidad standalone o en alta disponibilidad
+            mediante vRack, sobre los cuales puedes construir tu propia capa de virtualización o
+            desplegar directamente tus servicios críticos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="about-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== TECNOLOGÍAS VIRTUALIZACIÓN END =======-->
+
+<!--===== OPCIONES DESPLIEGUE START =======-->
+<div class="about-page-area1 sp" id="opciones-despliegue">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2">
+          <h2>Opciones de despliegue con Intela Grid</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Grid ofrece múltiples modelos de despliegue para adaptarse a tus necesidades
+            técnicas, presupuestarias y de gobernanza. Desde infraestructura como servicio hasta
+            nubes completamente administradas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row d-flex flex-wrap align-items-stretch">
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Baremetal e IaaS</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                <strong>Baremetals standalone o en HA (vRack):</strong> servidores dedicados para que
+                construyas tu propia nube o ejecutes cargas de misión crítica. Sobre esta base puedes
+                desplegar Proxmox, OpenStack o VMware, y consumir la infraestructura como un verdadero
+                IaaS aliado con Arsys Intela.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon2.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Nube administrada</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                <strong>Nube administrada por Arsys Intela:</strong> si tu equipo no cuenta con experiencia en
+                infraestructura, podemos ofrecer servidores VPS y entornos virtualizados más
+                económicos, administrados y monitoreados por Arsys Intela. Tú te enfocas en tus
+                aplicaciones; nosotros nos encargamos del sistema operativo, parches y monitoreo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon3.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Híbrido y On‑Premises</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                <strong>Híbrido y On‑Premises:</strong> diseñamos arquitecturas que combinan tus
+                instalaciones locales con nuestra infraestructura en datacenters, permitiendo mover
+                cargas según la demanda, la latencia y los requerimientos regulatorios.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== OPCIONES DESPLIEGUE END =======-->
+
+<!--===== SEGURIDAD Y ALTA DISPONIBILIDAD START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img2.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Seguridad, alta disponibilidad y monitoreo 24/7</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Grid está diseñado para operaciones que no se pueden detener. Implementamos
+            esquemas de alta disponibilidad, copias de seguridad y monitoreo activo en todos
+            nuestros despliegues, con equipos de infraestructura disponibles 24/7.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Experiencia en firewalls y seguridad de redes (Fortinet, Mikrotik, Ubiquiti, entre otros).</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Virtualización y cómputo de alto desempeño (VMware, Proxmox y tecnologías del cuadrante mágico de Gartner).</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Balanceadores de carga y diseño de topologías resilientes.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Monitoreo proactivo de recursos e incidentes, con alertas tempranas.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Equipos de infraestructura disponibles 24/7 para soporte y resolución de incidentes.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Copias de seguridad automatizadas y planes de recuperación ante desastres.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/contact" class="theme-btn2">Consultar sobre seguridad y disponibilidad</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== SEGURIDAD Y ALTA DISPONIBILIDAD END =======-->
+
+<!--===== MODELO DE PAGO START =======-->
+<div class="feratures-page-area sp">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-6">
+        <div class="headding2 features-left">
+          <h2>Modelo de pago flexible según tu stack tecnológico</h2>
+          <div class="space16"></div>
+          <p>
+            El modelo de pago de Intela Grid se basa en licenciamiento y recursos consumidos,
+            adaptándose a los componentes tecnológicos que elijas y al tamaño de tu infraestructura.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Trabajamos con propuestas personalizadas, alineadas con el tamaño de tu operación y
+            con el nivel de criticidad de tus sistemas, optimizando costos sin comprometer
+            rendimiento ni seguridad.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> <strong>Stack abierto por defecto:</strong> Proxmox como virtualizador y Mikrotik
+              como core/borde de red pueden ofrecerse sin costo adicional de licencia, optimizando
+              el presupuesto.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> <strong>Tecnologías propietarias:</strong> si requieres soluciones pagas y privativas
+              (como VMware u otros componentes enterprise), el costo se ajusta según licencias y
+              complejidad del despliegue.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> <strong>Servicios administrados:</strong> para clientes sin experiencia en
+              infraestructura, ofrecemos planes de VPS y nubes administradas donde Arsys Intela
+              asume la operación y el monitoreo.</li>
+          </ul>
+          <div class="space16"></div>
+          <p>
+            En todos los casos trabajamos con propuestas personalizadas, alineadas con el tamaño
+            de tu operación y con el nivel de criticidad de tus sistemas.
+          </p>
+          <div class="space30"></div>
+          <div class="">
+            <a href="/contact" class="theme-btn2">Solicitar cotización personalizada</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="image">
+          <img src="{{ config.ASSETS_ROOT }}/img/features/features-page-stapes1.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== MODELO DE PAGO END =======-->
+
+<!--===== ECOSISTEMA ARSYS INTELA START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>La base donde vive el resto del ecosistema Arsys Intela</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Grid es la capa de infraestructura sobre la que puede vivir todo el
+            ecosistema Arsys Intela. Al hospedar tus aplicaciones y servicios con nosotros,
+            puedes acceder a beneficios directos dentro de la suite.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Despliegue optimizado de <strong>Assistant360</strong> para atención con IA desde tu
+              propia infraestructura.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Integración natural con <strong>Condominio360</strong> e <strong>Intela Smart</strong>
+              cuando necesitas gestionar comunidades y automatizar espacios.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Posibilidad de ofrecer tus propios SaaS o servicios en el marketplace aliado
+              <strong>ServiExpress</strong>, con posicionamiento preferencial y descuentos en
+              comisiones.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Beneficios y descuentos exclusivos en licencias de productos Arsys Intela cuando
+              hospedas tu solución en Intela Grid.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/solutions" class="theme-btn2">Conocer el ecosistema completo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== ECOSISTEMA ARSYS INTELA END =======-->
+
+<!--===== CTA FINAL START =======-->
+<div class="email-innovation"
+     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2-w">
+          <h2>¿Necesitas una infraestructura lista para crecer?</h2>
+          <div class="space16"></div>
+          <p>
+            Tanto si estás lanzando un nuevo SaaS como si quieres modernizar sistemas heredados,
+            podemos diseñar contigo una arquitectura híbrida que te dé control, rendimiento y
+            soberanía de datos desde el día uno.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una consultoría de infraestructura</a>
+            <a href="/solutions" class="theme-btn3">Ver todas las soluciones</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA FINAL END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+

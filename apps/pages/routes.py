@@ -19,7 +19,7 @@ def solution_page(solution_name):
             'assistant360': 'assistant360.html',
             'condominio360': 'condominio360.html',
             'serviexpress': 'serviexpress.html',
-            'intela-grid': 'intela-grid.html',
+            'intela-grid': 'intela_grid.html',
             'intela-smart': 'intela-smart.html',
         }
         
