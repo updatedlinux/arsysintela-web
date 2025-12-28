@@ -345,8 +345,8 @@
   margin-bottom: 10px;
 }
 
-/* Mejorar los valores de top para evitar superposiciones y permitir ver los botones */
-/* Usar valores de top más espaciados para que cada elemento se vea completamente antes del siguiente */
+/* Corregir sticky scroll: todos los elementos deben tener el mismo top para reemplazarse correctamente */
+/* El z-index decreciente permite que cada elemento empuje al anterior cuando llega */
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(1) {
   position: sticky;
   top: 100px;
@@ -355,41 +355,42 @@
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(2) {
   position: sticky;
-  top: 280px;
+  top: 100px;
   z-index: 5;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(3) {
   position: sticky;
-  top: 460px;
+  top: 100px;
   z-index: 4;
 }
 
-/* Agregar position sticky para los elementos adicionales con más espaciado */
+/* Agregar position sticky para los elementos adicionales */
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(4) {
   position: sticky;
-  top: 640px;
+  top: 100px;
   z-index: 3;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(5) {
   position: sticky;
-  top: 820px;
+  top: 100px;
   z-index: 2;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(6) {
   position: sticky;
-  top: 1000px;
+  top: 100px;
   z-index: 1;
 }
 
-/* Aumentar el margin-bottom para dar más espacio entre elementos y permitir ver los botones */
+/* Aumentar el margin-bottom para dar suficiente espacio entre elementos */
+/* Esto permite que cada elemento se vea completamente antes de ser reemplazado */
 .stiky-sec .stiky-sec-boxs .stiky-single {
-  margin-bottom: 200px !important;
+  margin-bottom: 400px !important;
 }
 
-/* Asegurar que los botones sean visibles y no se corten */
+/* Asegurar que los botones sean visibles */
 .stiky-sec .stiky-sec-boxs .stiky-single .headding {
   padding-bottom: 20px;
 }
