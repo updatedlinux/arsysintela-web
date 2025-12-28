@@ -346,48 +346,54 @@
 }
 
 /* Corregir sticky scroll: todos los elementos deben tener el mismo top para reemplazarse correctamente */
-/* El z-index decreciente permite que cada elemento empuje al anterior cuando llega */
+/* El z-index creciente permite que cada nuevo elemento esté encima del anterior cuando llega */
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(1) {
   position: sticky;
   top: 100px;
-  z-index: 6;
+  z-index: 1;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(2) {
   position: sticky;
   top: 100px;
-  z-index: 5;
+  z-index: 2;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(3) {
   position: sticky;
   top: 100px;
-  z-index: 4;
+  z-index: 3;
 }
 
 /* Agregar position sticky para los elementos adicionales */
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(4) {
   position: sticky;
   top: 100px;
-  z-index: 3;
+  z-index: 4;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(5) {
   position: sticky;
   top: 100px;
-  z-index: 2;
+  z-index: 5;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(6) {
   position: sticky;
   top: 100px;
-  z-index: 1;
+  z-index: 6;
 }
 
-/* Aumentar el margin-bottom para dar suficiente espacio entre elementos */
+/* Aumentar significativamente el margin-bottom para dar suficiente espacio entre elementos */
 /* Esto permite que cada elemento se vea completamente antes de ser reemplazado */
 .stiky-sec .stiky-sec-boxs .stiky-single {
-  margin-bottom: 400px !important;
+  margin-bottom: 600px !important;
+}
+
+/* Asegurar que el contenedor padre no interfiera con el sticky */
+.stiky-sec .stiky-sec-boxs {
+  position: relative;
+  overflow: visible;
 }
 
 /* Asegurar que los botones sean visibles */
@@ -401,12 +407,18 @@
   display: inline-block;
 }
 
+/* Asegurar que cada elemento sticky tenga suficiente altura para ser visible */
+.stiky-sec .stiky-sec-boxs .stiky-single {
+  min-height: 500px;
+}
+
 @media (max-width: 991px) {
   .stiky-sec .stiky-sec-boxs .stiky-single {
     position: relative !important;
     top: auto !important;
     z-index: auto !important;
     margin-bottom: 60px !important;
+    min-height: auto !important;
   }
 }
 </style>
