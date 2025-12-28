@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 
+import os
 from apps.pages import blueprint
-from flask import render_template, request
+from flask import render_template, request, current_app, send_from_directory, abort
 from jinja2 import TemplateNotFound
 
 
@@ -50,6 +51,33 @@ def privacidad():
 @blueprint.route('/<template>')
 def route_template(template):
     try:
+        # Rutas especiales para iconos de Apple / favicons
+        # Evitar que se intenten procesar como plantillas HTML
+        if template.startswith('apple-touch-icon'):
+            # Ejemplos de rutas solicitadas:
+            # /apple-touch-icon.png
+            # /apple-touch-icon-120x120.png
+            # /apple-touch-icon-120x120-precomposed.png
+            
+            # Intenta servir desde la carpeta de favicons estáticos
+            # current_app.root_path apunta a la carpeta de la app (apps/)
+            # La carpeta static está en apps/static/favicon_io/
+            favicon_dir = os.path.join(current_app.root_path, 'static', 'favicon_io')
+            favicon_dir = os.path.abspath(favicon_dir)
+            
+            # Mapea diferentes nombres solicitados al archivo principal apple-touch-icon.png
+            filename = 'apple-touch-icon.png'
+            
+            try:
+                return send_from_directory(favicon_dir, filename)
+            except Exception:
+                # Si por alguna razón no existe, devolvemos 404 simple
+                abort(404)
+        
+        # Excluir otros archivos estáticos comunes que no deberían ser plantillas
+        static_extensions = ('.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.css', '.js', '.json', '.xml', '.webmanifest')
+        if template.lower().endswith(static_extensions):
+            abort(404)
 
         if not template.endswith('.html'):
             template += '.html'
@@ -64,7 +92,7 @@ def route_template(template):
         return render_template('pages/page-404.html'), 404
 
     except:
-        return render_template('pages/page-500.html'), 500
+        return render_template('pages/page-404.html'), 404
 
 
 # Helper - Extract current page name from request
@@ -97,3 +125,12 @@ def debug_ip():
         "x_forwarded_host": request.headers.get("X-Forwarded-Host"),
         "x_forwarded_port": request.headers.get("X-Forwarded-Port"),
     }
+
+
+@blueprint.app_errorhandler(404)
+def page_not_found(e):
+    """
+    Handler global para errores 404.
+    Asegura que cualquier 404 muestre la página personalizada.
+    """
+    return render_template('pages/page-404.html'), 404

@@ -1,0 +1,45 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Página no encontrada - Arsys Intela{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-12 m-auto text-center">
+        <div class="main-headding">
+          <h1 style="font-size: 120px; font-weight: bold; margin-bottom: 20px; color: var(--qt-text-h-text2);">404</h1>
+          <h2 style="margin-bottom: 20px;">Página no encontrada</h2>
+          <p style="font-size: 18px; margin-bottom: 30px;">
+            Lo sentimos, la página que estás buscando no existe o ha sido movida.
+          </p>
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/" class="theme-btn2">Volver al inicio</a>
+            <a href="/solutions" class="theme-btn3">Ver soluciones</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+
