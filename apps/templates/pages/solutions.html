@@ -345,28 +345,67 @@
   margin-bottom: 10px;
 }
 
-/* Agregar position sticky para los elementos adicionales */
+/* Mejorar los valores de top para evitar superposiciones y permitir ver los botones */
+/* Usar valores de top más espaciados para que cada elemento se vea completamente antes del siguiente */
+.stiky-sec .stiky-sec-boxs .stiky-single:nth-child(1) {
+  position: sticky;
+  top: 100px;
+  z-index: 6;
+}
+
+.stiky-sec .stiky-sec-boxs .stiky-single:nth-child(2) {
+  position: sticky;
+  top: 280px;
+  z-index: 5;
+}
+
+.stiky-sec .stiky-sec-boxs .stiky-single:nth-child(3) {
+  position: sticky;
+  top: 460px;
+  z-index: 4;
+}
+
+/* Agregar position sticky para los elementos adicionales con más espaciado */
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(4) {
   position: sticky;
-  top: 300px;
+  top: 640px;
+  z-index: 3;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(5) {
   position: sticky;
-  top: 350px;
+  top: 820px;
+  z-index: 2;
 }
 
 .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(6) {
   position: sticky;
-  top: 400px;
+  top: 1000px;
+  z-index: 1;
+}
+
+/* Aumentar el margin-bottom para dar más espacio entre elementos y permitir ver los botones */
+.stiky-sec .stiky-sec-boxs .stiky-single {
+  margin-bottom: 200px !important;
+}
+
+/* Asegurar que los botones sean visibles y no se corten */
+.stiky-sec .stiky-sec-boxs .stiky-single .headding {
+  padding-bottom: 20px;
+}
+
+.stiky-sec .stiky-sec-boxs .stiky-single .theme-btn2,
+.stiky-sec .stiky-sec-boxs .stiky-single .others {
+  margin-top: 20px;
+  display: inline-block;
 }
 
 @media (max-width: 991px) {
-  .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(4),
-  .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(5),
-  .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(6) {
-    position: relative;
-    top: auto;
+  .stiky-sec .stiky-sec-boxs .stiky-single {
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+    margin-bottom: 60px !important;
   }
 }
 </style>
