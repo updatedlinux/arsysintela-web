@@ -1,65 +1,81 @@
 {% extends 'layouts/landing-layout.html' %}
 
-{% block title %}Contact Us{% endblock title %}
+{% block title %}Contacto – Arsys Intela{% endblock title %}
 
 {% block icon %}
-<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/img/logo/titel1.png" type="image/x-icon">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
 {% endblock icon %}
 
 {% block body_attribute %}class="body2 body"{% endblock body_attribute %}
 
 {% block page_content %}
 
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="main-headding">
+          <h1>Hablemos de tu próximo proyecto</h1>
+          <p class="lead">
+            Estamos aquí para ayudarte a diseñar la infraestructura, automatización o solución
+            de IA que tu negocio necesita. Completa el formulario o chatea en vivo con nosotros.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
 
 <!--===== CONTACT PAGE AREA START =======-->
 <div class="contact-page-area sp">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-8 m-auto text-center">
-        <div class="common-main-headding">
-          <h1>Customer Support</h1>
-          <p>At eSoft, we value your inquiries and are here to provide the support you need. Whether you're looking for
-            more information about our cutting-edge software.</p>
-        </div>
-      </div>
-    </div>
-
     <div class="space60"></div>
     <div class="contact-form-all">
       <div class="row align-items-center">
         <div class="col-lg-7">
           <div class="form-inputs">
-            <h5>Send us a Message</h5>
+            <h2>Envíanos un mensaje</h2>
             <div class="space16"></div>
-            <p>As a fellow small business owner, we know the fulfillment that an a comes from running your own business
-              contact to Financy.</p>
+            <p>
+              Cuéntanos qué necesitas y nos pondremos en contacto contigo lo antes posible.
+            </p>
 
             <div class="space30"></div>
-            <form action="#">
+            <form action="#" method="POST">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="input">
-                    <input type="text" placeholder="First Name*">
+                    <input type="text" name="first_name" placeholder="First Name*" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="input">
-                    <input type="email" placeholder="Email*">
+                    <input type="email" name="email" placeholder="Email*" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="input">
-                    <input type="number" placeholder="Phone*">
+                    <input type="tel" name="phone" placeholder="Phone*" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="input">
-                    <input type="text" placeholder="Website*">
+                    <input type="url" name="website" placeholder="Website">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="input">
-                    <textarea cols="30" rows="3" placeholder="Your Message*"></textarea>
+                    <textarea name="message" cols="30" rows="5" placeholder="Your Message*" required></textarea>
                   </div>
                   <div class="button">
                     <button type="submit" class="theme-btn2">Submit Now</button>
@@ -74,7 +90,7 @@
           <div class="contact-page-boxs">
             <div class="single-box">
               <div class="icon">
-                <img src="{{ config.ASSETS_ROOT }}/img/icons/contact-page-icon1.png" alt="">
+                <i class="fa-solid fa-phone" style="color: var(--qt-bg-bg-7); font-size: 24px;"></i>
               </div>
               <div class="headding">
                 <h5>Call</h5>
@@ -84,25 +100,23 @@
 
             <div class="single-box">
               <div class="icon">
-                <img src="{{ config.ASSETS_ROOT }}/img/icons/contact-page-icon2.png" alt="">
+                <i class="fa-solid fa-envelope" style="color: var(--qt-bg-bg-7); font-size: 24px;"></i>
               </div>
               <div class="headding">
                 <h5>Email</h5>
-                <a href="mailto:info@activatedigitalmedia.com">info@activatedigitalmedia.com</a>
+                <a href="mailto:contacto@arsysintela.com">contacto@arsysintela.com</a>
               </div>
             </div>
 
             <div class="single-box">
               <div class="icon">
-                <img src="{{ config.ASSETS_ROOT }}/img/icons/contact-page-icon3.png" alt="">
+                <i class="fa-solid fa-clock" style="color: var(--qt-bg-bg-7); font-size: 24px;"></i>
               </div>
               <div class="headding">
                 <h5>Schedule Time</h5>
                 <a href="#">Mon - Fri: 10am to 5pm</a>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -115,7 +129,178 @@
 </div>
 <!--===== CONTACT PAGE AREA END =======-->
 
+<!--===== CTA FINAL START =======-->
+<div class="email-innovation"
+     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2-w">
+          <h2>Construimos contigo la base tecnológica de tu próxima década</h2>
+          <div class="space16"></div>
+          <p>
+            Desde nubes privadas con Intela Grid hasta agentes de IA con Assistant360, pasando
+            por Condominio360 e Intela Smart. Arsys Intela te ayuda a diseñar una operación
+            digital más segura, automatizada y preparada para crecer en Latinoamérica y más allá.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="#open-assistant360-chat" class="theme-btn2">Agendar una conversación</a>
+            <a href="/solutions" class="theme-btn3">Ver todas las soluciones</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA FINAL END =======-->
+
+<!--===== BOTÓN FLOTANTE CHAT START =======-->
+<button id="open-assistant360-chat" class="chat-button-placeholder">
+  <i class="fas fa-comments"></i> Chat en vivo
+</button>
+<!--===== BOTÓN FLOTANTE CHAT END =======-->
+
+<!--===== MODAL CHAT START =======-->
+<div id="assistant360-modal" class="modal-chat" style="display: none;">
+  <div class="modal-chat-content">
+    <span class="close-chat" id="close-assistant360-chat">&times;</span>
+    <h3>Chat en vivo con Assistant360</h3>
+    <div id="assistant360-embed">
+      <!-- Aquí se embebe el iframe o widget de Assistant360 cuando esté listo -->
+      <p style="text-align: center; padding: 40px;">
+        Cargando chat...
+      </p>
+    </div>
+  </div>
+</div>
+<!--===== MODAL CHAT END =======-->
+
+<!--===== ESTILOS Y SCRIPTS START =======-->
+<style>
+.chat-button-placeholder {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-button-placeholder:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.chat-button-placeholder i {
+  font-size: 18px;
+}
+
+.modal-chat {
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-chat-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-chat {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-chat:hover {
+  color: #000;
+}
+
+.modal-chat-content h3 {
+  padding: 20px;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+}
+
+#assistant360-embed {
+  padding: 20px;
+  height: 400px;
+  overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+  .chat-button-placeholder {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .modal-chat-content {
+    width: 95%;
+    max-height: 90vh;
+  }
+}
+</style>
+
+<script>
+// Abrir modal de chat
+document.getElementById('open-assistant360-chat').addEventListener('click', function() {
+  // Placeholder: aquí se abrirá el modal con el chat embebido de Assistant360
+  alert('Próximamente: Chat en vivo con Assistant360.\n\nPor ahora, completa el formulario y te contactaremos.');
+  
+  // Cuando esté listo el chat, reemplaza el alert por:
+  // document.getElementById('assistant360-modal').style.display = 'flex';
+});
+
+// Cerrar modal de chat
+document.getElementById('close-assistant360-chat').addEventListener('click', function() {
+  document.getElementById('assistant360-modal').style.display = 'none';
+});
+
+// Cerrar modal al hacer clic fuera del contenido
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('assistant360-modal');
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+</script>
+<!--===== ESTILOS Y SCRIPTS END =======-->
 
 {% include 'partials/back-to-top.html' %}
 {% endblock page_content %}
-
