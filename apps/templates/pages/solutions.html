@@ -344,6 +344,31 @@
   text-transform: uppercase;
   margin-bottom: 10px;
 }
+
+/* Agregar position sticky para los elementos adicionales */
+.stiky-sec .stiky-sec-boxs .stiky-single:nth-child(4) {
+  position: sticky;
+  top: 300px;
+}
+
+.stiky-sec .stiky-sec-boxs .stiky-single:nth-child(5) {
+  position: sticky;
+  top: 350px;
+}
+
+.stiky-sec .stiky-sec-boxs .stiky-single:nth-child(6) {
+  position: sticky;
+  top: 400px;
+}
+
+@media (max-width: 991px) {
+  .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(4),
+  .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(5),
+  .stiky-sec .stiky-sec-boxs .stiky-single:nth-child(6) {
+    position: relative;
+    top: auto;
+  }
+}
 </style>
 <!--===== ESTILOS ADICIONALES END =======-->
 
