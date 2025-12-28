@@ -1,0 +1,356 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Intela Smart – Automatización inteligente para tus espacios{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body unic-body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-headding">
+          <h1>Intela Smart – Automatización inteligente para tus espacios</h1>
+          <p class="lead">
+            Domótica y automatización avanzada para edificios, oficinas, hogares y centros de
+            datos, basada en Home Assistant y desplegada sobre la infraestructura segura de
+            Intela Grid.
+          </p>
+          <p>
+            Intela Smart es la capa de automatización de Arsys Intela, diseñada para conectar
+            el mundo físico con tu operación digital. Combinamos la potencia de Home Assistant
+            con nuestra infraestructura Intela Grid para crear soluciones de automatización
+            resilientes, seguras y escalables.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Diseñar mi proyecto de automatización</a>
+            <a href="#casos-uso-intela-smart" class="theme-btn3">Ver casos de uso</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-main-img.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== QUÉ ES INTELA SMART START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Mucho más que domótica: automatización conectada a tu operación</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Smart es la capa de automatización de Arsys Intela. Combinamos la potencia de
+            Home Assistant con nuestra infraestructura Intela Grid para diseñar soluciones de
+            domótica que no solo encienden luces o leen sensores, sino que se integran con tus
+            sistemas de gestión y tus agentes de IA.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Desde edificios corporativos hasta centros de datos y residencias, diseñamos flujos
+            que reaccionan a eventos del mundo físico (sensores, cámaras, accesos) y los
+            conectan con tu operación digital.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Automatización basada en Home Assistant, la plataforma open-source más potente.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Integración con sistemas de gestión y agentes de IA.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Despliegue sobre Intela Grid para alta disponibilidad y soberanía de datos.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Soluciones adaptadas a edificios, oficinas, hogares y centros de datos.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Flujos personalizados que conectan eventos físicos con operaciones digitales.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/contact" class="theme-btn2">Consultar sobre Intela Smart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== QUÉ ES INTELA SMART END =======-->
+
+<!--===== CASOS DE USO START =======-->
+<div class="about-page-area2 _relative" id="casos-uso-intela-smart">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2">
+          <h2>Casos de uso: del centro de datos al hogar</h2>
+          <div class="space16"></div>
+          <p>
+            Ya hemos desplegado Intela Smart en escenarios críticos y cotidianos, demostrando
+            que la automatización bien diseñada mejora la seguridad, la eficiencia energética
+            y la visibilidad operativa.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row d-flex flex-wrap align-items-stretch">
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Monitoreo de temperatura en centros de datos</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Integración de sensores de temperatura y humedad para detectar variaciones anómalas,
+                generar alertas tempranas y activar acciones automáticas (notificaciones, ajustes de
+                climatización, etc.).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon2.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Iluminación inteligente y sensores de movimiento</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Automatización de encendido y apagado de luces en pasillos, áreas comunes y exteriores,
+                optimizando el consumo energético y mejorando la experiencia de uso.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon3.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Video, acceso y reconocimiento</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Integración de cámaras para identificar eventos específicos y, cuando aplica, habilitar
+                flujos como apertura de accesos, registro de actividad o envíos de alertas a seguridad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row">
+      <div class="col-lg-8 m-auto text-center">
+        <div class="headding2">
+          <p><em>El límite lo pones tú: diseñamos automatizaciones a la medida del contexto de
+            tu negocio o comunidad.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="about-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== CASOS DE USO END =======-->
+
+<!--===== HOME ASSISTANT E INTELA GRID START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img2.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Home Assistant como motor, Intela Grid como base</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Smart se apoya en Home Assistant como plataforma central de automatización,
+            lo que permite integrar una enorme variedad de dispositivos, protocolos y marcas de
+            forma flexible.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Todo esto se despliega sobre Intela Grid, nuestra capa de infraestructura híbrida,
+            asegurando que los servicios de automatización se ejecuten con alta disponibilidad,
+            resiliencia y soberanía de datos. Puedes alojar tu entorno de automatización en
+            nuestros centros de datos o en instalaciones propias, según tus necesidades.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Integración con una amplia gama de sensores, actuadores, cámaras y dispositivos IoT.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Despliegue en nubes privadas o entornos on‑premise controlados.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Escalabilidad para proyectos residenciales, comerciales o industriales.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Alta disponibilidad y resiliencia garantizadas por Intela Grid.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Soberanía de datos: tus automatizaciones residen donde tú lo decidas.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/solutions/intela-grid" class="theme-btn2">Conocer Intela Grid</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== HOME ASSISTANT E INTELA GRID END =======-->
+
+<!--===== INTEGRACIÓN CON CONDOMINIO360 Y ASSISTANT360 START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Conectado con tus residentes y tus agentes de IA</h2>
+          <div class="space16"></div>
+          <p>
+            Intela Smart no funciona aislado. Puede integrarse con Condominio360 para conectar
+            automatizaciones con la gestión de condominios y edificios, y con Assistant360 para
+            que los residentes o usuarios puedan interactuar con los dispositivos mediante
+            comandos en lenguaje natural.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Residentes que consultan por WhatsApp si dejaron una luz encendida en un área
+              común y reciben respuesta gracias a Assistant360.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Automatizaciones vinculadas al calendario de eventos y reservaciones gestionadas
+              desde Condominio360.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Alertas automáticas a administradores cuando un sensor crítico detecta una
+              condición fuera de rango.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Control de dispositivos mediante comandos de voz o texto procesados por agentes de IA.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Integración de automatizaciones con sistemas de gestión y reportes.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/solutions" class="theme-btn2">Ver todas las soluciones</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== INTEGRACIÓN CON CONDOMINIO360 Y ASSISTANT360 END =======-->
+
+<!--===== MODELO DE COSTOS START =======-->
+<div class="feratures-page-area sp">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-6">
+        <div class="headding2 features-left">
+          <h2>Costos adaptados a la complejidad de tu proyecto</h2>
+          <div class="space16"></div>
+          <p>
+            El costo de Intela Smart varía en función del alcance de cada proyecto: cantidad de
+            dispositivos, complejidad de las automatizaciones, tipo de integración requerida y
+            entorno de despliegue (nube privada, on‑premise o híbrido).
+          </p>
+          <div class="space16"></div>
+          <p>
+            Podemos acompañarte desde proyectos piloto enfocados en un solo área (por ejemplo,
+            monitoreo ambiental de un centro de datos) hasta implementaciones completas que
+            cubren edificios, urbanizaciones o cadenas de sucursales.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Proyectos piloto y pruebas de concepto.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Despliegues por fases según presupuesto y prioridades.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Planes de soporte y mantenimiento opcionales.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Cotizaciones personalizadas basadas en evaluación técnica y funcional.</li>
+          </ul>
+          <div class="space16"></div>
+          <p>
+            Cada proyecto se cotiza de forma personalizada después de una evaluación técnica y
+            funcional de tus necesidades.
+          </p>
+          <div class="space30"></div>
+          <div class="">
+            <a href="/contact" class="theme-btn2">Solicitar cotización personalizada</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="image">
+          <img src="{{ config.ASSETS_ROOT }}/img/features/features-page-stapes1.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== MODELO DE COSTOS END =======-->
+
+<!--===== CTA FINAL START =======-->
+<div class="email-innovation"
+     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2-w">
+          <h2>¿Qué te gustaría automatizar primero?</h2>
+          <div class="space16"></div>
+          <p>
+            Cuéntanos qué tipo de espacio quieres automatizar —un centro de datos, un edificio,
+            una oficina o tu comunidad— y diseñaremos contigo un plan de implementación de
+            Intela Smart basado en Home Assistant e Intela Grid.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una consultoría de Intela Smart</a>
+            <a href="/solutions" class="theme-btn3">Ver todas las soluciones</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA FINAL END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+

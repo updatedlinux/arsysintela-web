@@ -20,7 +20,7 @@ def solution_page(solution_name):
             'condominio360': 'condominio360.html',
             'serviexpress': 'serviexpress.html',
             'intela-grid': 'intela_grid.html',
-            'intela-smart': 'intela-smart.html',
+            'intela-smart': 'intela_smart.html',
         }
         
         template = solution_templates.get(solution_name)
