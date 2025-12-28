@@ -19,7 +19,7 @@
 </head>
 <body {% block body_attribute %}{% endblock body_attribute %}>
 
-{% include 'partials/preloader.html' %}
+{% block preloader %}{% endblock preloader %}
 
 {% block content %}{% endblock content %}
 
