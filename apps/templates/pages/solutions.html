@@ -384,16 +384,30 @@
   z-index: 6;
 }
 
-/* Aumentar significativamente el margin-bottom para dar suficiente espacio entre elementos */
-/* Esto permite que cada elemento se vea completamente antes de ser reemplazado */
-.stiky-sec .stiky-sec-boxs .stiky-single {
-  margin-bottom: 600px !important;
-}
-
 /* Asegurar que el contenedor padre no interfiera con el sticky */
 .stiky-sec .stiky-sec-boxs {
   position: relative;
   overflow: visible;
+}
+
+/* Asegurar que cada elemento sticky reemplace completamente al anterior */
+.stiky-sec .stiky-sec-boxs .stiky-single {
+  margin-bottom: 800px !important;
+  min-height: 600px !important;
+  background-color: var(--qt-bg-bg-w) !important;
+  position: relative;
+}
+
+/* Asegurar que el fondo cubra completamente el área visible */
+.stiky-sec .stiky-sec-boxs .stiky-single::after {
+  content: '';
+  position: absolute;
+  bottom: -800px;
+  left: 0;
+  right: 0;
+  height: 800px;
+  background-color: var(--qt-bg-bg-w);
+  z-index: -1;
 }
 
 /* Asegurar que los botones sean visibles */
@@ -405,11 +419,6 @@
 .stiky-sec .stiky-sec-boxs .stiky-single .others {
   margin-top: 20px;
   display: inline-block;
-}
-
-/* Asegurar que cada elemento sticky tenga suficiente altura para ser visible */
-.stiky-sec .stiky-sec-boxs .stiky-single {
-  min-height: 500px;
 }
 
 @media (max-width: 991px) {
