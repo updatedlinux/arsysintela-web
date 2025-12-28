@@ -410,6 +410,15 @@
   z-index: -1;
 }
 
+/* Eliminar el espacio extra del último elemento para permitir scroll natural */
+.stiky-sec .stiky-sec-boxs .stiky-single:last-child {
+  margin-bottom: 60px !important;
+}
+
+.stiky-sec .stiky-sec-boxs .stiky-single:last-child::after {
+  display: none !important;
+}
+
 /* Asegurar que los botones sean visibles */
 .stiky-sec .stiky-sec-boxs .stiky-single .headding {
   padding-bottom: 20px;
@@ -428,6 +437,10 @@
     z-index: auto !important;
     margin-bottom: 60px !important;
     min-height: auto !important;
+  }
+  
+  .stiky-sec .stiky-sec-boxs .stiky-single::after {
+    display: none !important;
   }
 }
 </style>
