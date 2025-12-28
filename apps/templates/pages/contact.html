@@ -16,7 +16,7 @@
 {% block page_content %}
 
 <!--===== HERO AREA START =======-->
-<div class="pages-hero contact-hero">
+<div class="pages-hero">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 m-auto text-center">
@@ -37,7 +37,7 @@
 <!--===== HERO AREA END =======-->
 
 <!--===== CONTACT PAGE AREA START =======-->
-<div class="contact-page-area sp contact-form-section">
+<div class="contact-page-area contact-form-section" style="margin-top: 0; padding-top: 0;">
   <div class="container">
     <div class="contact-form-all">
       <div class="row align-items-center">
@@ -164,10 +164,10 @@
 
 <!--===== ESTILOS Y SCRIPTS START =======-->
 <style>
-/* Reducir espaciado del hero de contacto */
-.contact-hero {
-  padding: 60px 0 15px 0;
-  margin-bottom: 10px;
+/* Reducir espaciado del contenedor de contacto */
+.contact-page-area.contact-form-section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .chat-button-placeholder {
@@ -313,11 +313,6 @@
   .modal-chat-content {
     width: 95%;
     max-height: 90vh;
-  }
-  
-  .contact-hero {
-    padding: 50px 0 10px 0;
-    margin-bottom: 10px;
   }
 }
 </style>
