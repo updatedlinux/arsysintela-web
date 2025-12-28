@@ -35,6 +35,18 @@ def solution_page(solution_name):
         return render_template('pages/page-500.html'), 500
 
 
+@blueprint.route('/terminos')
+def terminos():
+    segment = get_segment(request)
+    return render_template('pages/terminos.html', segment=segment)
+
+
+@blueprint.route('/privacidad')
+def privacidad():
+    segment = get_segment(request)
+    return render_template('pages/privacidad.html', segment=segment)
+
+
 @blueprint.route('/<template>')
 def route_template(template):
     try:
