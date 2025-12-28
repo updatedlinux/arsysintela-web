@@ -1,0 +1,420 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Consultoría Tecnológica Arsys Intela{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body unic-body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="main-headding">
+          <h1>Consultoría Tecnológica Arsys Intela</h1>
+          <p class="lead">
+            Un equipo multidisciplinario de especialistas en infraestructura, DevOps, seguridad,
+            redes, telecomunicaciones, criptomonedas, pasarelas de pago, desarrollo de software
+            y bases de datos, listo para ayudarte a diseñar y ejecutar tu próxima fase tecnológica.
+          </p>
+          <p>
+            Nuestra consultoría combina experiencia práctica en campo con las capacidades del
+            ecosistema Arsys Intela, ofreciendo soluciones que van desde diagnósticos puntuales
+            hasta acompañamiento completo en proyectos de transformación tecnológica.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una consultoría</a>
+            <a href="#areas-especializacion" class="theme-btn3">Ver áreas de especialización</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-main-img.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== QUÉ HACEMOS START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Del diagnóstico a la implementación</h2>
+          <div class="space16"></div>
+          <p>
+            Nuestra consultoría tecnológica no se queda en recomendaciones teóricas. Acompañamos
+            a tu equipo desde el diagnóstico inicial hasta la implementación y el traspaso de
+            conocimiento, combinando experiencia en campo con las capacidades del ecosistema
+            Arsys Intela.
+          </p>
+          <div class="space16"></div>
+          <p>
+            Podemos ayudarte tanto si estás empezando un nuevo proyecto como si necesitas
+            modernizar una infraestructura existente, revisar tu postura de seguridad, desplegar
+            redes empresariales o lanzar productos digitales sobre criptomonedas y pasarelas de pago.
+          </p>
+
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Diagnóstico y análisis de arquitecturas existentes.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Diseño de soluciones adaptadas a tu contexto y objetivos.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Acompañamiento en implementación y despliegue.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Transferencia de conocimiento y documentación técnica.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Soporte continuo y optimización post-implementación.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/contact" class="theme-btn2">Solicitar una consultoría</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== QUÉ HACEMOS END =======-->
+
+<!--===== ÁREAS DE ESPECIALIZACIÓN START =======-->
+<div class="about-page-area2 _relative" id="areas-especializacion">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2">
+          <h2>Áreas de especialización</h2>
+          <div class="space16"></div>
+          <p>
+            Nuestro equipo cubre un amplio espectro de disciplinas tecnológicas, desde
+            infraestructura y redes hasta desarrollo de software y sistemas de pago.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+    <div class="row d-flex flex-wrap align-items-stretch">
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Infraestructura y Virtualización</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Diseño de arquitecturas on‑premise, cloud e híbridas. Virtualización, alta
+                disponibilidad, balanceadores de carga y monitoreo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon2.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Redes, Telecomunicaciones e Interconexión</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Desplegamos, soportamos y mantenemos redes, desde esquemas SOHO hasta campus
+                enterprise, utilizando tecnologías como Cisco, Fortinet, Palo Alto, Mikrotik y
+                otras soluciones líderes del mercado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon3.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>DevOps y Automatización</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Integración continua, despliegue continuo (CI/CD), contenedores, orquestación y
+                automatización de entornos para acelerar el ciclo de desarrollo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Seguridad y Cumplimiento</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Revisión de posture de seguridad, segmentación de redes, firewalls, hardening,
+                gestión de accesos y apoyo en cumplimiento de políticas internas y normativas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon2.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Criptomonedas, Exchanges y Pasarelas de Pago</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Asesoría en diseño de flujos con criptomonedas, integración con exchanges,
+                gateways de pago y modelos de conciliación. Evaluación de riesgos técnicos
+                asociados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon3.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Desarrollo de Software y APIs</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Diseño de arquitectura de aplicaciones, definición de APIs, patrones de
+                integración, buenas prácticas de escalabilidad y mantenibilidad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex mb-4">
+        <div class="about-page-boxs h-100 w-100" style="height: auto !important; min-height: 100%; overflow: visible !important;">
+          <div class="single-box h-100 d-flex flex-column" style="height: auto !important; min-height: 100%; overflow: visible !important; padding-bottom: 30px !important;">
+            <div class="icon">
+              <img src="{{ config.ASSETS_ROOT }}/img/icons/about-page-sec-icon1.png" alt="">
+            </div>
+            <div class="space20"></div>
+            <div class="headding2 flex-grow-1 d-flex flex-column">
+              <h4>Bases de Datos y Datos</h4>
+              <div class="space10"></div>
+              <p class="mb-0" style="flex-grow: 1;">
+                Modelado de datos, selección de motores (SQL/NoSQL), estrategias de alta
+                disponibilidad, respaldo, recuperación y performance tuning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="about-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
+</div>
+<!--===== ÁREAS DE ESPECIALIZACIÓN END =======-->
+
+<!--===== CÓMO TRABAJAMOS START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img2.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Cómo trabajamos una consultoría contigo</h2>
+          <div class="space16"></div>
+          <p>
+            Adaptamos la profundidad y el alcance de la consultoría según tu contexto, pero
+            normalmente seguimos una estructura clara que te da visibilidad en cada etapa.
+          </p>
+
+          <div class="space20"></div>
+          <ol class="list" style="list-style-type: decimal; padding-left: 20px;">
+            <li style="margin-bottom: 20px;">
+              <strong>Descubrimiento:</strong> Reuniones iniciales para entender objetivos de negocio,
+              estado actual y restricciones (técnicas, regulatorias, presupuestarias).
+            </li>
+            <li style="margin-bottom: 20px;">
+              <strong>Análisis y diagnóstico:</strong> Revisión de arquitectura, herramientas, procesos
+              y riesgos. Identificación de oportunidades de mejora y puntos críticos.
+            </li>
+            <li style="margin-bottom: 20px;">
+              <strong>Propuesta de arquitectura y plan:</strong> Diseño de una arquitectura objetivo y
+              un roadmap de implementación por fases, priorizando quick wins y riesgos.
+            </li>
+            <li style="margin-bottom: 20px;">
+              <strong>Acompañamiento en la implementación:</strong> Soporte a tu equipo en la ejecución
+              técnica: infraestructura, redes, automatización, desarrollo o integración, según el alcance.
+            </li>
+            <li>
+              <strong>Transferencia de conocimiento:</strong> Documentación y sesiones con tu equipo
+              para dejar capacidades internas fortalecidas.
+            </li>
+          </ol>
+          <div class="space30"></div>
+          <a href="/contact" class="theme-btn2">Iniciar un proyecto de consultoría</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CÓMO TRABAJAMOS END =======-->
+
+<!--===== ECOSISTEMA ARSYS INTELA START =======-->
+<div class="about-page-area1 sp">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img src="{{ config.ASSETS_ROOT }}/img/about/about-page-img1.png" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="headding2">
+          <h2>Consultoría con herramientas reales detrás</h2>
+          <div class="space16"></div>
+          <p>
+            Nuestra ventaja es que no solo recomendamos tecnologías: las operamos día a día.
+            Podemos diseñar soluciones que se apoyen en Intela Grid para infraestructura,
+            Assistant360 para agentes de IA, Condominio360 para gestión de comunidades e
+            Intela Smart para automatización física de espacios, cuando tenga sentido para
+            tu caso.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span><i class="fa-solid fa-check"></i></span> Diseñar una arquitectura híbrida donde tu aplicación corre sobre Intela Grid
+              con alta disponibilidad.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Desplegar redes empresariales seguras y escalables con tecnologías Cisco, Fortinet,
+              Palo Alto o Mikrotik.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Integrar asistentes de IA con Assistant360 en tus canales de atención.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Modernizar la operación de edificios y comunidades con Condominio360 e
+              Intela Smart.</li>
+            <li><span><i class="fa-solid fa-check"></i></span> Preparar tu producto para ser ofrecido en el marketplace aliado ServiExpress.</li>
+          </ul>
+          <div class="space30"></div>
+          <a href="/solutions" class="theme-btn2">Conocer el ecosistema Arsys Intela</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== ECOSISTEMA ARSYS INTELA END =======-->
+
+<!--===== PARA QUIÉN ES START =======-->
+<div class="feratures-page-area sp">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-6">
+        <div class="headding2 features-left">
+          <h2>¿Para quién es nuestra consultoría tecnológica?</h2>
+          <div class="space16"></div>
+          <p>
+            Trabajamos con empresas, startups, administradoras y equipos técnicos que necesitan
+            apoyo especializado para tomar decisiones tecnológicas críticas o ejecutar proyectos
+            complejos con menos riesgo.
+          </p>
+
+          <div class="space20"></div>
+          <ul class="list">
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Empresas que van a lanzar un nuevo producto digital o SaaS.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Organizaciones que quieren migrar o modernizar su infraestructura actual.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Equipos que necesitan desplegar o actualizar redes corporativas seguras y escalables.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Proyectos que requieren apoyo en seguridad, DevOps o integración de pagos y cripto.</li>
+            <li><span class="arrow"><i class="fa-regular fa-check"></i></span> Negocios que necesitan validar arquitectura y escalabilidad antes de crecer.</li>
+          </ul>
+          <div class="space30"></div>
+          <div class="">
+            <a href="/contact" class="theme-btn2">Agendar una consultoría</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="image">
+          <img src="{{ config.ASSETS_ROOT }}/img/features/features-page-stapes1.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--===== PARA QUIÉN ES END =======-->
+
+<!--===== CTA FINAL START =======-->
+<div class="email-innovation"
+     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto text-center">
+        <div class="headding2-w">
+          <h2>¿Tienes un reto tecnológico en mente?</h2>
+          <div class="space16"></div>
+          <p>
+            Cuéntanos qué estás intentando construir o mejorar y armaremos contigo una propuesta
+            de consultoría adaptada a tu contexto, ya sea un diagnóstico puntual o un
+            acompañamiento de largo plazo.
+          </p>
+
+          <div class="space30"></div>
+          <div class="hero-btns">
+            <a href="/contact" class="theme-btn2">Agendar una consultoría</a>
+            <a href="/solutions" class="theme-btn3">Ver soluciones de Arsys Intela</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CTA FINAL END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+
