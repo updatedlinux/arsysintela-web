@@ -34,13 +34,17 @@
 </div>
 <!--===== HERO AREA END =======-->
 
-{% if is_user and client %}
-{# Contenedor de información del cliente - fuera del blog-area para mejor posicionamiento #}
-<div class="container" style="position: relative; z-index: 10; margin-top: 40px; margin-bottom: 40px;">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
+{% if is_user %}
+{# Vista para usuarios con rol 'user': mostrar información del cliente y productos asociados #}
+
+<!--===== CLIENT INFO AREA START =======-->
+<div class="about-boxs">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        {% if client %}
+        <div class="single-box" style="flex-direction: column; align-items: flex-start;">
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 25px;">
             <div class="headding2" style="margin-bottom: 0;">
               <h2>Mi Información</h2>
             </div>
@@ -48,8 +52,8 @@
               <a href="/logout" class="theme-btn3">Cerrar Sesión</a>
             </div>
           </div>
-          
-          <div class="row align-items-center">
+
+          <div class="row" style="width: 100%;">
             <div class="col-md-3 text-center">
               <div style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
                 <i class="fa-regular fa-user" style="font-size: 60px; color: #fff;"></i>
@@ -68,13 +72,13 @@
                   </p>
                   <p style="margin-bottom: 15px; display: flex; align-items: center;">
                     <i class="fa-regular fa-phone" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
-                    <span><strong>Teléfono:</strong> {% if client.get('phone') %}{{ client.phone }}{% else %}No especificado{% endif %}</span>
+                    <span><strong>Teléfono:</strong> {{ client.get('phone', 'No especificado') }}</span>
                   </p>
                 </div>
                 <div class="col-md-6">
                   <p style="margin-bottom: 15px; display: flex; align-items: center;">
                     <i class="fa-regular fa-building" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
-                    <span><strong>Empresa:</strong> {% if client.get('company') %}{{ client.company }}{% else %}No especificado{% endif %}</span>
+                    <span><strong>Empresa:</strong> {{ client.get('company', 'No especificado') }}</span>
                   </p>
                   {% if client.get('notes') %}
                   <p style="margin-bottom: 15px; display: flex; align-items: flex-start;">
@@ -87,33 +91,30 @@
             </div>
           </div>
         </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-top: 30px; border: 1px solid #f5c6cb;">
+          <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
-{% endif %}
+<!--===== CLIENT INFO AREA END =======-->
 
-<!--===== CLIENTES LIST AREA START =======-->
-<div class="blog-area">
+<!--===== PRODUCTS AREA START =======-->
+<div class="about-page-area1 sp">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12" style="margin-top: 40px;">
-        
-        {% if error %}
-        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb;">
-          <strong>Error:</strong> {{ error }}
-        </div>
-        {% endif %}
-
-        {% if is_user %}
-        {# Vista para usuarios con rol 'user': mostrar productos asociados #}
-        
-        <div class="headding2" style="margin-bottom: 30px;">
+      <div class="col-lg-12">
+        <div class="headding2">
           <h2>Mis Productos</h2>
         </div>
 
         {% if products and products|length > 0 %}
-        <div class="table-responsive" style="overflow-x: auto;">
+        <div class="table-responsive" style="overflow-x: auto; margin-top: 30px;">
           <table class="table" style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 8px;">
             <thead style="background-color: var(--qt-text-h-text2, #1a1a1a); color: #fff;">
               <tr>
@@ -127,8 +128,10 @@
               </tr>
             </thead>
             <tbody>
-              {% for product in products %}
-              {% set client_product = product.get('ClientProduct', {}) %}
+              {% for product_rel in products %}
+              {% set product = product_rel.get('product', {}) %}
+              {% set client_product = product_rel.get('ClientProduct', {}) %}
+              {% set status = client_product.get('status', '') %}
               <tr style="border-bottom: 1px solid #eee;">
                 <td style="padding: 15px;">{{ product.get('code', 'N/A') }}</td>
                 <td style="padding: 15px;">{{ product.get('name', 'N/A') }}</td>
@@ -144,18 +147,23 @@
                   {% endif %}
                 </td>
                 <td style="padding: 15px;">
-                  <span style="padding: 5px 10px; border-radius: 4px; font-size: 12px; 
-                    {% if client_product.get('status') == 'activo' %}
-                      background-color: #d4edda; color: #155724;
-                    {% elif client_product.get('status') == 'suspendido' %}
-                      background-color: #fff3cd; color: #856404;
-                    {% elif client_product.get('status') == 'finalizado' %}
-                      background-color: #f8d7da; color: #721c24;
-                    {% else %}
-                      background-color: #e2e3e5; color: #383d41;
-                    {% endif %}">
-                    {{ client_product.get('status', 'N/A')|title }}
-                  </span>
+                  {% if status == 'activo' %}
+                    <span style="padding: 5px 10px; border-radius: 4px; font-size: 12px; background-color: #d4edda; color: #155724;">
+                      {{ status|title }}
+                    </span>
+                  {% elif status == 'suspendido' %}
+                    <span style="padding: 5px 10px; border-radius: 4px; font-size: 12px; background-color: #fff3cd; color: #856404;">
+                      {{ status|title }}
+                    </span>
+                  {% elif status == 'finalizado' %}
+                    <span style="padding: 5px 10px; border-radius: 4px; font-size: 12px; background-color: #f8d7da; color: #721c24;">
+                      {{ status|title }}
+                    </span>
+                  {% else %}
+                    <span style="padding: 5px 10px; border-radius: 4px; font-size: 12px; background-color: #e2e3e5; color: #383d41;">
+                      {{ status|title if status else 'N/A' }}
+                    </span>
+                  {% endif %}
                 </td>
                 <td style="padding: 15px;">
                   {% if client_product.get('startDate') %}
@@ -189,23 +197,41 @@
         </div>
 
         {% else %}
-        <div class="alert alert-info" style="background-color: #d1ecf1; color: #0c5460; padding: 20px; border-radius: 4px; text-align: center; border: 1px solid #bee5eb;">
+        <div class="alert alert-info" style="background-color: #d1ecf1; color: #0c5460; padding: 20px; border-radius: 4px; text-align: center; border: 1px solid #bee5eb; margin-top: 30px;">
           <p style="margin: 0; font-size: 16px;">No tienes productos asociados actualmente.</p>
         </div>
         {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== PRODUCTS AREA END =======-->
 
-        {% else %}
-        {# Vista para administradores: mostrar listado de clientes #}
+{% else %}
+{# Vista para administradores: mostrar listado de clientes #}
+
+<!--===== CLIENTS LIST AREA START =======-->
+<div class="about-boxs">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap;">
           <div class="headding2" style="margin-bottom: 0;">
             <h2>Listado de Clientes</h2>
           </div>
-          <div>
-            <button type="button" class="theme-btn2" id="openCreateClientModal" style="margin-top: 10px;">
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="theme-btn2" id="openCreateClientModal">
               <i class="fa-regular fa-plus"></i> Crear Cliente
             </button>
+            <a href="/logout" class="theme-btn3">Cerrar Sesión</a>
           </div>
         </div>
+
+        {% if error %}
+        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb;">
+          <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
 
         {% if clients and clients|length > 0 %}
         <div class="table-responsive" style="overflow-x: auto;">
@@ -279,13 +305,13 @@
           </button>
         </div>
         {% endif %}
-        {% endif %}
-
       </div>
     </div>
   </div>
 </div>
-<!--===== CLIENTES LIST AREA END =======-->
+<!--===== CLIENTS LIST AREA END =======-->
+
+{% endif %}
 
 {% include 'partials/back-to-top.html' %}
 
@@ -299,7 +325,7 @@
         <h5 class="modal-title" id="createClientModalLabel">
           <i class="fa-regular fa-user-plus"></i> Crear Nuevo Cliente
         </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity: 1; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer;">
+        <button type="button" class="close" onclick="closeModal()" aria-label="Close" style="color: white; opacity: 1; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer;">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -418,54 +444,57 @@
 </style>
 
 <script>
-let createdUserId = null;
-let createdClientId = null;
+(function() {
+  'use strict';
+  
+  let createdUserId = null;
+  let createdClientId = null;
 
-// Resetear modal al cerrar
-function resetModal() {
-  const step1 = document.getElementById('step1-create-user');
-  const step2 = document.getElementById('step2-complete-client');
-  if (step1) step1.style.display = 'block';
-  if (step2) step2.style.display = 'none';
-  const form1 = document.getElementById('createUserForm');
-  const form2 = document.getElementById('updateClientForm');
-  if (form1) form1.reset();
-  if (form2) form2.reset();
-  const error1 = document.getElementById('userFormError');
-  const error2 = document.getElementById('clientFormError');
-  if (error1) error1.style.display = 'none';
-  if (error2) error2.style.display = 'none';
-  createdUserId = null;
-  createdClientId = null;
-}
-
-// Cerrar modal
-function closeModal() {
-  const modal = document.getElementById('createClientModal');
-  if (modal) {
-    if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
-      jQuery(modal).modal('hide');
-    } else {
-      modal.style.display = 'none';
-      modal.classList.remove('show');
-      document.body.classList.remove('modal-open');
-      const backdrop = document.querySelector('.modal-backdrop');
-      if (backdrop) backdrop.remove();
-    }
-    resetModal();
+  // Resetear modal al cerrar
+  function resetModal() {
+    const step1 = document.getElementById('step1-create-user');
+    const step2 = document.getElementById('step2-complete-client');
+    if (step1) step1.style.display = 'block';
+    if (step2) step2.style.display = 'none';
+    const form1 = document.getElementById('createUserForm');
+    const form2 = document.getElementById('updateClientForm');
+    if (form1) form1.reset();
+    if (form2) form2.reset();
+    const error1 = document.getElementById('userFormError');
+    const error2 = document.getElementById('clientFormError');
+    if (error1) error1.style.display = 'none';
+    if (error2) error2.style.display = 'none';
+    createdUserId = null;
+    createdClientId = null;
   }
-}
 
-// Inicializar modal y eventos (compatible con Bootstrap 4 y 5)
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('createClientModal');
-  if (modal) {
-    // Abrir modal con jQuery (Bootstrap 4)
-    const openModal = function() {
+  // Cerrar modal
+  function closeModal() {
+    const modal = document.getElementById('createClientModal');
+    if (modal) {
+      if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
+        jQuery(modal).modal('hide');
+      } else {
+        modal.style.display = 'none';
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) backdrop.remove();
+      }
+      resetModal();
+    }
+  }
+
+  // Inicializar modal y eventos
+  function initModal() {
+    const modal = document.getElementById('createClientModal');
+    if (!modal) return;
+
+    // Abrir modal
+    function openModal() {
       if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
         jQuery(modal).modal('show');
       } else {
-        // Fallback manual
         modal.style.display = 'block';
         modal.classList.add('show');
         document.body.classList.add('modal-open');
@@ -473,7 +502,7 @@ document.addEventListener('DOMContentLoaded', function() {
         backdrop.className = 'modal-backdrop fade show';
         document.body.appendChild(backdrop);
       }
-    };
+    }
 
     // Botones para abrir modal
     const openBtn1 = document.getElementById('openCreateClientModal');
@@ -485,36 +514,10 @@ document.addEventListener('DOMContentLoaded', function() {
       openBtn2.addEventListener('click', openModal);
     }
 
-    // Cerrar modal con botón X
-    const closeBtn = modal.querySelector('.close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
-        if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
-          jQuery(modal).modal('hide');
-        } else {
-          modal.style.display = 'none';
-          modal.classList.remove('show');
-          document.body.classList.remove('modal-open');
-          const backdrop = document.querySelector('.modal-backdrop');
-          if (backdrop) backdrop.remove();
-        }
-        resetModal();
-      });
-    }
-
     // Cerrar modal al hacer clic fuera
     modal.addEventListener('click', function(e) {
       if (e.target === modal) {
-        if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
-          jQuery(modal).modal('hide');
-        } else {
-          modal.style.display = 'none';
-          modal.classList.remove('show');
-          document.body.classList.remove('modal-open');
-          const backdrop = document.querySelector('.modal-backdrop');
-          if (backdrop) backdrop.remove();
-        }
-        resetModal();
+        closeModal();
       }
     });
 
@@ -531,129 +534,142 @@ document.addEventListener('DOMContentLoaded', function() {
       resetModal();
     });
   }
-});
 
-// Formulario Paso 1: Crear Usuario
-const createUserForm = document.getElementById('createUserForm');
-if (createUserForm) {
-  createUserForm.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const formData = {
-    email: document.getElementById('user_email').value,
-    password: document.getElementById('user_password').value,
-    name: document.getElementById('user_name').value || null,
-    role: document.getElementById('user_role').value
-  };
+  // Formulario Paso 1: Crear Usuario
+  function initCreateUserForm() {
+    const form = document.getElementById('createUserForm');
+    if (!form) return;
 
-  const errorDiv = document.getElementById('userFormError');
-  errorDiv.style.display = 'none';
-
-  try {
-    const response = await fetch('/portal-clientes/create-user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      // Usuario creado exitosamente
-      createdUserId = data.user.id;
-      createdClientId = data.user.clientId;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
       
-      // Prellenar datos del cliente
-      document.getElementById('client_id').value = createdClientId;
-      document.getElementById('client_name').value = formData.name || '';
-      document.getElementById('client_email').value = formData.email;
-      
-      // Mostrar paso 2
-      document.getElementById('step1-create-user').style.display = 'none';
-      document.getElementById('step2-complete-client').style.display = 'block';
-    } else {
-      // Mostrar error
-      errorDiv.textContent = data.error || 'Error al crear el usuario';
-      errorDiv.style.display = 'block';
-    }
-  } catch (error) {
-    errorDiv.textContent = 'Error de conexión. Intenta nuevamente.';
-    errorDiv.style.display = 'block';
-    console.error('Error:', error);
-  }
-});
+      const formData = {
+        email: document.getElementById('user_email').value,
+        password: document.getElementById('user_password').value,
+        name: document.getElementById('user_name').value || null,
+        role: document.getElementById('user_role').value
+      };
 
-// Formulario Paso 2: Actualizar Cliente
-const updateClientForm = document.getElementById('updateClientForm');
-if (updateClientForm) {
-  updateClientForm.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const clientId = document.getElementById('client_id').value;
-  const formData = {
-    name: document.getElementById('client_name').value,
-    email: document.getElementById('client_email').value || null,
-    phone: document.getElementById('client_phone').value || null,
-    company: document.getElementById('client_company').value || null,
-    notes: document.getElementById('client_notes').value || null
-  };
+      const errorDiv = document.getElementById('userFormError');
+      if (errorDiv) errorDiv.style.display = 'none';
 
-  const errorDiv = document.getElementById('clientFormError');
-  errorDiv.style.display = 'none';
+      try {
+        const response = await fetch('/portal-clientes/create-user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
 
-  try {
-    const response = await fetch(`/portal-clientes/update-client/${clientId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
+        const data = await response.json();
+
+        if (response.ok) {
+          createdUserId = data.user.id;
+          createdClientId = data.user.clientId;
+          
+          // Prellenar datos del cliente
+          const clientIdInput = document.getElementById('client_id');
+          const clientNameInput = document.getElementById('client_name');
+          const clientEmailInput = document.getElementById('client_email');
+          if (clientIdInput) clientIdInput.value = createdClientId;
+          if (clientNameInput) clientNameInput.value = formData.name || '';
+          if (clientEmailInput) clientEmailInput.value = formData.email;
+          
+          // Mostrar paso 2
+          const step1 = document.getElementById('step1-create-user');
+          const step2 = document.getElementById('step2-complete-client');
+          if (step1) step1.style.display = 'none';
+          if (step2) step2.style.display = 'block';
+        } else {
+          if (errorDiv) {
+            errorDiv.textContent = data.error || 'Error al crear el usuario';
+            errorDiv.style.display = 'block';
+          }
+        }
+      } catch (error) {
+        if (errorDiv) {
+          errorDiv.textContent = 'Error de conexión. Intenta nuevamente.';
+          errorDiv.style.display = 'block';
+        }
+        console.error('Error:', error);
+      }
     });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      // Cliente actualizado exitosamente
-      alert('Cliente creado exitosamente');
-      // Cerrar modal y recargar página
-      const modalElement = document.getElementById('createClientModal');
-      // Bootstrap 4 (jQuery)
-      if (typeof jQuery !== 'undefined' && jQuery(modalElement).modal) {
-        jQuery(modalElement).modal('hide');
-      }
-      // Bootstrap 5
-      else if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        if (modal) modal.hide();
-      }
-      // Fallback manual
-      else {
-        modalElement.style.display = 'none';
-        modalElement.classList.remove('show');
-        document.body.classList.remove('modal-open');
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) backdrop.remove();
-      }
-      // Esperar un momento antes de recargar para que el modal se cierre
-      setTimeout(function() {
-        window.location.reload();
-      }, 300);
-    } else {
-      // Mostrar error
-      errorDiv.textContent = data.error || 'Error al actualizar el cliente';
-      errorDiv.style.display = 'block';
-    }
-  } catch (error) {
-    errorDiv.textContent = 'Error de conexión. Intenta nuevamente.';
-    errorDiv.style.display = 'block';
-    console.error('Error:', error);
   }
-  });
-}
+
+  // Formulario Paso 2: Actualizar Cliente
+  function initUpdateClientForm() {
+    const form = document.getElementById('updateClientForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const clientIdInput = document.getElementById('client_id');
+      if (!clientIdInput) return;
+      
+      const clientId = clientIdInput.value;
+      const formData = {
+        name: document.getElementById('client_name').value,
+        email: document.getElementById('client_email').value || null,
+        phone: document.getElementById('client_phone').value || null,
+        company: document.getElementById('client_company').value || null,
+        notes: document.getElementById('client_notes').value || null
+      };
+
+      const errorDiv = document.getElementById('clientFormError');
+      if (errorDiv) errorDiv.style.display = 'none';
+
+      try {
+        const response = await fetch('/portal-clientes/update-client/' + clientId, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('Cliente creado exitosamente');
+          closeModal();
+          setTimeout(function() {
+            window.location.reload();
+          }, 300);
+        } else {
+          if (errorDiv) {
+            errorDiv.textContent = data.error || 'Error al actualizar el cliente';
+            errorDiv.style.display = 'block';
+          }
+        }
+      } catch (error) {
+        if (errorDiv) {
+          errorDiv.textContent = 'Error de conexión. Intenta nuevamente.';
+          errorDiv.style.display = 'block';
+        }
+        console.error('Error:', error);
+      }
+    });
+  }
+
+  // Inicializar todo cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initModal();
+      initCreateUserForm();
+      initUpdateClientForm();
+    });
+  } else {
+    initModal();
+    initCreateUserForm();
+    initUpdateClientForm();
+  }
+
+  // Exponer closeModal globalmente
+  window.closeModal = closeModal;
+})();
 </script>
 {% endif %}
 
 {% endblock page_content %}
-
