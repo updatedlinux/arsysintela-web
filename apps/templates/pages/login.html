@@ -1,13 +1,18 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %}Login{% endblock title %}
+{% block title %}Portal de Clientes - Iniciar Sesión{% endblock title %}
 
 {% block preloader %}
 {% include 'partials/preloader.html' %}
 {% endblock preloader %}
 
 {% block icon %}
-<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/img/logo/titel1.png" type="image/x-icon">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
 {% endblock icon %}
 
 {% block body_attribute %}class="body2 body"{% endblock body_attribute %}
@@ -20,7 +25,7 @@
     <div class="row">
       <div class="col-lg-6 m-auto text-center">
         <div class="main-logo">
-          <a href="/index"><img
+          <a href="/"><img
             src="{{ config.ASSETS_ROOT }}/img/logo/header-logo2.png" alt=""></a>
         </div>
       </div>
@@ -30,31 +35,32 @@
       <div class="col-lg-6">
         <div class="login-form">
           <div class="headding">
-            <h2>Log In</h2>
-            <p>Please fill your email and password to sign in.</p>
+            <h2>Portal de Clientes</h2>
+            <p>Ingresa tus credenciales para acceder al portal.</p>
           </div>
 
-          <form action="#" class="inputs">
+          {% if error %}
+          <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 12px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+            <strong>Error:</strong> {{ error }}
+          </div>
+          {% endif %}
+
+          <form method="POST" action="/login" class="inputs">
             <div class="single-inputs">
-              <label>Email Address</label>
-              <input type="text" placeholder="Enter your email">
+              <label>Correo Electrónico</label>
+              <input type="email" name="email" placeholder="Ingresa tu correo electrónico" required>
             </div>
             <div class="single-inputs">
-              <label>Password</label>
-              <input type="password" placeholder="Enter your password">
+              <label>Contraseña</label>
+              <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
             </div>
             <div class="button">
-              <button class="theme-btn2">Log In</button>
+              <button type="submit" class="theme-btn2">Iniciar Sesión</button>
             </div>
           </form>
 
           <div class="forgot-text">
-            <p>Don’t have an account? <a class="singup" href="/account">Sign
-              up today</a> <br> <a href="/forgot">Forget password</a></p>
-          </div>
-          <div class="brand-buttons">
-            <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/google-btn.png" alt=""> Sign in with Google</a>
-            <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/apple-btn.png" alt=""> Sign in with Apple</a>
+            <p><a href="/">Volver al inicio</a></p>
           </div>
         </div>
       </div>

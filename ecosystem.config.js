@@ -11,4 +11,4 @@ module.exports = {
         ASSETS_ROOT: '/static'
       }
     }]
-  };
+  }; 

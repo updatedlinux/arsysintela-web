@@ -3,8 +3,9 @@
 
 import os
 from apps.pages import blueprint
-from flask import render_template, request, current_app, send_from_directory, abort
+from flask import render_template, request, current_app, send_from_directory, abort, session, redirect, url_for, flash
 from jinja2 import TemplateNotFound
+from apps.utils.client_portal_api import api_post, api_get, get_client_portal_token, get_client_portal_user
 
 
 @blueprint.route('/')
@@ -46,6 +47,144 @@ def terminos():
 def privacidad():
     segment = get_segment(request)
     return render_template('pages/privacidad.html', segment=segment)
+
+
+# ==================== Portal de Clientes ====================
+
+@blueprint.route('/login', methods=['GET'])
+def login():
+    """
+    Muestra la página de login del Portal de Clientes.
+    Si el usuario ya tiene sesión activa, redirige a /portal-clientes.
+    """
+    # Si ya hay sesión activa, redirigir al dashboard
+    if get_client_portal_token():
+        return redirect(url_for('pages_blueprint.portal_clientes'))
+    
+    error = request.args.get('error', '')
+    return render_template('pages/login.html', error=error, segment='login')
+
+
+@blueprint.route('/login', methods=['POST'])
+def login_post():
+    """
+    Procesa el formulario de login y autentica contra la API del Portal de Clientes.
+    """
+    email = request.form.get('email', '').strip()
+    password = request.form.get('password', '')
+    
+    if not email or not password:
+        return render_template('pages/login.html', error='Por favor, completa todos los campos.', segment='login')
+    
+    try:
+        # Llamar a la API de login
+        response_json, status_code = api_post('/auth/login', {
+            'email': email,
+            'password': password
+        })
+        
+        if status_code == 200 and 'token' in response_json:
+            # Login exitoso: guardar token y datos del usuario en sesión
+            session['client_portal_token'] = response_json['token']
+            session['client_portal_user'] = response_json.get('user', {})
+            
+            # Redirigir al dashboard
+            return redirect(url_for('pages_blueprint.portal_clientes'))
+        elif status_code in [400, 401]:
+            # Error en las credenciales o validación
+            error_message = response_json.get('message', 'Correo o contraseña inválidos')
+            return render_template('pages/login.html', error=error_message, segment='login')
+        else:
+            # Otro error (500, etc.)
+            error_message = response_json.get('message', 'Error al procesar la solicitud. Intenta nuevamente.')
+            current_app.logger.warning(f"Login falló con código {status_code}: {error_message}")
+            return render_template('pages/login.html', error=error_message, segment='login')
+    
+    except Exception as e:
+        current_app.logger.error(f"Error en login: {str(e)}")
+        return render_template('pages/login.html', error='Error al conectar con el servidor. Intenta nuevamente más tarde.', segment='login')
+
+
+@blueprint.route('/logout')
+def logout():
+    """
+    Cierra la sesión del Portal de Clientes y redirige al login.
+    """
+    # Eliminar datos de sesión del portal
+    session.pop('client_portal_token', None)
+    session.pop('client_portal_user', None)
+    
+    return redirect(url_for('pages_blueprint.login'))
+
+
+@blueprint.route('/portal-clientes')
+def portal_clientes():
+    """
+    Dashboard del Portal de Clientes que muestra el listado de clientes.
+    Requiere autenticación (token en sesión).
+    """
+    # Verificar que haya sesión activa
+    token = get_client_portal_token()
+    if not token:
+        return redirect(url_for('pages_blueprint.login', error='Por favor, inicia sesión para acceder al portal.'))
+    
+    user = get_client_portal_user()
+    
+    # Obtener parámetros de paginación
+    page = request.args.get('page', 1, type=int)
+    limit = request.args.get('limit', 10, type=int)
+    
+    try:
+        # Llamar a la API para obtener el listado de clientes
+        response_json, status_code = api_get('/clients', {
+            'page': page,
+            'limit': limit
+        })
+        
+        if status_code == 200:
+            # Éxito: mostrar el dashboard con los datos
+            clients = response_json.get('data', [])
+            pagination = response_json.get('pagination', {})
+            
+            return render_template(
+                'pages/portal_clientes.html',
+                clients=clients,
+                pagination=pagination,
+                user=user,
+                segment='portal-clientes'
+            )
+        
+        elif status_code == 401:
+            # Token expirado o inválido
+            session.pop('client_portal_token', None)
+            session.pop('client_portal_user', None)
+            return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
+        
+        else:
+            # Otro error
+            error_message = response_json.get('message', 'Error al cargar los clientes.')
+            return render_template(
+                'pages/portal_clientes.html',
+                clients=[],
+                pagination={},
+                user=user,
+                error=error_message,
+                segment='portal-clientes'
+            )
+    
+    except Exception as e:
+        current_app.logger.error(f"Error al obtener clientes: {str(e)}")
+        return render_template(
+            'pages/portal_clientes.html',
+            clients=[],
+            pagination={},
+            user=user,
+            error='No se pudo cargar la lista de clientes. Intenta nuevamente más tarde.',
+            segment='portal-clientes'
+        )
+
+
+# ==================== Fin Portal de Clientes ====================
 
 
 @blueprint.route('/<template>')
