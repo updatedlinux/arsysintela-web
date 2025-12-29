@@ -5,7 +5,8 @@ import os
 from apps.pages import blueprint
 from flask import render_template, request, current_app, send_from_directory, abort, session, redirect, url_for, flash
 from jinja2 import TemplateNotFound
-from apps.utils.client_portal_api import api_post, api_get, get_client_portal_token, get_client_portal_user
+from apps.utils.client_portal_api import api_post, api_get, api_put, get_client_portal_token, get_client_portal_user
+from flask import jsonify
 
 
 @blueprint.route('/')
@@ -257,6 +258,91 @@ def portal_clientes():
 
 
 # ==================== Fin Portal de Clientes ====================
+
+# ==================== Rutas API para Administradores ====================
+
+@blueprint.route('/portal-clientes/create-user', methods=['POST'])
+def create_user():
+    """
+    Crea un nuevo usuario en el sistema.
+    Solo accesible para administradores.
+    """
+    token = get_client_portal_token()
+    if not token:
+        return jsonify({'error': 'No autorizado'}), 401
+    
+    user = get_client_portal_user()
+    if not user or user.get('role') != 'admin':
+        return jsonify({'error': 'Solo los administradores pueden crear usuarios'}), 403
+    
+    try:
+        data = request.get_json()
+        
+        # Validar campos requeridos
+        if not data.get('email') or not data.get('password'):
+            return jsonify({'error': 'Email y contraseña son requeridos'}), 400
+        
+        # Llamar a la API para crear usuario
+        response_json, status_code = api_post('/users', {
+            'email': data.get('email'),
+            'password': data.get('password'),
+            'name': data.get('name'),
+            'role': data.get('role', 'user')
+        })
+        
+        if status_code == 201:
+            return jsonify({'user': response_json}), 201
+        else:
+            error_message = response_json.get('message', 'Error al crear el usuario')
+            return jsonify({'error': error_message}), status_code
+    
+    except Exception as e:
+        current_app.logger.error(f"Error al crear usuario: {str(e)}")
+        return jsonify({'error': 'Error interno del servidor'}), 500
+
+
+@blueprint.route('/portal-clientes/update-client/<int:client_id>', methods=['POST'])
+def update_client(client_id):
+    """
+    Actualiza los datos de un cliente existente.
+    Solo accesible para administradores.
+    """
+    token = get_client_portal_token()
+    if not token:
+        return jsonify({'error': 'No autorizado'}), 401
+    
+    user = get_client_portal_user()
+    if not user or user.get('role') != 'admin':
+        return jsonify({'error': 'Solo los administradores pueden actualizar clientes'}), 403
+    
+    try:
+        data = request.get_json()
+        
+        # Validar que al menos el nombre esté presente
+        if not data.get('name'):
+            return jsonify({'error': 'El nombre del cliente es requerido'}), 400
+        
+        # Llamar a la API para actualizar cliente
+        response_json, status_code = api_put(f'/clients/{client_id}', {
+            'name': data.get('name'),
+            'email': data.get('email'),
+            'phone': data.get('phone'),
+            'company': data.get('company'),
+            'notes': data.get('notes')
+        })
+        
+        if status_code == 200:
+            return jsonify({'client': response_json}), 200
+        else:
+            error_message = response_json.get('message', 'Error al actualizar el cliente')
+            return jsonify({'error': error_message}), status_code
+    
+    except Exception as e:
+        current_app.logger.error(f"Error al actualizar cliente: {str(e)}")
+        return jsonify({'error': 'Error interno del servidor'}), 500
+
+
+# ==================== Fin Rutas API para Administradores ====================
 
 
 @blueprint.route('/<template>')

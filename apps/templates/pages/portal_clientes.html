@@ -19,7 +19,7 @@
 {% block page_content %}
 
 <!--===== HERO AREA START =======-->
-<div class="pages-hero">
+<div class="pages-hero" style="padding-top: 60px; padding-bottom: 40px;">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-12">
@@ -36,7 +36,7 @@
 
 {% if is_user and client %}
 {# Contenedor de información del cliente - fuera del blog-area para mejor posicionamiento #}
-<div class="container" style="position: relative; z-index: 10; margin-top: -80px; margin-bottom: 40px;">
+<div class="container" style="position: relative; z-index: 10; margin-top: 30px; margin-bottom: 40px;">
   <div class="row">
     <div class="col-lg-12">
       <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -196,8 +196,15 @@
 
         {% else %}
         {# Vista para administradores: mostrar listado de clientes #}
-        <div class="headding2" style="margin-bottom: 30px;">
-          <h2>Listado de Clientes</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap;">
+          <div class="headding2" style="margin-bottom: 0;">
+            <h2>Listado de Clientes</h2>
+          </div>
+          <div>
+            <button type="button" class="theme-btn2" data-toggle="modal" data-target="#createClientModal" style="margin-top: 10px;">
+              <i class="fa-regular fa-plus"></i> Crear Cliente
+            </button>
+          </div>
         </div>
 
         {% if clients and clients|length > 0 %}
@@ -263,8 +270,13 @@
         {% endif %}
 
         {% else %}
-        <div class="alert alert-info" style="background-color: #d1ecf1; color: #0c5460; padding: 20px; border-radius: 4px; text-align: center; border: 1px solid #bee5eb;">
-          <p style="margin: 0; font-size: 16px;">No hay clientes registrados todavía.</p>
+        <div style="text-align: center;">
+          <div class="alert alert-info" style="background-color: #d1ecf1; color: #0c5460; padding: 20px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #bee5eb;">
+            <p style="margin: 0; font-size: 16px;">No hay clientes registrados todavía.</p>
+          </div>
+          <button type="button" class="theme-btn2" data-toggle="modal" data-target="#createClientModal">
+            <i class="fa-regular fa-plus"></i> Crear Primer Cliente
+          </button>
         </div>
         {% endif %}
         {% endif %}
@@ -276,5 +288,288 @@
 <!--===== CLIENTES LIST AREA END =======-->
 
 {% include 'partials/back-to-top.html' %}
+
+{# Modal para crear cliente (solo para administradores) #}
+{% if not is_user %}
+<!-- Modal Crear Cliente -->
+<div class="modal fade" id="createClientModal" tabindex="-1" aria-labelledby="createClientModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-bottom: none;">
+        <h5 class="modal-title" id="createClientModalLabel">
+          <i class="fa-regular fa-user-plus"></i> Crear Nuevo Cliente
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity: 1; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 30px;">
+        
+        <!-- Paso 1: Crear Usuario -->
+        <div id="step1-create-user">
+          <h4 style="margin-bottom: 20px; color: var(--qt-text-h-text2, #1a1a1a);">
+            <i class="fa-regular fa-user"></i> Paso 1: Crear Usuario
+          </h4>
+          <form id="createUserForm">
+            <div class="mb-3">
+              <label for="user_email" class="form-label"><i class="fa-regular fa-envelope"></i> Email <span style="color: red;">*</span></label>
+              <input type="email" class="form-control" id="user_email" name="email" required placeholder="usuario@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="user_password" class="form-label"><i class="fa-regular fa-lock"></i> Contraseña <span style="color: red;">*</span></label>
+              <input type="password" class="form-control" id="user_password" name="password" required placeholder="Mínimo 8 caracteres" minlength="8">
+            </div>
+            <div class="mb-3">
+              <label for="user_name" class="form-label"><i class="fa-regular fa-user"></i> Nombre</label>
+              <input type="text" class="form-control" id="user_name" name="name" placeholder="Nombre del usuario">
+            </div>
+            <div class="mb-3">
+              <label for="user_role" class="form-label"><i class="fa-regular fa-shield"></i> Rol</label>
+              <select class="form-control" id="user_role" name="role">
+                <option value="user" selected>Usuario</option>
+                <option value="admin">Administrador</option>
+              </select>
+            </div>
+            <div id="userFormError" class="alert alert-danger" style="display: none; margin-top: 15px;"></div>
+            <div class="text-end">
+              <button type="button" class="theme-btn3" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="theme-btn2" style="margin-left: 10px;">
+                <i class="fa-regular fa-arrow-right"></i> Continuar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Paso 2: Completar Datos del Cliente -->
+        <div id="step2-complete-client" style="display: none;">
+          <h4 style="margin-bottom: 20px; color: var(--qt-text-h-text2, #1a1a1a);">
+            <i class="fa-regular fa-building"></i> Paso 2: Completar Datos del Cliente
+          </h4>
+          <div class="alert alert-success" style="margin-bottom: 20px;">
+            <i class="fa-regular fa-check-circle"></i> Usuario creado exitosamente. Ahora completa los datos del cliente.
+          </div>
+          <form id="updateClientForm">
+            <input type="hidden" id="client_id" name="client_id">
+            <div class="mb-3">
+              <label for="client_name" class="form-label"><i class="fa-regular fa-user"></i> Nombre del Cliente <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" id="client_name" name="name" required placeholder="Nombre completo del cliente">
+            </div>
+            <div class="mb-3">
+              <label for="client_email" class="form-label"><i class="fa-regular fa-envelope"></i> Email</label>
+              <input type="email" class="form-control" id="client_email" name="email" placeholder="email@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="client_phone" class="form-label"><i class="fa-regular fa-phone"></i> Teléfono</label>
+              <input type="text" class="form-control" id="client_phone" name="phone" placeholder="+34 600 123 456">
+            </div>
+            <div class="mb-3">
+              <label for="client_company" class="form-label"><i class="fa-regular fa-building"></i> Empresa</label>
+              <input type="text" class="form-control" id="client_company" name="company" placeholder="Nombre de la empresa">
+            </div>
+            <div class="mb-3">
+              <label for="client_notes" class="form-label"><i class="fa-regular fa-note-sticky"></i> Notas</label>
+              <textarea class="form-control" id="client_notes" name="notes" rows="3" placeholder="Notas adicionales sobre el cliente"></textarea>
+            </div>
+            <div id="clientFormError" class="alert alert-danger" style="display: none; margin-top: 15px;"></div>
+            <div class="text-end">
+              <button type="button" class="theme-btn3" onclick="resetModal()">Cancelar</button>
+              <button type="submit" class="theme-btn2" style="margin-left: 10px;">
+                <i class="fa-regular fa-check"></i> Crear Cliente
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 20px 30px;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--qt-text-h-text2, #1a1a1a);
+}
+
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+}
+
+.form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+</style>
+
+<script>
+let createdUserId = null;
+let createdClientId = null;
+
+// Resetear modal al cerrar
+function resetModal() {
+  document.getElementById('step1-create-user').style.display = 'block';
+  document.getElementById('step2-complete-client').style.display = 'none';
+  document.getElementById('createUserForm').reset();
+  document.getElementById('updateClientForm').reset();
+  document.getElementById('userFormError').style.display = 'none';
+  document.getElementById('clientFormError').style.display = 'none';
+  createdUserId = null;
+  createdClientId = null;
+}
+
+// Cerrar modal y resetear (compatible con Bootstrap 4 y 5)
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('createClientModal');
+  if (modal) {
+    // Bootstrap 4 (jQuery)
+    if (typeof jQuery !== 'undefined') {
+      jQuery(modal).on('hidden.bs.modal', function () {
+        resetModal();
+      });
+    }
+    // Bootstrap 5
+    modal.addEventListener('hidden.bs.modal', function () {
+      resetModal();
+    });
+    // Bootstrap 4 (fallback)
+    modal.addEventListener('hidden', function () {
+      resetModal();
+    });
+  }
+});
+
+// Formulario Paso 1: Crear Usuario
+document.getElementById('createUserForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const formData = {
+    email: document.getElementById('user_email').value,
+    password: document.getElementById('user_password').value,
+    name: document.getElementById('user_name').value || null,
+    role: document.getElementById('user_role').value
+  };
+
+  const errorDiv = document.getElementById('userFormError');
+  errorDiv.style.display = 'none';
+
+  try {
+    const response = await fetch('/portal-clientes/create-user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Usuario creado exitosamente
+      createdUserId = data.user.id;
+      createdClientId = data.user.clientId;
+      
+      // Prellenar datos del cliente
+      document.getElementById('client_id').value = createdClientId;
+      document.getElementById('client_name').value = formData.name || '';
+      document.getElementById('client_email').value = formData.email;
+      
+      // Mostrar paso 2
+      document.getElementById('step1-create-user').style.display = 'none';
+      document.getElementById('step2-complete-client').style.display = 'block';
+    } else {
+      // Mostrar error
+      errorDiv.textContent = data.error || 'Error al crear el usuario';
+      errorDiv.style.display = 'block';
+    }
+  } catch (error) {
+    errorDiv.textContent = 'Error de conexión. Intenta nuevamente.';
+    errorDiv.style.display = 'block';
+    console.error('Error:', error);
+  }
+});
+
+// Formulario Paso 2: Actualizar Cliente
+document.getElementById('updateClientForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const clientId = document.getElementById('client_id').value;
+  const formData = {
+    name: document.getElementById('client_name').value,
+    email: document.getElementById('client_email').value || null,
+    phone: document.getElementById('client_phone').value || null,
+    company: document.getElementById('client_company').value || null,
+    notes: document.getElementById('client_notes').value || null
+  };
+
+  const errorDiv = document.getElementById('clientFormError');
+  errorDiv.style.display = 'none';
+
+  try {
+    const response = await fetch(`/portal-clientes/update-client/${clientId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Cliente actualizado exitosamente
+      alert('Cliente creado exitosamente');
+      // Cerrar modal y recargar página
+      const modalElement = document.getElementById('createClientModal');
+      // Bootstrap 4 (jQuery)
+      if (typeof jQuery !== 'undefined' && jQuery(modalElement).modal) {
+        jQuery(modalElement).modal('hide');
+      }
+      // Bootstrap 5
+      else if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        if (modal) modal.hide();
+      }
+      // Fallback manual
+      else {
+        modalElement.style.display = 'none';
+        modalElement.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) backdrop.remove();
+      }
+      // Esperar un momento antes de recargar para que el modal se cierre
+      setTimeout(function() {
+        window.location.reload();
+      }, 300);
+    } else {
+      // Mostrar error
+      errorDiv.textContent = data.error || 'Error al actualizar el cliente';
+      errorDiv.style.display = 'block';
+    }
+  } catch (error) {
+    errorDiv.textContent = 'Error de conexión. Intenta nuevamente.';
+    errorDiv.style.display = 'block';
+    console.error('Error:', error);
+  }
+});
+</script>
+{% endif %}
+
 {% endblock page_content %}
 
