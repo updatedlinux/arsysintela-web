@@ -36,7 +36,7 @@
 
 {% if is_user and client %}
 {# Contenedor de información del cliente - fuera del blog-area para mejor posicionamiento #}
-<div class="container" style="position: relative; z-index: 10; margin-top: 30px; margin-bottom: 40px;">
+<div class="container" style="position: relative; z-index: 10; margin-top: -20px; margin-bottom: 40px;">
   <div class="row">
     <div class="col-lg-12">
       <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -196,12 +196,12 @@
 
         {% else %}
         {# Vista para administradores: mostrar listado de clientes #}
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; margin-top: 10px;">
           <div class="headding2" style="margin-bottom: 0;">
             <h2>Listado de Clientes</h2>
           </div>
           <div>
-            <button type="button" class="theme-btn2" data-toggle="modal" data-target="#createClientModal" style="margin-top: 10px;">
+            <button type="button" class="theme-btn2" id="openCreateClientModal" style="margin-top: 10px;">
               <i class="fa-regular fa-plus"></i> Crear Cliente
             </button>
           </div>
@@ -274,7 +274,7 @@
           <div class="alert alert-info" style="background-color: #d1ecf1; color: #0c5460; padding: 20px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #bee5eb;">
             <p style="margin: 0; font-size: 16px;">No hay clientes registrados todavía.</p>
           </div>
-          <button type="button" class="theme-btn2" data-toggle="modal" data-target="#createClientModal">
+          <button type="button" class="theme-btn2" id="openCreateClientModalEmpty">
             <i class="fa-regular fa-plus"></i> Crear Primer Cliente
           </button>
         </div>
@@ -332,7 +332,7 @@
             </div>
             <div id="userFormError" class="alert alert-danger" style="display: none; margin-top: 15px;"></div>
             <div class="text-end">
-              <button type="button" class="theme-btn3" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="theme-btn3" onclick="closeModal()">Cancelar</button>
               <button type="submit" class="theme-btn2" style="margin-left: 10px;">
                 <i class="fa-regular fa-arrow-right"></i> Continuar
               </button>
@@ -372,7 +372,7 @@
             </div>
             <div id="clientFormError" class="alert alert-danger" style="display: none; margin-top: 15px;"></div>
             <div class="text-end">
-              <button type="button" class="theme-btn3" onclick="resetModal()">Cancelar</button>
+              <button type="button" class="theme-btn3" onclick="closeModal()">Cancelar</button>
               <button type="submit" class="theme-btn2" style="margin-left: 10px;">
                 <i class="fa-regular fa-check"></i> Crear Cliente
               </button>
@@ -423,31 +423,110 @@ let createdClientId = null;
 
 // Resetear modal al cerrar
 function resetModal() {
-  document.getElementById('step1-create-user').style.display = 'block';
-  document.getElementById('step2-complete-client').style.display = 'none';
-  document.getElementById('createUserForm').reset();
-  document.getElementById('updateClientForm').reset();
-  document.getElementById('userFormError').style.display = 'none';
-  document.getElementById('clientFormError').style.display = 'none';
+  const step1 = document.getElementById('step1-create-user');
+  const step2 = document.getElementById('step2-complete-client');
+  if (step1) step1.style.display = 'block';
+  if (step2) step2.style.display = 'none';
+  const form1 = document.getElementById('createUserForm');
+  const form2 = document.getElementById('updateClientForm');
+  if (form1) form1.reset();
+  if (form2) form2.reset();
+  const error1 = document.getElementById('userFormError');
+  const error2 = document.getElementById('clientFormError');
+  if (error1) error1.style.display = 'none';
+  if (error2) error2.style.display = 'none';
   createdUserId = null;
   createdClientId = null;
 }
 
-// Cerrar modal y resetear (compatible con Bootstrap 4 y 5)
+// Cerrar modal
+function closeModal() {
+  const modal = document.getElementById('createClientModal');
+  if (modal) {
+    if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
+      jQuery(modal).modal('hide');
+    } else {
+      modal.style.display = 'none';
+      modal.classList.remove('show');
+      document.body.classList.remove('modal-open');
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) backdrop.remove();
+    }
+    resetModal();
+  }
+}
+
+// Inicializar modal y eventos (compatible con Bootstrap 4 y 5)
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('createClientModal');
   if (modal) {
-    // Bootstrap 4 (jQuery)
+    // Abrir modal con jQuery (Bootstrap 4)
+    const openModal = function() {
+      if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
+        jQuery(modal).modal('show');
+      } else {
+        // Fallback manual
+        modal.style.display = 'block';
+        modal.classList.add('show');
+        document.body.classList.add('modal-open');
+        const backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        document.body.appendChild(backdrop);
+      }
+    };
+
+    // Botones para abrir modal
+    const openBtn1 = document.getElementById('openCreateClientModal');
+    const openBtn2 = document.getElementById('openCreateClientModalEmpty');
+    if (openBtn1) {
+      openBtn1.addEventListener('click', openModal);
+    }
+    if (openBtn2) {
+      openBtn2.addEventListener('click', openModal);
+    }
+
+    // Cerrar modal con botón X
+    const closeBtn = modal.querySelector('.close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
+          jQuery(modal).modal('hide');
+        } else {
+          modal.style.display = 'none';
+          modal.classList.remove('show');
+          document.body.classList.remove('modal-open');
+          const backdrop = document.querySelector('.modal-backdrop');
+          if (backdrop) backdrop.remove();
+        }
+        resetModal();
+      });
+    }
+
+    // Cerrar modal al hacer clic fuera
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        if (typeof jQuery !== 'undefined' && jQuery(modal).modal) {
+          jQuery(modal).modal('hide');
+        } else {
+          modal.style.display = 'none';
+          modal.classList.remove('show');
+          document.body.classList.remove('modal-open');
+          const backdrop = document.querySelector('.modal-backdrop');
+          if (backdrop) backdrop.remove();
+        }
+        resetModal();
+      }
+    });
+
+    // Resetear modal al cerrar
     if (typeof jQuery !== 'undefined') {
       jQuery(modal).on('hidden.bs.modal', function () {
         resetModal();
       });
     }
-    // Bootstrap 5
     modal.addEventListener('hidden.bs.modal', function () {
       resetModal();
     });
-    // Bootstrap 4 (fallback)
     modal.addEventListener('hidden', function () {
       resetModal();
     });
@@ -455,7 +534,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Formulario Paso 1: Crear Usuario
-document.getElementById('createUserForm').addEventListener('submit', async function(e) {
+const createUserForm = document.getElementById('createUserForm');
+if (createUserForm) {
+  createUserForm.addEventListener('submit', async function(e) {
   e.preventDefault();
   
   const formData = {
@@ -505,7 +586,9 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
 });
 
 // Formulario Paso 2: Actualizar Cliente
-document.getElementById('updateClientForm').addEventListener('submit', async function(e) {
+const updateClientForm = document.getElementById('updateClientForm');
+if (updateClientForm) {
+  updateClientForm.addEventListener('submit', async function(e) {
   e.preventDefault();
   
   const clientId = document.getElementById('client_id').value;
@@ -567,7 +650,8 @@ document.getElementById('updateClientForm').addEventListener('submit', async fun
     errorDiv.style.display = 'block';
     console.error('Error:', error);
   }
-});
+  });
+}
 </script>
 {% endif %}
 
