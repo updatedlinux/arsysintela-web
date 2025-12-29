@@ -190,6 +190,11 @@ def portal_clientes():
 @blueprint.route('/<template>')
 def route_template(template):
     try:
+        # Excluir rutas del Portal de Clientes de la ruta genérica
+        excluded_routes = ['portal-clientes', 'login', 'logout']
+        if template in excluded_routes:
+            abort(404)
+        
         # Rutas especiales para iconos de Apple / favicons
         # Evitar que se intenten procesar como plantillas HTML
         if template.startswith('apple-touch-icon'):
