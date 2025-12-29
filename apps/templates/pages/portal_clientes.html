@@ -19,7 +19,7 @@
 {% block page_content %}
 
 <!--===== HERO AREA START =======-->
-<div class="pages-hero" style="padding-top: 60px; padding-bottom: 40px;">
+<div class="pages-hero">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-12">
@@ -36,7 +36,7 @@
 
 {% if is_user and client %}
 {# Contenedor de información del cliente - fuera del blog-area para mejor posicionamiento #}
-<div class="container" style="position: relative; z-index: 10; margin-top: -20px; margin-bottom: 40px;">
+<div class="container" style="position: relative; z-index: 10; margin-top: 40px; margin-bottom: 40px;">
   <div class="row">
     <div class="col-lg-12">
       <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -94,10 +94,10 @@
 {% endif %}
 
 <!--===== CLIENTES LIST AREA START =======-->
-<div class="blog-area sp">
+<div class="blog-area">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12" style="margin-top: 40px;">
         
         {% if error %}
         <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb;">
@@ -196,7 +196,7 @@
 
         {% else %}
         {# Vista para administradores: mostrar listado de clientes #}
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; margin-top: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap;">
           <div class="headding2" style="margin-bottom: 0;">
             <h2>Listado de Clientes</h2>
           </div>
