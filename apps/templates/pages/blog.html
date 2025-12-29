@@ -1,9 +1,14 @@
 {% extends 'layouts/landing-layout.html' %}
 
-{% block title %}Our Blog{% endblock title %}
+{% block title %}Blog - Ideas y casos de uso con Arsys Intela{% endblock title %}
 
 {% block icon %}
-<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/img/logo/titel1.png" type="image/x-icon">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
 {% endblock icon %}
 
 {% block body_attribute %}class="body2 body"{% endblock body_attribute %}
@@ -14,755 +19,91 @@
 <div class="pages-hero">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-lg-6">
+      <div class="col-lg-12 text-center">
         <div class="main-headding">
-          <h1>News & Articles</h1>
-          <p>Revolutionise & email marketing strategy with cutting-edge <br> software designed to elevate your
-            campaigns, our intuitive.</p>
-
-          <div class="space30"></div>
-          <div class="hero-btns">
-            <a href="/account" class="theme-btn2">Get Started Now</a>
-            <a href="/account" class="theme-btn3">Try For Free Now</a>
-          </div>
+          <h1>Ideas y casos de uso con Arsys Intela</h1>
+          <p>Descubre cómo empresas están transformando su infraestructura, automatizando procesos y mejorando la atención con nuestras soluciones.</p>
         </div>
-      </div>
-      <div class="col-lg-1"></div>
-
-      <div class="col-lg-5">
-        <form action="#">
-          <div class="search-area">
-            <div class="input">
-              <input type="text" placeholder="Search for articles.....">
-            </div>
-            <div class="button">
-              <button type="submit"><i class="fa-regular fa-magnifying-glass"></i></button>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
   </div>
   <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
-  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+  <img class="hero-shape2" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape2.png" alt="">
 </div>
 <!--===== HERO AREA END =======-->
 
 <!--===== BLOG AREA START =======-->
-<div class="blog-sce1 sp">
+<div class="blog2 sp">
   <div class="container">
-    <div class="rwo">
-      <div class="col-lg-12">
-        <div class="blog-big-sec row align-items-center">
-          <div class="col-lg-6">
-            <div class="image-main">
-              <img src="{{ config.ASSETS_ROOT }}/img/blog/blog-page-big-img.png" alt="">
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="headding2">
-              <span class="span">Email Marketing</span>
-              <h3><a href="/blog-details">Elevate Engagement, Drive
-                Conversions, Transform Ideas into Reality with eSoft</a></h3>
-              <p>Revolutionise your marketing strategy with an our cutting-edge Email Marketing SaaS. Seamlessly manage
-                and optimise eSoft.</p>
-
-              <div class="bottom-area">
-                <div class="autor-area">
-                  <div class="image">
-                    <img src="{{ config.ASSETS_ROOT }}/img/blog/blog-page-smoll-img.png" alt="">
-                  </div>
-                  <div class="headding">
-                    <h5><a href="#">Jonson Brans</a></h5>
-                    <p>10 October 2023</p>
-                  </div>
-                </div>
-                <div class="button">
-                  <a href="/blog-details">Read More <span><i
-                    class="fa-regular fa-arrow-right"></i></span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    {% if error %}
+    <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb; text-align: center;">
+      <strong>Error:</strong> {{ error }}
     </div>
+    {% endif %}
 
+    {% if posts and posts|length > 0 %}
     <div class="row">
+      {% for post in posts %}
       <div class="col-lg-4 col-md-6">
-        <div class="blog-box">
+        <div class="blog-box" data-aos="zoom-in-up" data-aos-duration="{{ 800 + (loop.index * 100) }}">
+          <div class="image">
+            <img src="{{ post.get('headerImageUrl', config.ASSETS_ROOT + '/img/blog/blog2-img1.png') }}" alt="{{ post.get('title', '') }}">
+          </div>
           <div class="headding">
             <div class="tags">
-              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
+              {% if post.get('publishedAt') %}
+                <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> {{ post.publishedAt[:10] }}</a>
+              {% endif %}
+              {% if post.get('author') %}
+                <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> {{ post.author }}</a>
+              {% endif %}
             </div>
-            <h4><a href="/blog-details">Power Up Your Digital Presence An
-              Unleashing the Potential of Email.</a></h4>
-            <p>Online presence with our dynamic best landing pages, designed to captivate.</p>
-            <a href="/blog-details" class="learn">Read more <span><i
+            <h4><a href="/blog/{{ post.get('slug', '#') }}">
+              {{ post.get('title', 'Sin título') }}
+            </a></h4>
+            <p>
+              {{ post.get('excerpt', '')[:120] }}{% if post.get('excerpt', '')|length > 120 %}...{% endif %}
+            </p>
+            <a href="/blog/{{ post.get('slug', '#') }}" class="learn">Leer artículo <span><i
               class="fa-regular fa-arrow-right"></i></span></a>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-box">
-          <div class="headding">
-            <div class="tags">
-              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 20 October 2023</a>
-            </div>
-            <h4><a href="/blog-details">Transform Your Online Success,
-              Harnessing the Power of Cutting</a></h4>
-            <p>Our comprehensive suite of tools best empowers your brand to break through.</p>
-            <a href="/blog-details" class="learn">Read more <span><i
-              class="fa-regular fa-arrow-right"></i></span></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-box">
-          <div class="headding">
-            <div class="tags">
-              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-            </div>
-            <h4><a href="/blog-details">Email Marketing SaaS, Riveting
-              Landing Pages, and Trendsetting </a></h4>
-            <p>eSoft Eestablishing an influential online presence. With precision-targeted App.</p>
-            <a href="/blog-details" class="learn">Read more <span><i
-              class="fa-regular fa-arrow-right"></i></span></a>
-          </div>
-        </div>
-      </div>
-
+      {% endfor %}
     </div>
-  </div>
-</div>
-<!--===== BLOG AREA END =======-->
 
-<!--===== EMAIL INNOVATION START =======-->
-<div class="email-innovation"
-     style="background-image: url(/static/img/bg/others2-bg.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
-  <div class="container">
+    <!-- Paginación -->
+    {% if pagination and pagination.get('totalPages', 0) > 1 %}
+    <div class="pagination-area" style="margin-top: 60px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+      <div style="margin-right: 20px;">
+        <span>Página {{ pagination.get('page', 1) }} de {{ pagination.get('totalPages', 1) }}</span>
+        <span style="margin-left: 10px; color: #666;">(Total: {{ pagination.get('total', 0) }} artículos)</span>
+      </div>
+      
+      {% if pagination.get('page', 1) > 1 %}
+      <a href="/blog?page={{ pagination.page - 1 }}&limit={{ pagination.get('limit', 9) }}{% if tag %}&tag={{ tag }}{% endif %}" class="theme-btn3">Anterior</a>
+      {% endif %}
+      
+      {% if pagination.get('page', 1) < pagination.get('totalPages', 1) %}
+      <a href="/blog?page={{ pagination.page + 1 }}&limit={{ pagination.get('limit', 9) }}{% if tag %}&tag={{ tag }}{% endif %}" class="theme-btn2">Siguiente</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
     <div class="row">
-      <div class="col-lg-5">
-        <div class="headding2-w">
-          <h2>Email innovation: Craft marketing an success</h2>
-          <div class="space16"></div>
-          <p>Email marketing journey transforms into a streamlined, an powerful experience. Our cutting-edge platform
-            eeSofts you with the tools to craft compelling, personalized</p>
-
-          <div class="space30"></div>
-
-          <a href="#" class="theme-btn3">Sign Up For Free</a>
-
-        </div>
-      </div>
-
-      <div class="col-lg-7">
-        <div class="images">
-          <div class="image1">
-            <img src="{{ config.ASSETS_ROOT }}/img/others/others2-image.png" alt="">
-          </div>
-          <div class="image2">
-            <img src="{{ config.ASSETS_ROOT }}/img/shapes/others2-shape1.png" alt="">
-          </div>
-          <div class="image3">
-            <img src="{{ config.ASSETS_ROOT }}/img/shapes/others2-shape2.png" alt="">
-          </div>
+      <div class="col-lg-12 text-center">
+        <div class="alert alert-info" style="background-color: #d1ecf1; color: #0c5460; padding: 40px; border-radius: 4px; border: 1px solid #bee5eb;">
+          <h3 style="margin-bottom: 15px;">No hay artículos disponibles</h3>
+          <p style="margin: 0; font-size: 16px;">Pronto publicaremos nuevos artículos sobre infraestructura, IA y automatización.</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!--===== EMAIL INNOVATION END =======-->
-
-<!--===== BLOG AREA START =======-->
-<div class="blog-area-all sp">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <div class="headding2">
-          <h2>Our Latest Blog & News</h2>
-          <div class="space16"></div>
-          <p>Our dynamic Landing Pages redefine user experiences, eSoft ensuring every click counts, dive into the world
-            of insightful.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="tabs-buttons">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="tab-contact1-tab" data-bs-toggle="pill" data-bs-target="#tab-contact1"
-                      type="button" role="tab" aria-controls="tab-contact1" aria-selected="true">All
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab-contact2-tab" data-bs-toggle="pill" data-bs-target="#tab-contact2"
-                      type="button" role="tab" aria-controls="tab-contact2" aria-selected="false">Resources
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab-contact3-tab" data-bs-toggle="pill" data-bs-target="#tab-contact3"
-                      type="button" role="tab" aria-controls="tab-contact3" aria-selected="false">Guides
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab-contact4-tab" data-bs-toggle="pill" data-bs-target="#tab-contact4"
-                      type="button" role="tab" aria-controls="tab-contact4" aria-selected="false">Updates
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="space30"></div>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="all-contact">
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="tab-contact1" role="tabpanel" aria-labelledby="tab-contact1-tab">
-              <div class="all-boxs">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img1.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img2.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Email Design: A Deep
-                          Dive in Visual Impact</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img3.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Our Proven Project
-                          Management Approach</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img4.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Mr. Blanca White</a>
-                        </div>
-                        <h4><a href="/blog-details">Empowering Projects
-                          Expert Management</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img5.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Lois Stiedemann</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img6.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Owen Lindgren</a>
-                        </div>
-                        <h4><a href="/blog-details">Best Project
-                          Management Software eSoft</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="tab-contact2" role="tabpanel" aria-labelledby="tab-contact2-tab">
-              <div class="all-boxs">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img6.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Owen Lindgren</a>
-                        </div>
-                        <h4><a href="/blog-details">Best Project
-                          Management Software eSoft</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img1.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img2.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Email Design: A Deep
-                          Dive in Visual Impact</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img3.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Our Proven Project
-                          Management Approach</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img4.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Mr. Blanca White</a>
-                        </div>
-                        <h4><a href="/blog-details">Empowering Projects
-                          Expert Management</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img5.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Lois Stiedemann</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="tab-contact3" role="tabpanel" aria-labelledby="tab-contact3-tab">
-
-              <div class="all-boxs">
-                <div class="row">
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img5.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Lois Stiedemann</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img6.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Owen Lindgren</a>
-                        </div>
-                        <h4><a href="/blog-details">Best Project
-                          Management Software eSoft</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img1.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img2.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Email Design: A Deep
-                          Dive in Visual Impact</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img3.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Our Proven Project
-                          Management Approach</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img4.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Mr. Blanca White</a>
-                        </div>
-                        <h4><a href="/blog-details">Empowering Projects
-                          Expert Management</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-
-                </div>
-              </div>
-
-            </div>
-            <div class="tab-pane fade" id="tab-contact4" role="tabpanel" aria-labelledby="tab-contact4-tab">
-
-              <div class="all-boxs">
-                <div class="row">
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img4.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Mr. Blanca White</a>
-                        </div>
-                        <h4><a href="/blog-details">Empowering Projects
-                          Expert Management</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img5.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Lois Stiedemann</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img6.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Owen Lindgren</a>
-                        </div>
-                        <h4><a href="/blog-details">Best Project
-                          Management Software eSoft</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img1.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">The Ultimate Email
-                          Campaign Playbook</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img2.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Email Design: A Deep
-                          Dive in Visual Impact</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="blog-box">
-                      <div class="image">
-                        <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img3.png" alt="">
-                      </div>
-                      <div class="headding">
-                        <div class="tags">
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-                          <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-                        </div>
-                        <h4><a href="/blog-details">Our Proven Project
-                          Management Approach</a></h4>
-                        <p>Effortlessly design stunning emails, automate your market workflow, & precisely target your
-                          audience for maximum.</p>
-                        <a href="/blog-details" class="learn">Read more
-                          <span><i class="fa-regular fa-arrow-right"></i></span></a>
-                      </div>
-                    </div>
-                  </div>
-
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="space60"></div>
-    <div class="row">
-      <div class="col-12 m-auto">
-        <div class="theme-pagination text-center">
-          <ul>
-            <li><a href="#"><i class="fa-solid fa-angles-left"></i></a></li>
-            <li><a class="active" href="#">01</a></li>
-            <li><a href="#">02</a></li>
-            <li>...</li>
-            <li><a href="#">12</a></li>
-            <li><a href="#"><i class="fa-solid fa-angles-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    {% endif %}
 
   </div>
 </div>
 <!--===== BLOG AREA END =======-->
-
-
 
 {% include 'partials/back-to-top.html' %}
 {% endblock page_content %}
-
-

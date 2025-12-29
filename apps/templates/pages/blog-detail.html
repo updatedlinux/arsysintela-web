@@ -1,0 +1,197 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}{{ post.get('title', 'Blog') }} - Arsys Intela{% endblock title %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body"{% endblock body_attribute %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero pages-hero-unic">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="main-headding">
+          <h1>{{ post.get('title', 'Sin título') }}</h1>
+          {% if post.get('excerpt') %}
+          <p>{{ post.excerpt }}</p>
+          {% endif %}
+
+          <div class="space30"></div>
+          <div class="all-text-hero">
+            {% if post.get('author') %}
+            <div class="autor-area">
+              <div class="image">
+                <i class="fa-regular fa-user" style="font-size: 40px; color: #667eea;"></i>
+              </div>
+              <div class="headding">
+                <h5><a href="#">{{ post.author }}</a></h5>
+                <p>Autor</p>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if post.get('tag') %}
+            <div class="tag">
+              <a href="/blog?tag={{ post.tag }}">#{{ post.tag }}</a>
+            </div>
+            {% endif %}
+            
+            {% if post.get('publishedAt') %}
+            <div class="date">
+              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> {{ post.publishedAt[:10] }}</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% if post.get('headerImageUrl') %}
+      <div class="col-lg-5">
+        <div class="hero-image shape-animaiton3">
+          <img src="{{ post.headerImageUrl }}" alt="{{ post.get('title', '') }}">
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <img class="hero-shape1" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape1.png" alt="">
+  <img class="hero-shape3" src="{{ config.ASSETS_ROOT }}/img/shapes/common-hero-shape3.png" alt="">
+</div>
+<!--===== HERO AREA END =======-->
+
+<div class="space60"></div>
+
+<!--===== BLOG DETAILS AREA START =======-->
+<div class="blog-details-sidebar">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 m-auto">
+        <div class="blog-details-all pr60">
+          <article>
+            <div class="details-box">
+              {% if post.get('headerImageUrl') %}
+              <div class="image">
+                <img src="{{ post.headerImageUrl }}" alt="{{ post.get('title', '') }}">
+              </div>
+              <div class="space20"></div>
+              {% endif %}
+              
+              <div class="all-tags">
+                {% if post.get('tag') %}
+                  <a href="/blog?tag={{ post.tag }}" class="tag">#{{ post.tag }}</a>
+                {% endif %}
+                {% if post.get('publishedAt') %}
+                  <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> {{ post.publishedAt[:10] }}</a>
+                {% endif %}
+                {% if post.get('author') %}
+                  <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> {{ post.author }}</a>
+                {% endif %}
+              </div>
+              <div class="space10"></div>
+
+              <div class="headding2">
+                <h2>{{ post.get('title', 'Sin título') }}</h2>
+                <div class="space16"></div>
+                
+                {% if post.get('contentHtml') %}
+                <div class="blog-content">
+                  {{ post.contentHtml|safe }}
+                </div>
+                {% else %}
+                <p>Contenido no disponible.</p>
+                {% endif %}
+              </div>
+
+              <div class="space40"></div>
+              <div class="blog-border"></div>
+              <div class="space40"></div>
+              
+              <div class="text-center">
+                <a href="/blog" class="theme-btn2">
+                  <i class="fa-regular fa-arrow-left"></i> Volver al Blog
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== BLOG DETAILS AREA END =======-->
+
+<style>
+.blog-content {
+  line-height: 1.8;
+  color: #333;
+}
+
+.blog-content h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: var(--qt-text-h-text2, #1a1a1a);
+}
+
+.blog-content h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 25px;
+  margin-bottom: 12px;
+  color: var(--qt-text-h-text2, #1a1a1a);
+}
+
+.blog-content p {
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 16px;
+  padding-left: 30px;
+}
+
+.blog-content li {
+  margin-bottom: 8px;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.blog-content a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid #667eea;
+  padding-left: 20px;
+  margin: 20px 0;
+  font-style: italic;
+  color: #666;
+}
+</style>
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+

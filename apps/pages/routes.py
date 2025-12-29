@@ -6,13 +6,27 @@ from apps.pages import blueprint
 from flask import render_template, request, current_app, send_from_directory, abort, session, redirect, url_for, flash
 from jinja2 import TemplateNotFound
 from apps.utils.client_portal_api import api_post, api_get, api_put, get_client_portal_token, get_client_portal_user
-from apps.utils.blog_api import get_posts, get_post_by_id, create_post, update_post, delete_post
+from apps.utils.blog_api import get_posts, get_post_by_id, get_post_by_slug, create_post, update_post, delete_post
 from flask import jsonify
 
 
 @blueprint.route('/')
 def index():
-    return render_template('pages/index6.html', segment='index')
+    """
+    Página principal (HOME).
+    Obtiene los últimos posts del blog para mostrar en la sección de blog.
+    """
+    latest_posts = []
+    try:
+        # Obtener los últimos 2-3 posts para la home
+        response_json, status_code = get_posts(page=1, limit=3)
+        if status_code == 200:
+            latest_posts = response_json.get('data', [])
+    except Exception as e:
+        current_app.logger.error(f"Error al obtener posts para la home: {str(e)}")
+        # Si falla, simplemente no mostrar posts (latest_posts queda vacío)
+    
+    return render_template('pages/index6.html', segment='index', latest_posts=latest_posts)
 
 
 @blueprint.route('/solutions/<solution_name>')
@@ -646,6 +660,85 @@ def blog_delete(post_id):
 
 
 # ==================== Fin Rutas Admin Blog ====================
+
+# ==================== Rutas Públicas del Blog ====================
+
+@blueprint.route('/blog')
+def blog_public():
+    """
+    Listado público de posts del blog con paginación.
+    """
+    try:
+        page = request.args.get('page', 1, type=int)
+        limit = request.args.get('limit', 9, type=int)
+        tag = request.args.get('tag', None)
+        
+        response_json, status_code = get_posts(page=page, limit=limit, tag=tag)
+        
+        if status_code == 200:
+            posts = response_json.get('data', [])
+            pagination = response_json.get('pagination', {})
+            
+            return render_template(
+                'pages/blog.html',
+                posts=posts,
+                pagination=pagination,
+                segment='blog',
+                tag=tag
+            )
+        else:
+            # Si hay error, mostrar página vacía con mensaje
+            error_message = response_json.get('message', 'Error al cargar los posts.')
+            current_app.logger.error(f"Error al cargar posts en /blog: {error_message}")
+            return render_template(
+                'pages/blog.html',
+                posts=[],
+                pagination={},
+                segment='blog',
+                error='No se pudieron cargar los posts. Intenta nuevamente más tarde.'
+            )
+    
+    except Exception as e:
+        current_app.logger.error(f"Error en blog_public: {str(e)}")
+        return render_template(
+            'pages/blog.html',
+            posts=[],
+            pagination={},
+            segment='blog',
+            error='No se pudo cargar la lista de posts. Intenta nuevamente más tarde.'
+        )
+
+
+@blueprint.route('/blog/<slug>')
+def blog_post_detail(slug):
+    """
+    Detalle de un post individual del blog.
+    """
+    try:
+        response_json, status_code = get_post_by_slug(slug)
+        
+        if status_code == 200:
+            post = response_json
+            return render_template(
+                'pages/blog-detail.html',
+                post=post,
+                segment='blog'
+            )
+        elif status_code == 404:
+            # Post no encontrado, mostrar 404
+            return render_template('pages/page-404.html'), 404
+        else:
+            # Otro error
+            error_message = response_json.get('message', 'Error al cargar el post.')
+            current_app.logger.error(f"Error al cargar post {slug}: {error_message}")
+            return render_template('pages/page-404.html'), 404
+    
+    except Exception as e:
+        current_app.logger.error(f"Error en blog_post_detail: {str(e)}")
+        return render_template('pages/page-404.html'), 404
+
+
+# ==================== Fin Rutas Públicas del Blog ====================
 
 
 @blueprint.route('/<template>')

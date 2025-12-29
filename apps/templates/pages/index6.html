@@ -635,53 +635,50 @@ necesidades de empresas que operan en múltiples países."
 
     <div class="space30"></div>
     <div class="row">
-      <div class="col-lg-6">
-        <div class="blog-box" data-aos="zoom-in-up" data-aos-duration="800">
-          <div class="image">
-            <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img1.png" alt="">
-          </div>
-          <div class="headding">
-            <div class="tags">
-              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
+      {% if latest_posts and latest_posts|length > 0 %}
+        {% for post in latest_posts[:2] %}
+        <div class="col-lg-6">
+          <div class="blog-box" data-aos="zoom-in-up" data-aos-duration="{{ 800 + (loop.index * 200) }}">
+            <div class="image">
+              <img src="{{ post.get('headerImageUrl', config.ASSETS_ROOT + '/img/blog/blog2-img1.png') }}" alt="{{ post.get('title', '') }}">
             </div>
-            <h4><a href="/blog/arsys-intela-infraestructura-privada-ia">
-              Cómo combinar infraestructura privada e IA para tu negocio
-            </a></h4>
-            <p>
-Exploramos cómo Intela Grid y Assistant360 pueden trabajar juntos para que tengas
-soberanía de datos, alta disponibilidad y atención con IA en un mismo ecosistema.
-</p>
-            <a href="/blog/arsys-intela-infraestructura-privada-ia" class="learn">Leer artículo <span><i
-              class="fa-regular fa-arrow-right"></i></span></a>
+            <div class="headding">
+              <div class="tags">
+                {% if post.get('publishedAt') %}
+                  <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> {{ post.publishedAt[:10] }}</a>
+                {% endif %}
+                {% if post.get('author') %}
+                  <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> {{ post.author }}</a>
+                {% endif %}
+              </div>
+              <h4><a href="/blog/{{ post.get('slug', '#') }}">
+                {{ post.get('title', 'Sin título') }}
+              </a></h4>
+              <p>
+                {{ post.get('excerpt', '')[:150] }}{% if post.get('excerpt', '')|length > 150 %}...{% endif %}
+              </p>
+              <a href="/blog/{{ post.get('slug', '#') }}" class="learn">Leer artículo <span><i
+                class="fa-regular fa-arrow-right"></i></span></a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="blog-box" data-aos="zoom-in-up" data-aos-duration="1000">
-          <div class="image">
-            <img src="{{ config.ASSETS_ROOT }}/img/blog/blog2-img2.png" alt="">
-          </div>
-          <div class="headding">
-            <div class="tags">
-              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon1.png" alt=""> 10 October 2023</a>
-              <a href="#"><img src="{{ config.ASSETS_ROOT }}/img/icons/blog2-icon2.png" alt=""> Rabby Mahmud</a>
-            </div>
-            <h4><a href="/blog/automatizacion-condominios-intela-smart">
-              Automatización de condominios y edificios con Intela Smart
-            </a></h4>
-            <p>
-Mostramos cómo Condominio360 e Intela Smart permiten mejorar la comunicación con
-residentes, automatizar accesos y tener una operación más transparente y eficiente.
-</p>
-            <a href="/blog/automatizacion-condominios-intela-smart" class="learn">Leer artículo <span><i
-              class="fa-regular fa-arrow-right"></i></span></a>
-          </div>
+        {% endfor %}
+      {% else %}
+        {# Fallback: mostrar mensaje suave si no hay posts #}
+        <div class="col-lg-12 text-center">
+          <p style="color: #666; font-style: italic;">Pronto publicaremos nuevos artículos sobre infraestructura, IA y automatización.</p>
         </div>
-      </div>
-
+      {% endif %}
     </div>
+    
+    {% if latest_posts and latest_posts|length > 0 %}
+    <div class="space30"></div>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a href="/blog" class="theme-btn2">Ver todos los artículos</a>
+      </div>
+    </div>
+    {% endif %}
 
   </div>
 </div>
