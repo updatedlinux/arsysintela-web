@@ -25,20 +25,6 @@
       <div class="col-lg-12">
         <div class="main-headding">
           <h1>Portal de Clientes</h1>
-          <div class="space20"></div>
-          {% if user %}
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div>
-              <p style="margin: 0; font-size: 16px;">
-                <strong>Usuario:</strong> {{ user.get('name', 'N/A') }} ({{ user.get('email', 'N/A') }})<br>
-                <small style="color: #666;">Rol: {{ user.get('role', 'N/A') }}</small>
-              </p>
-            </div>
-            <div>
-              <a href="/logout" class="theme-btn3" style="margin-top: 10px;">Cerrar Sesión</a>
-            </div>
-          </div>
-          {% endif %}
         </div>
       </div>
     </div>
@@ -65,25 +51,51 @@
         
         {% if client %}
         {# Mostrar información del cliente #}
-        <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 40px;">
-          <div class="headding2" style="margin-bottom: 20px;">
-            <h2>Mi Información</h2>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <p style="margin-bottom: 10px;"><strong>Nombre:</strong> {{ client.get('name', 'N/A') }}</p>
-              <p style="margin-bottom: 10px;"><strong>Email:</strong> {{ client.get('email', 'N/A') }}</p>
-              {% if client.get('phone') %}
-              <p style="margin-bottom: 10px;"><strong>Teléfono:</strong> {{ client.phone }}</p>
-              {% endif %}
+        <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 40px; margin-top: -60px; position: relative; z-index: 10;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
+            <div class="headding2" style="margin-bottom: 0;">
+              <h2>Mi Información</h2>
             </div>
-            <div class="col-md-6">
-              {% if client.get('company') %}
-              <p style="margin-bottom: 10px;"><strong>Empresa:</strong> {{ client.company }}</p>
-              {% endif %}
-              {% if client.get('notes') %}
-              <p style="margin-bottom: 10px;"><strong>Notas:</strong> {{ client.notes }}</p>
-              {% endif %}
+            <div>
+              <a href="/logout" class="theme-btn3">Cerrar Sesión</a>
+            </div>
+          </div>
+          
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              <div style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                <i class="fa-regular fa-user" style="font-size: 60px; color: #fff;"></i>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-6">
+                  <p style="margin-bottom: 15px; display: flex; align-items: center;">
+                    <i class="fa-regular fa-user" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
+                    <span><strong>Nombre:</strong> {{ client.get('name', 'N/A') }}</span>
+                  </p>
+                  <p style="margin-bottom: 15px; display: flex; align-items: center;">
+                    <i class="fa-regular fa-envelope" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
+                    <span><strong>Email:</strong> {{ client.get('email', 'N/A') }}</span>
+                  </p>
+                  <p style="margin-bottom: 15px; display: flex; align-items: center;">
+                    <i class="fa-regular fa-phone" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
+                    <span><strong>Teléfono:</strong> {{ client.get('phone', 'No especificado') }}</span>
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p style="margin-bottom: 15px; display: flex; align-items: center;">
+                    <i class="fa-regular fa-building" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
+                    <span><strong>Empresa:</strong> {{ client.get('company', 'No especificado') }}</span>
+                  </p>
+                  {% if client.get('notes') %}
+                  <p style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+                    <i class="fa-regular fa-note-sticky" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a); margin-top: 3px;"></i>
+                    <span><strong>Notas:</strong> {{ client.notes }}</span>
+                  </p>
+                  {% endif %}
+                </div>
+              </div>
             </div>
           </div>
         </div>
