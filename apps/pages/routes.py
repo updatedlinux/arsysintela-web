@@ -120,7 +120,9 @@ def logout():
 @blueprint.route('/portal-clientes')
 def portal_clientes():
     """
-    Dashboard del Portal de Clientes que muestra el listado de clientes.
+    Dashboard del Portal de Clientes.
+    - Si el usuario tiene rol 'admin': muestra listado de clientes
+    - Si el usuario tiene rol 'user': muestra productos asociados a su ID de cliente
     Requiere autenticación (token en sesión).
     """
     # Verificar que haya sesión activa
@@ -129,59 +131,122 @@ def portal_clientes():
         return redirect(url_for('pages_blueprint.login', error='Por favor, inicia sesión para acceder al portal.'))
     
     user = get_client_portal_user()
-    
-    # Obtener parámetros de paginación
-    page = request.args.get('page', 1, type=int)
-    limit = request.args.get('limit', 10, type=int)
+    user_role = user.get('role', '') if user else ''
+    user_id = user.get('id') if user else None
     
     try:
-        # Llamar a la API para obtener el listado de clientes
-        response_json, status_code = api_get('/clients', {
-            'page': page,
-            'limit': limit
-        })
-        
-        if status_code == 200:
-            # Éxito: mostrar el dashboard con los datos
-            clients = response_json.get('data', [])
-            pagination = response_json.get('pagination', {})
+        # Si el usuario es 'user', obtener sus productos asociados
+        if user_role == 'user' and user_id:
+            # Llamar a la API para obtener productos del cliente
+            response_json, status_code = api_get(f'/clients/{user_id}/products')
             
+            if status_code == 200:
+                # Éxito: mostrar productos del usuario
+                products = response_json if isinstance(response_json, list) else []
+                
+                return render_template(
+                    'pages/portal_clientes.html',
+                    products=products,
+                    user=user,
+                    segment='portal-clientes',
+                    is_user=True
+                )
+            
+            elif status_code == 401:
+                # Token expirado o inválido
+                session.pop('client_portal_token', None)
+                session.pop('client_portal_user', None)
+                return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
+            
+            elif status_code == 404:
+                # Cliente no encontrado o sin productos
+                return render_template(
+                    'pages/portal_clientes.html',
+                    products=[],
+                    user=user,
+                    segment='portal-clientes',
+                    is_user=True
+                )
+            
+            else:
+                # Otro error
+                error_message = response_json.get('message', 'Error al cargar los productos.')
+                return render_template(
+                    'pages/portal_clientes.html',
+                    products=[],
+                    user=user,
+                    error=error_message,
+                    segment='portal-clientes',
+                    is_user=True
+                )
+        
+        # Si el usuario es 'admin', mostrar listado de clientes
+        else:
+            # Obtener parámetros de paginación
+            page = request.args.get('page', 1, type=int)
+            limit = request.args.get('limit', 10, type=int)
+            
+            # Llamar a la API para obtener el listado de clientes
+            response_json, status_code = api_get('/clients', {
+                'page': page,
+                'limit': limit
+            })
+            
+            if status_code == 200:
+                # Éxito: mostrar el dashboard con los datos
+                clients = response_json.get('data', [])
+                pagination = response_json.get('pagination', {})
+                
+                return render_template(
+                    'pages/portal_clientes.html',
+                    clients=clients,
+                    pagination=pagination,
+                    user=user,
+                    segment='portal-clientes',
+                    is_user=False
+                )
+            
+            elif status_code == 401:
+                # Token expirado o inválido
+                session.pop('client_portal_token', None)
+                session.pop('client_portal_user', None)
+                return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
+            
+            else:
+                # Otro error
+                error_message = response_json.get('message', 'Error al cargar los clientes.')
+                return render_template(
+                    'pages/portal_clientes.html',
+                    clients=[],
+                    pagination={},
+                    user=user,
+                    error=error_message,
+                    segment='portal-clientes',
+                    is_user=False
+                )
+    
+    except Exception as e:
+        current_app.logger.error(f"Error en portal_clientes: {str(e)}")
+        error_msg = 'No se pudo cargar la información. Intenta nuevamente más tarde.'
+        if user_role == 'user':
             return render_template(
                 'pages/portal_clientes.html',
-                clients=clients,
-                pagination=pagination,
+                products=[],
                 user=user,
-                segment='portal-clientes'
+                error=error_msg,
+                segment='portal-clientes',
+                is_user=True
             )
-        
-        elif status_code == 401:
-            # Token expirado o inválido
-            session.pop('client_portal_token', None)
-            session.pop('client_portal_user', None)
-            return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
-        
         else:
-            # Otro error
-            error_message = response_json.get('message', 'Error al cargar los clientes.')
             return render_template(
                 'pages/portal_clientes.html',
                 clients=[],
                 pagination={},
                 user=user,
-                error=error_message,
-                segment='portal-clientes'
+                error=error_msg,
+                segment='portal-clientes',
+                is_user=False
             )
-    
-    except Exception as e:
-        current_app.logger.error(f"Error al obtener clientes: {str(e)}")
-        return render_template(
-            'pages/portal_clientes.html',
-            clients=[],
-            pagination={},
-            user=user,
-            error='No se pudo cargar la lista de clientes. Intenta nuevamente más tarde.',
-            segment='portal-clientes'
-        )
 
 
 # ==================== Fin Portal de Clientes ====================

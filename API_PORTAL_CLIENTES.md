@@ -2,9 +2,13 @@
 
 ## Descripción General
 
-API REST backend para el Portal de Clientes de Arsys Intela. Esta API proporciona endpoints para autenticación mediante JWT, gestión de clientes, gestión de productos y la relación entre clientes y productos.
+API REST backend para el Portal de Clientes de Arsys Intela. Esta API proporciona endpoints para autenticación mediante JWT, gestión de usuarios del sistema, gestión de clientes, gestión de productos y la relación entre clientes y productos.
 
-**Propósito**: Servir como backend para login, gestión de clientes y relación con productos.
+**Propósito**: Servir como backend para login, gestión de usuarios, gestión de clientes y relación con productos.
+
+**Nota importante**: Los **Usuarios (User)** y los **Clientes (Client)** son entidades distintas:
+- **User**: Usuarios del sistema que pueden iniciar sesión (autenticación). Son las personas que utilizan la API.
+- **Client**: Clientes de negocio, es decir, las empresas o personas que son clientes de Arsys Intela.
 
 ---
 
@@ -806,6 +810,181 @@ Authorization: Bearer <token>
 
 ---
 
+### Usuarios
+
+**Importante**: Los **Usuarios (User)** y los **Clientes (Client)** son entidades distintas:
+- **User**: Representa a los usuarios del sistema que pueden iniciar sesión (autenticación). Son las personas que utilizan la API.
+- **Client**: Representa a los clientes de negocio, es decir, las empresas o personas que son clientes de Arsys Intela.
+
+Todos los endpoints de usuarios requieren autenticación JWT. Algunos endpoints adicionalmente requieren rol de administrador.
+
+#### GET `/api/users`
+
+Obtiene una lista de todos los usuarios del sistema.
+
+**Autenticación**: Requerida (JWT Bearer Token) + **Rol admin requerido**
+
+**Ejemplo de Request**:
+```
+GET /api/users
+Authorization: Bearer <token>
+```
+
+**Response (200 OK)**:
+```json
+[
+  {
+    "id": 1,
+    "email": "admin@arsysintela.com",
+    "name": "Administrador",
+    "role": "admin",
+    "createdAt": "2025-01-10T08:00:00.000Z",
+    "updatedAt": "2025-01-10T08:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "email": "usuario@arsysintela.com",
+    "name": "Usuario Normal",
+    "role": "user",
+    "createdAt": "2025-01-15T10:30:00.000Z",
+    "updatedAt": "2025-01-15T10:30:00.000Z"
+  }
+]
+```
+
+**Nota**: El campo `passwordHash` nunca se incluye en las respuestas por seguridad.
+
+**Códigos de Estado**:
+- **200**: Lista obtenida exitosamente
+- **401**: No autorizado (token inválido o faltante)
+- **403**: Acceso denegado (se requieren permisos de administrador)
+
+---
+
+#### POST `/api/users`
+
+Crea un nuevo usuario en el sistema. La contraseña se hashea automáticamente antes de guardarse.
+
+**Autenticación**: Requerida (JWT Bearer Token) + **Rol admin requerido**
+
+**Request Body**:
+```json
+{
+  "email": "nuevo@arsysintela.com",
+  "password": "password123",
+  "name": "Nombre Usuario",
+  "role": "user"
+}
+```
+
+**Campos**:
+- `email` (required, string, formato email, único): Email del usuario
+- `password` (required, string, mínimo 8 caracteres): Contraseña en texto plano (se hashea automáticamente)
+- `name` (optional, string): Nombre del usuario
+- `role` (optional, enum: "admin" | "user", default: "user"): Rol del usuario
+
+**Ejemplo de Request**:
+```
+POST /api/users
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "email": "nuevo@arsysintela.com",
+  "password": "password123",
+  "name": "Nombre Usuario",
+  "role": "user"
+}
+```
+
+**Response (201 Created)**:
+```json
+{
+  "id": 3,
+  "email": "nuevo@arsysintela.com",
+  "name": "Nombre Usuario",
+  "role": "user",
+  "createdAt": "2025-01-28T23:55:00.000Z",
+  "updatedAt": "2025-01-28T23:55:00.000Z"
+}
+```
+
+**Nota**: La contraseña nunca se retorna en la respuesta.
+
+**Códigos de Estado**:
+- **201**: Usuario creado exitosamente
+- **400**: Error de validación (email inválido, contraseña muy corta, etc.)
+- **401**: No autorizado
+- **403**: Acceso denegado (se requieren permisos de administrador)
+- **409**: Conflicto (el email ya está registrado)
+
+---
+
+#### PUT `/api/users/{id}/password`
+
+Permite cambiar la contraseña de un usuario.
+
+**Autenticación**: Requerida (JWT Bearer Token)
+
+**Reglas de acceso**:
+- Si el usuario es **admin**: Puede cambiar la contraseña de cualquier usuario sin necesidad de proporcionar la contraseña actual.
+- Si el usuario es el **mismo** (cambia su propia contraseña): Debe proporcionar y validar la contraseña actual.
+
+**Path Parameters**:
+- `id` (required, integer): ID del usuario cuya contraseña se desea cambiar
+
+**Request Body**:
+```json
+{
+  "currentPassword": "password_actual",
+  "newPassword": "nuevaPassword123"
+}
+```
+
+**Campos**:
+- `currentPassword` (conditional, string): 
+  - **Requerido** si el usuario está cambiando su propia contraseña (no admin)
+  - **No requerido** si el usuario es admin
+- `newPassword` (required, string, mínimo 8 caracteres): Nueva contraseña en texto plano (se hashea automáticamente)
+
+**Ejemplo de Request (usuario cambiando su propia contraseña)**:
+```
+PUT /api/users/2/password
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "currentPassword": "password_actual",
+  "newPassword": "nuevaPassword123"
+}
+```
+
+**Ejemplo de Request (admin cambiando contraseña de otro usuario)**:
+```
+PUT /api/users/2/password
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "newPassword": "nuevaPassword123"
+}
+```
+
+**Response (200 OK)**:
+```json
+{
+  "message": "Contraseña actualizada correctamente"
+}
+```
+
+**Códigos de Estado**:
+- **200**: Contraseña actualizada exitosamente
+- **400**: Error de validación (contraseña muy corta, falta currentPassword cuando es requerida, etc.)
+- **401**: No autorizado o contraseña actual incorrecta
+- **404**: Usuario no encontrado
+
+---
+
 ## Modelos de Datos
 
 ### User
@@ -1112,4 +1291,5 @@ Los listados están ordenados por fecha de creación descendente (`createdAt DES
 
 **Versión del API**: 1.0.0  
 **Última actualización**: Enero 2025
+
 
