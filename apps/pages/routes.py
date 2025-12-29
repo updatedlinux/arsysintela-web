@@ -396,6 +396,12 @@ def blog_list():
             posts = response_json.get('data', [])
             pagination = response_json.get('pagination', {})
             
+            # El API ahora incluye isPublished en el listado
+            # Asegurarnos de que todos los posts tengan isPublished (por defecto False si no viene)
+            for post in posts:
+                if 'isPublished' not in post:
+                    post['isPublished'] = False
+            
             return render_template(
                 'pages/blog_list.html',
                 posts=posts,
