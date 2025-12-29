@@ -512,6 +512,11 @@ body.portal-clientes-page .pages-hero.portal-clientes-hero .container {
 }
 </style>
 
+{% if config.RECAPTCHA_SITE_KEY %}
+<!-- Google reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/api.js?render={{ config.RECAPTCHA_SITE_KEY }}"></script>
+{% endif %}
+
 <script>
 // Prevenir error de progressPath en main.js
 (function() {
@@ -652,6 +657,28 @@ body.portal-clientes-page .pages-hero.portal-clientes-hero .container {
       if (errorDiv) errorDiv.style.display = 'none';
 
       try {
+        // Obtener token de reCAPTCHA si está configurado
+        let recaptchaToken = '';
+        {% if config.RECAPTCHA_SITE_KEY %}
+        if (typeof grecaptcha !== 'undefined') {
+          try {
+            recaptchaToken = await new Promise(function(resolve, reject) {
+              grecaptcha.ready(function() {
+                grecaptcha.execute('{{ config.RECAPTCHA_SITE_KEY }}', {action: 'create_user'})
+                  .then(resolve)
+                  .catch(reject);
+              });
+            });
+          } catch (error) {
+            console.error('Error obteniendo token reCAPTCHA:', error);
+          }
+        }
+        {% endif %}
+        
+        if (recaptchaToken) {
+          formData.recaptcha_token = recaptchaToken;
+        }
+        
         const response = await fetch('/portal-clientes/create-user', {
           method: 'POST',
           headers: {
@@ -719,6 +746,28 @@ body.portal-clientes-page .pages-hero.portal-clientes-hero .container {
       if (errorDiv) errorDiv.style.display = 'none';
 
       try {
+        // Obtener token de reCAPTCHA si está configurado
+        let recaptchaToken = '';
+        {% if config.RECAPTCHA_SITE_KEY %}
+        if (typeof grecaptcha !== 'undefined') {
+          try {
+            recaptchaToken = await new Promise(function(resolve, reject) {
+              grecaptcha.ready(function() {
+                grecaptcha.execute('{{ config.RECAPTCHA_SITE_KEY }}', {action: 'update_client'})
+                  .then(resolve)
+                  .catch(reject);
+              });
+            });
+          } catch (error) {
+            console.error('Error obteniendo token reCAPTCHA:', error);
+          }
+        }
+        {% endif %}
+        
+        if (recaptchaToken) {
+          formData.recaptcha_token = recaptchaToken;
+        }
+        
         const response = await fetch('/portal-clientes/update-client/' + clientId, {
           method: 'POST',
           headers: {

@@ -23,7 +23,12 @@ class Config(object):
 
     # Enable/Disable Github Social Login    
     if GITHUB_ID and GITHUB_SECRET:
-         SOCIAL_AUTH_GITHUB  = True        
+         SOCIAL_AUTH_GITHUB  = True
+
+    # Google reCAPTCHA v3
+    RECAPTCHA_SITE_KEY = os.getenv('RECAPTCHA_SITE_KEY', None)
+    RECAPTCHA_SECRET_KEY = os.getenv('RECAPTCHA_SECRET_KEY', None)
+    RECAPTCHA_MIN_SCORE = float(os.getenv('RECAPTCHA_MIN_SCORE', '0.5'))        
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

@@ -45,7 +45,7 @@
           </div>
           {% endif %}
 
-          <form method="POST" action="/login" class="inputs">
+          <form method="POST" action="/login" class="inputs" id="loginForm">
             <div class="single-inputs">
               <label>Correo Electrónico</label>
               <input type="email" name="email" placeholder="Ingresa tu correo electrónico" required>
@@ -54,8 +54,9 @@
               <label>Contraseña</label>
               <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
             </div>
+            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
             <div class="button">
-              <button type="submit" class="theme-btn2">Iniciar Sesión</button>
+              <button type="submit" class="theme-btn2" id="loginSubmitBtn">Iniciar Sesión</button>
             </div>
           </form>
 
@@ -79,4 +80,52 @@
 
 {% endblock content %}
 
+{% block extra_javascript %}
+{% if config.RECAPTCHA_SITE_KEY %}
+<!-- Google reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/api.js?render={{ config.RECAPTCHA_SITE_KEY }}"></script>
+<script>
+(function() {
+  'use strict';
+  
+  const siteKey = '{{ config.RECAPTCHA_SITE_KEY }}';
+  
+  if (!siteKey) {
+    console.warn('reCAPTCHA SITE_KEY no configurada');
+    return;
+  }
+  
+  const loginForm = document.getElementById('loginForm');
+  const submitBtn = document.getElementById('loginSubmitBtn');
+  
+  if (loginForm && submitBtn) {
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Deshabilitar botón para evitar múltiples envíos
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Verificando...';
+      
+      // Ejecutar reCAPTCHA v3
+      grecaptcha.ready(function() {
+        grecaptcha.execute(siteKey, {action: 'login'}).then(function(token) {
+          // Agregar token al formulario
+          document.getElementById('g-recaptcha-response').value = token;
+          
+          // Enviar formulario
+          loginForm.submit();
+        }).catch(function(error) {
+          console.error('Error en reCAPTCHA:', error);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          alert('Error en la verificación de seguridad. Intenta nuevamente.');
+        });
+      });
+    });
+  }
+})();
+</script>
+{% endif %}
+{% endblock extra_javascript %}
 

@@ -7,6 +7,7 @@ from flask import render_template, request, current_app, send_from_directory, ab
 from jinja2 import TemplateNotFound
 from apps.utils.client_portal_api import api_post, api_get, api_put, get_client_portal_token, get_client_portal_user
 from apps.utils.blog_api import get_posts, get_post_by_id, get_post_by_slug, create_post, update_post, delete_post
+from apps.utils.recaptcha import verify_recaptcha
 from flask import jsonify
 
 
@@ -78,7 +79,7 @@ def login():
         return redirect(url_for('pages_blueprint.portal_clientes'))
     
     error = request.args.get('error', '')
-    return render_template('pages/login.html', error=error, segment='login')
+    return render_template('pages/login.html', error=error, segment='login', config=current_app.config)
 
 
 @blueprint.route('/login', methods=['POST'])
@@ -88,9 +89,17 @@ def login_post():
     """
     email = request.form.get('email', '').strip()
     password = request.form.get('password', '')
+    recaptcha_token = request.form.get('g-recaptcha-response', '')
     
     if not email or not password:
         return render_template('pages/login.html', error='Por favor, completa todos los campos.', segment='login')
+    
+    # Validar reCAPTCHA v3
+    if current_app.config.get('RECAPTCHA_SECRET_KEY'):
+        is_valid, score, error_msg = verify_recaptcha(recaptcha_token, request.remote_addr)
+        if not is_valid:
+            current_app.logger.warning(f"Login bloqueado por reCAPTCHA: score={score}, error={error_msg}")
+            return render_template('pages/login.html', error='Verificación de seguridad fallida. Intenta nuevamente.', segment='login')
     
     try:
         # Llamar a la API de login
@@ -109,16 +118,16 @@ def login_post():
         elif status_code in [400, 401]:
             # Error en las credenciales o validación
             error_message = response_json.get('message', 'Correo o contraseña inválidos')
-            return render_template('pages/login.html', error=error_message, segment='login')
+            return render_template('pages/login.html', error=error_message, segment='login', config=current_app.config)
         else:
             # Otro error (500, etc.)
             error_message = response_json.get('message', 'Error al procesar la solicitud. Intenta nuevamente.')
             current_app.logger.warning(f"Login falló con código {status_code}: {error_message}")
-            return render_template('pages/login.html', error=error_message, segment='login')
+            return render_template('pages/login.html', error=error_message, segment='login', config=current_app.config)
     
     except Exception as e:
         current_app.logger.error(f"Error en login: {str(e)}")
-        return render_template('pages/login.html', error='Error al conectar con el servidor. Intenta nuevamente más tarde.', segment='login')
+        return render_template('pages/login.html', error='Error al conectar con el servidor. Intenta nuevamente más tarde.', segment='login', config=current_app.config)
 
 
 @blueprint.route('/logout')
@@ -168,7 +177,8 @@ def portal_clientes():
                     products=products,
                     user=user,
                     segment='portal-clientes',
-                    is_user=True
+                    is_user=True,
+                    config=current_app.config
                 )
             
             elif status_code == 401:
@@ -187,7 +197,8 @@ def portal_clientes():
                     user=user,
                     error=error_message,
                     segment='portal-clientes',
-                    is_user=True
+                    is_user=True,
+                    config=current_app.config
                 )
             
             else:
@@ -200,7 +211,8 @@ def portal_clientes():
                     user=user,
                     error=error_message,
                     segment='portal-clientes',
-                    is_user=True
+                    is_user=True,
+                    config=current_app.config
                 )
         
         # Si el usuario es 'admin', mostrar listado de clientes
@@ -226,7 +238,8 @@ def portal_clientes():
                     pagination=pagination,
                     user=user,
                     segment='portal-clientes',
-                    is_user=False
+                    is_user=False,
+                    config=current_app.config
                 )
             
             elif status_code == 401:
@@ -245,7 +258,8 @@ def portal_clientes():
                     user=user,
                     error=error_message,
                     segment='portal-clientes',
-                    is_user=False
+                    is_user=False,
+                    config=current_app.config
                 )
     
     except Exception as e:
@@ -258,7 +272,8 @@ def portal_clientes():
                 user=user,
                 error=error_msg,
                 segment='portal-clientes',
-                is_user=True
+                is_user=True,
+                config=current_app.config
             )
         else:
             return render_template(
@@ -268,7 +283,8 @@ def portal_clientes():
                 user=user,
                 error=error_msg,
                 segment='portal-clientes',
-                is_user=False
+                is_user=False,
+                config=current_app.config
             )
 
 
@@ -289,6 +305,16 @@ def create_user():
     user = get_client_portal_user()
     if not user or user.get('role') != 'admin':
         return jsonify({'error': 'Solo los administradores pueden crear usuarios'}), 403
+    
+    # Validar reCAPTCHA v3
+    if current_app.config.get('RECAPTCHA_SECRET_KEY'):
+        data = request.get_json() if request.is_json else {}
+        recaptcha_token = data.get('recaptcha_token', '') or request.form.get('g-recaptcha-response', '')
+        if recaptcha_token:
+            is_valid, score, error_msg = verify_recaptcha(recaptcha_token, request.remote_addr)
+            if not is_valid:
+                current_app.logger.warning(f"Crear usuario bloqueado por reCAPTCHA: score={score}, error={error_msg}")
+                return jsonify({'error': 'Verificación de seguridad fallida. Intenta nuevamente.'}), 400
     
     try:
         data = request.get_json()
@@ -329,6 +355,16 @@ def update_client(client_id):
     user = get_client_portal_user()
     if not user or user.get('role') != 'admin':
         return jsonify({'error': 'Solo los administradores pueden actualizar clientes'}), 403
+    
+    # Validar reCAPTCHA v3
+    if current_app.config.get('RECAPTCHA_SECRET_KEY'):
+        data = request.get_json() if request.is_json else {}
+        recaptcha_token = data.get('recaptcha_token', '') or request.form.get('g-recaptcha-response', '')
+        if recaptcha_token:
+            is_valid, score, error_msg = verify_recaptcha(recaptcha_token, request.remote_addr)
+            if not is_valid:
+                current_app.logger.warning(f"Actualizar cliente bloqueado por reCAPTCHA: score={score}, error={error_msg}")
+                return jsonify({'error': 'Verificación de seguridad fallida. Intenta nuevamente.'}), 400
     
     try:
         data = request.get_json()
