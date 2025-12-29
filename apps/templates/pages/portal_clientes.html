@@ -19,8 +19,11 @@
 {% block extra_css %}
 <style>
 /* Estilos específicos para Portal de Clientes - Reducir separación al mínimo */
-/* Estilos específicos para Portal de Clientes - Reducir separación al mínimo */
-.portal-clientes-hero {
+.portal-clientes-hero.pages-hero {
+  position: relative;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -32,7 +35,7 @@
 
 .portal-clientes-hero + .portal-clientes-content,
 .pages-hero.portal-clientes-hero + .about-boxs.portal-clientes-content {
-  margin-top: -30px !important;
+  margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
@@ -52,12 +55,16 @@
 
 /* Asegurar que no haya espacios adicionales */
 body.portal-clientes-page .pages-hero.portal-clientes-hero {
+  position: relative;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
 }
 
 body.portal-clientes-page .about-boxs.portal-clientes-content {
-  margin-top: -30px !important;
+  margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
