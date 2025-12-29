@@ -15,11 +15,35 @@
 
 {% block extra_css %}
 <style>
-.pages-hero {
-  position: relative;
-  min-height: 300px;
-  display: flex;
-  align-items: center;
+/* Estilos específicos para la página de blog - sobreescribir min-height global */
+body.body2 .pages-hero {
+  position: relative !important;
+  min-height: 300px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Reducir padding del main-headding dentro del hero del blog */
+body.body2 .pages-hero .main-headding {
+  padding-top: 40px !important;
+}
+
+@media (max-width: 991px) {
+  body.body2 .pages-hero .main-headding {
+    padding-top: 60px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.body2 .pages-hero .main-headding {
+    padding-top: 60px !important;
+  }
+}
+
+/* Reducir separación entre hero y contenido */
+body.body2 .pages-hero + .blog2 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 </style>
 {% endblock extra_css %}
