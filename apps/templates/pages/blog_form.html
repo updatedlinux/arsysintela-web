@@ -1,0 +1,229 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}{% if post %}Editar Post{% else %}Nuevo Post{% endif %} - Portal de Clientes{% endblock title %}
+
+{% block cta_override %}{% endblock %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body portal-clientes-page"{% endblock body_attribute %}
+
+{% block extra_css %}
+<style>
+.portal-clientes-hero.pages-hero {
+  position: relative;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.portal-clientes-content.about-boxs {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--qt-text-h-text2, #1a1a1a);
+}
+
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+
+textarea.form-control {
+  min-height: 100px;
+}
+
+#contentHtml {
+  min-height: 400px;
+}
+</style>
+<!-- TinyMCE (versión sin API key) -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
+{% endblock extra_css %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero portal-clientes-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-12">
+        <div class="main-headding">
+          <h1>{% if post %}Editar Post{% else %}Nuevo Post{% endif %}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== BLOG FORM AREA START =======-->
+<div class="about-boxs portal-clientes-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap;">
+          <div class="headding2" style="margin-bottom: 0;">
+            <h2>{% if post %}Editar Post: {{ post.get('title', '') }}{% else %}Crear Nuevo Post{% endif %}</h2>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <a href="/portal-clientes/blog" class="theme-btn3">
+              <i class="fa-regular fa-arrow-left"></i> Volver al Listado
+            </a>
+            <a href="/portal-clientes" class="theme-btn3">Portal</a>
+          </div>
+        </div>
+
+        {% if error %}
+        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb;">
+          <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{% if post %}/portal-clientes/blog/{{ post.id }}/edit{% else %}/portal-clientes/blog/new{% endif %}" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="title" class="form-label">
+                  <i class="fa-regular fa-heading"></i> Título <span style="color: red;">*</span>
+                </label>
+                <input type="text" class="form-control" id="title" name="title" required 
+                       value="{{ post.get('title', '') if post else '' }}" 
+                       placeholder="Título del post">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="author" class="form-label">
+                  <i class="fa-regular fa-user"></i> Autor <span style="color: red;">*</span>
+                </label>
+                <input type="text" class="form-control" id="author" name="author" required 
+                       value="{{ post.get('author', '') if post else '' }}" 
+                       placeholder="Nombre del autor">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="tag" class="form-label">
+                  <i class="fa-regular fa-tag"></i> Tag
+                </label>
+                <select class="form-control" id="tag" name="tag">
+                  <option value="">Sin tag</option>
+                  <option value="Infraestructura" {% if post and post.get('tag') == 'Infraestructura' %}selected{% endif %}>Infraestructura</option>
+                  <option value="IA" {% if post and post.get('tag') == 'IA' %}selected{% endif %}>IA</option>
+                  <option value="Condominio" {% if post and post.get('tag') == 'Condominio' %}selected{% endif %}>Condominio</option>
+                  <option value="Automatización" {% if post and post.get('tag') == 'Automatización' %}selected{% endif %}>Automatización</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="publishedAt" class="form-label">
+                  <i class="fa-regular fa-calendar"></i> Fecha de Publicación <span style="color: red;">*</span>
+                </label>
+                <input type="datetime-local" class="form-control" id="publishedAt" name="publishedAt" required 
+                       value="{% if post and post.get('publishedAt') %}{{ post.publishedAt[:16] }}{% else %}{{ '' }}{% endif %}">
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="excerpt" class="form-label">
+              <i class="fa-regular fa-file-lines"></i> Resumen (Excerpt) <span style="color: red;">*</span>
+            </label>
+            <textarea class="form-control" id="excerpt" name="excerpt" required rows="3" 
+                      placeholder="Resumen corto del post que aparecerá en listados y cards">{{ post.get('excerpt', '') if post else '' }}</textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="headerImageUrl" class="form-label">
+              <i class="fa-regular fa-image"></i> URL de Imagen de Cabecera <span style="color: red;">*</span>
+            </label>
+            <input type="url" class="form-control" id="headerImageUrl" name="headerImageUrl" required 
+                   value="{{ post.get('headerImageUrl', '') if post else '' }}" 
+                   placeholder="https://example.com/imagen.jpg">
+          </div>
+
+          <div class="mb-3">
+            <label for="contentHtml" class="form-label">
+              <i class="fa-regular fa-code"></i> Contenido HTML <span style="color: red;">*</span>
+            </label>
+            <textarea class="form-control" id="contentHtml" name="contentHtml" required>{{ post.get('contentHtml', '') if post else '' }}</textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">
+              <input type="checkbox" id="isPublished" name="isPublished" value="true" 
+                     {% if post and post.get('isPublished') %}checked{% elif not post %}checked{% endif %}>
+              <span style="margin-left: 8px;">Publicado</span>
+            </label>
+            <small style="display: block; color: #666; margin-top: 5px;">
+              Si está marcado, el post será visible públicamente. Si no, quedará como borrador.
+            </small>
+          </div>
+
+          <div class="text-end" style="margin-top: 30px;">
+            <a href="/portal-clientes/blog" class="theme-btn3">Cancelar</a>
+            <button type="submit" class="theme-btn2" style="margin-left: 10px;">
+              <i class="fa-regular fa-save"></i> {% if post %}Actualizar Post{% else %}Crear Post{% endif %}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== BLOG FORM AREA END =======-->
+
+{% include 'partials/back-to-top.html' %}
+
+<script>
+// Inicializar TinyMCE
+tinymce.init({
+  selector: '#contentHtml',
+  height: 500,
+  menubar: true,
+  plugins: [
+    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+    'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+  ],
+  toolbar: 'undo redo | blocks | ' +
+    'bold italic forecolor | alignleft aligncenter ' +
+    'alignright alignjustify | bullist numlist outdent indent | ' +
+    'removeformat | help | code',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+  language: 'es',
+  branding: false
+});
+</script>
+
+{% endblock page_content %}
+

@@ -6,6 +6,7 @@ from apps.pages import blueprint
 from flask import render_template, request, current_app, send_from_directory, abort, session, redirect, url_for, flash
 from jinja2 import TemplateNotFound
 from apps.utils.client_portal_api import api_post, api_get, api_put, get_client_portal_token, get_client_portal_user
+from apps.utils.blog_api import get_posts, get_post_by_id, create_post, update_post, delete_post
 from flask import jsonify
 
 
@@ -343,6 +344,308 @@ def update_client(client_id):
 
 
 # ==================== Fin Rutas API para Administradores ====================
+
+# ==================== Rutas Admin Blog ====================
+
+def require_admin():
+    """
+    Helper para verificar que el usuario es admin.
+    """
+    token = get_client_portal_token()
+    if not token:
+        return None, redirect(url_for('pages_blueprint.login', error='Por favor, inicia sesión para acceder al panel de administración.'))
+    
+    user = get_client_portal_user()
+    if not user or user.get('role') != 'admin':
+        return None, redirect(url_for('pages_blueprint.portal_clientes', error='Solo los administradores pueden acceder a esta sección.'))
+    
+    return user, None
+
+
+@blueprint.route('/portal-clientes/blog')
+def blog_list():
+    """
+    Lista todos los posts del blog (solo admin).
+    """
+    user, redirect_response = require_admin()
+    if redirect_response:
+        return redirect_response
+    
+    try:
+        page = request.args.get('page', 1, type=int)
+        limit = request.args.get('limit', 20, type=int)
+        tag = request.args.get('tag', None)
+        
+        response_json, status_code = get_posts(page=page, limit=limit, tag=tag)
+        
+        if status_code == 200:
+            posts = response_json.get('data', [])
+            pagination = response_json.get('pagination', {})
+            
+            return render_template(
+                'pages/blog_list.html',
+                posts=posts,
+                pagination=pagination,
+                user=user,
+                segment='blog',
+                tag=tag
+            )
+        elif status_code == 401:
+            session.pop('client_portal_token', None)
+            session.pop('client_portal_user', None)
+            return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
+        else:
+            error_message = response_json.get('message', 'Error al cargar los posts.')
+            return render_template(
+                'pages/blog_list.html',
+                posts=[],
+                pagination={},
+                user=user,
+                error=error_message,
+                segment='blog'
+            )
+    
+    except Exception as e:
+        current_app.logger.error(f"Error en blog_list: {str(e)}")
+        return render_template(
+            'pages/blog_list.html',
+            posts=[],
+            pagination={},
+            user=user,
+            error='No se pudo cargar la lista de posts. Intenta nuevamente más tarde.',
+            segment='blog'
+        )
+
+
+@blueprint.route('/portal-clientes/blog/new', methods=['GET', 'POST'])
+def blog_new():
+    """
+    Crea un nuevo post del blog (solo admin).
+    """
+    user, redirect_response = require_admin()
+    if redirect_response:
+        return redirect_response
+    
+    if request.method == 'POST':
+        try:
+            data = request.form
+            
+            # Validar campos requeridos
+            required_fields = ['title', 'excerpt', 'author', 'publishedAt', 'headerImageUrl', 'contentHtml']
+            missing_fields = [field for field in required_fields if not data.get(field)]
+            
+            if missing_fields:
+                return render_template(
+                    'pages/blog_form.html',
+                    user=user,
+                    error=f'Los siguientes campos son requeridos: {", ".join(missing_fields)}',
+                    segment='blog',
+                    post=None
+                )
+            
+            # Preparar datos del post
+            post_data = {
+                'title': data.get('title'),
+                'excerpt': data.get('excerpt'),
+                'author': data.get('author'),
+                'publishedAt': data.get('publishedAt'),
+                'headerImageUrl': data.get('headerImageUrl'),
+                'contentHtml': data.get('contentHtml'),
+                'tag': data.get('tag') or None,
+                'isPublished': data.get('isPublished') == 'true'
+            }
+            
+            # Crear el post
+            response_json, status_code = create_post(post_data)
+            
+            if status_code == 201:
+                flash('Post creado exitosamente.', 'success')
+                return redirect(url_for('pages_blueprint.blog_list'))
+            elif status_code == 401:
+                session.pop('client_portal_token', None)
+                session.pop('client_portal_user', None)
+                return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
+            elif status_code == 403:
+                return render_template(
+                    'pages/blog_form.html',
+                    user=user,
+                    error='No tienes permisos para crear posts.',
+                    segment='blog',
+                    post=None
+                )
+            else:
+                error_message = response_json.get('message', 'Error al crear el post.')
+                return render_template(
+                    'pages/blog_form.html',
+                    user=user,
+                    error=error_message,
+                    segment='blog',
+                    post=None
+                )
+        
+        except Exception as e:
+            current_app.logger.error(f"Error en blog_new POST: {str(e)}")
+            return render_template(
+                'pages/blog_form.html',
+                user=user,
+                error='Error al crear el post. Intenta nuevamente más tarde.',
+                segment='blog',
+                post=None
+            )
+    
+    # GET: mostrar formulario vacío
+    return render_template(
+        'pages/blog_form.html',
+        user=user,
+        segment='blog',
+        post=None
+    )
+
+
+@blueprint.route('/portal-clientes/blog/<int:post_id>/edit', methods=['GET', 'POST'])
+def blog_edit(post_id):
+    """
+    Edita un post existente del blog (solo admin).
+    """
+    user, redirect_response = require_admin()
+    if redirect_response:
+        return redirect_response
+    
+    if request.method == 'POST':
+        try:
+            data = request.form
+            
+            # Preparar datos del post (todos opcionales para PUT)
+            post_data = {}
+            if data.get('title'):
+                post_data['title'] = data.get('title')
+            if data.get('excerpt'):
+                post_data['excerpt'] = data.get('excerpt')
+            if data.get('author'):
+                post_data['author'] = data.get('author')
+            if data.get('publishedAt'):
+                post_data['publishedAt'] = data.get('publishedAt')
+            if data.get('headerImageUrl'):
+                post_data['headerImageUrl'] = data.get('headerImageUrl')
+            if data.get('contentHtml'):
+                post_data['contentHtml'] = data.get('contentHtml')
+            if data.get('tag'):
+                post_data['tag'] = data.get('tag')
+            if 'isPublished' in data:
+                post_data['isPublished'] = data.get('isPublished') == 'true'
+            
+            # Actualizar el post
+            response_json, status_code = update_post(post_id, post_data)
+            
+            if status_code == 200:
+                flash('Post actualizado exitosamente.', 'success')
+                return redirect(url_for('pages_blueprint.blog_list'))
+            elif status_code == 401:
+                session.pop('client_portal_token', None)
+                session.pop('client_portal_user', None)
+                return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
+            elif status_code == 403:
+                return render_template(
+                    'pages/blog_form.html',
+                    user=user,
+                    error='No tienes permisos para editar posts.',
+                    segment='blog',
+                    post=None
+                )
+            elif status_code == 404:
+                return render_template(
+                    'pages/blog_form.html',
+                    user=user,
+                    error='Post no encontrado.',
+                    segment='blog',
+                    post=None
+                )
+            else:
+                error_message = response_json.get('message', 'Error al actualizar el post.')
+                # Recargar el post para mostrar el formulario con error
+                post_response, _ = get_post_by_id(post_id)
+                return render_template(
+                    'pages/blog_form.html',
+                    user=user,
+                    error=error_message,
+                    segment='blog',
+                    post=post_response if isinstance(post_response, dict) else None
+                )
+        
+        except Exception as e:
+            current_app.logger.error(f"Error en blog_edit POST: {str(e)}")
+            return render_template(
+                'pages/blog_form.html',
+                user=user,
+                error='Error al actualizar el post. Intenta nuevamente más tarde.',
+                segment='blog',
+                post=None
+            )
+    
+    # GET: cargar el post y mostrar formulario
+    try:
+        response_json, status_code = get_post_by_id(post_id)
+        
+        if status_code == 200:
+            return render_template(
+                'pages/blog_form.html',
+                user=user,
+                segment='blog',
+                post=response_json
+            )
+        elif status_code == 404:
+            flash('Post no encontrado.', 'error')
+            return redirect(url_for('pages_blueprint.blog_list'))
+        else:
+            error_message = response_json.get('message', 'Error al cargar el post.')
+            return render_template(
+                'pages/blog_form.html',
+                user=user,
+                error=error_message,
+                segment='blog',
+                post=None
+            )
+    
+    except Exception as e:
+        current_app.logger.error(f"Error en blog_edit GET: {str(e)}")
+        flash('Error al cargar el post.', 'error')
+        return redirect(url_for('pages_blueprint.blog_list'))
+
+
+@blueprint.route('/portal-clientes/blog/<int:post_id>/delete', methods=['POST'])
+def blog_delete(post_id):
+    """
+    Elimina un post del blog (solo admin).
+    """
+    user, redirect_response = require_admin()
+    if redirect_response:
+        return redirect_response
+    
+    try:
+        response_json, status_code = delete_post(post_id)
+        
+        if status_code == 200:
+            flash('Post eliminado exitosamente.', 'success')
+        elif status_code == 401:
+            session.pop('client_portal_token', None)
+            session.pop('client_portal_user', None)
+            return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
+        elif status_code == 403:
+            flash('No tienes permisos para eliminar posts.', 'error')
+        elif status_code == 404:
+            flash('Post no encontrado.', 'error')
+        else:
+            error_message = response_json.get('message', 'Error al eliminar el post.')
+            flash(error_message, 'error')
+    
+    except Exception as e:
+        current_app.logger.error(f"Error en blog_delete: {str(e)}")
+        flash('Error al eliminar el post. Intenta nuevamente más tarde.', 'error')
+    
+    return redirect(url_for('pages_blueprint.blog_list'))
+
+
+# ==================== Fin Rutas Admin Blog ====================
 
 
 @blueprint.route('/<template>')

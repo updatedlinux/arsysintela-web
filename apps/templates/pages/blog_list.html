@@ -1,0 +1,194 @@
+{% extends 'layouts/landing-layout.html' %}
+
+{% block title %}Gestión del Blog - Portal de Clientes{% endblock title %}
+
+{% block cta_override %}{% endblock %}
+
+{% block icon %}
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config.ASSETS_ROOT }}/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="{{ config.ASSETS_ROOT }}/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="{{ config.ASSETS_ROOT }}/favicon_io/favicon.ico" type="image/x-icon">
+{% endblock icon %}
+
+{% block body_attribute %}class="body2 body portal-clientes-page"{% endblock body_attribute %}
+
+{% block extra_css %}
+<style>
+.portal-clientes-hero.pages-hero {
+  position: relative;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.portal-clientes-content.about-boxs {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+</style>
+{% endblock extra_css %}
+
+{% block page_content %}
+
+<!--===== HERO AREA START =======-->
+<div class="pages-hero portal-clientes-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-12">
+        <div class="main-headding">
+          <h1>Gestión del Blog</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== HERO AREA END =======-->
+
+<!--===== BLOG LIST AREA START =======-->
+<div class="about-boxs portal-clientes-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap;">
+          <div class="headding2" style="margin-bottom: 0;">
+            <h2>Listado de Posts</h2>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <a href="/portal-clientes/blog/new" class="theme-btn2">
+              <i class="fa-regular fa-plus"></i> Nuevo Post
+            </a>
+            <a href="/portal-clientes" class="theme-btn3">
+              <i class="fa-regular fa-arrow-left"></i> Volver al Portal
+            </a>
+            <a href="/logout" class="theme-btn3">Cerrar Sesión</a>
+          </div>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}" style="background-color: {% if category == 'error' %}#f8d7da{% else %}#d4edda{% endif %}; color: {% if category == 'error' %}#721c24{% else %}#155724{% endif %}; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid {% if category == 'error' %}#f5c6cb{% else %}#c3e6cb{% endif %};">
+                <strong>{% if category == 'error' %}Error:{% else %}Éxito:{% endif %}</strong> {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% if error %}
+        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb;">
+          <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        {% if posts and posts|length > 0 %}
+        <div class="table-responsive" style="overflow-x: auto;">
+          <table class="table" style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 8px;">
+            <thead style="background-color: var(--qt-text-h-text2, #1a1a1a); color: #fff;">
+              <tr>
+                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #ddd;">ID</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #ddd;">Título</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #ddd;">Autor</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #ddd;">Tag</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #ddd;">Publicado</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #ddd;">Fecha Publicación</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #ddd;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for post in posts %}
+              <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 15px;">{{ post.get('id', 'N/A') }}</td>
+                <td style="padding: 15px;">
+                  <strong>{{ post.get('title', 'N/A') }}</strong>
+                  {% if post.get('excerpt') %}
+                    <br><small style="color: #666;">{{ post.excerpt[:100] }}{% if post.excerpt|length > 100 %}...{% endif %}</small>
+                  {% endif %}
+                </td>
+                <td style="padding: 15px;">{{ post.get('author', 'N/A') }}</td>
+                <td style="padding: 15px;">
+                  {% if post.get('tag') %}
+                    <span style="padding: 4px 8px; background-color: #e7e8ff; color: #667eea; border-radius: 4px; font-size: 12px;">
+                      {{ post.tag }}
+                    </span>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td style="padding: 15px;">
+                  {% if post.get('isPublished') %}
+                    <span style="padding: 4px 8px; background-color: #d4edda; color: #155724; border-radius: 4px; font-size: 12px;">
+                      Sí
+                    </span>
+                  {% else %}
+                    <span style="padding: 4px 8px; background-color: #fff3cd; color: #856404; border-radius: 4px; font-size: 12px;">
+                      No
+                    </span>
+                  {% endif %}
+                </td>
+                <td style="padding: 15px;">
+                  {% if post.get('publishedAt') %}
+                    {{ post.publishedAt[:10] }}
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td style="padding: 15px;">
+                  <div style="display: flex; gap: 8px;">
+                    <a href="/portal-clientes/blog/{{ post.id }}/edit" class="theme-btn3" style="padding: 5px 10px; font-size: 12px;">
+                      <i class="fa-regular fa-edit"></i> Editar
+                    </a>
+                    <form method="POST" action="/portal-clientes/blog/{{ post.id }}/delete" style="display: inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este post?');">
+                      <button type="submit" class="theme-btn3" style="padding: 5px 10px; font-size: 12px; background-color: #dc3545; border-color: #dc3545;">
+                        <i class="fa-regular fa-trash"></i> Eliminar
+                      </button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Paginación -->
+        {% if pagination and pagination.get('totalPages', 0) > 1 %}
+        <div class="pagination-area" style="margin-top: 40px; display: flex; justify-content: center; align-items: center; gap: 10px;">
+          <div style="margin-right: 20px;">
+            <span>Página {{ pagination.get('page', 1) }} de {{ pagination.get('totalPages', 1) }}</span>
+            <span style="margin-left: 10px; color: #666;">(Total: {{ pagination.get('total', 0) }} posts)</span>
+          </div>
+          
+          {% if pagination.get('page', 1) > 1 %}
+          <a href="/portal-clientes/blog?page={{ pagination.page - 1 }}&limit={{ pagination.get('limit', 20) }}{% if tag %}&tag={{ tag }}{% endif %}" class="theme-btn3">Anterior</a>
+          {% endif %}
+          
+          {% if pagination.get('page', 1) < pagination.get('totalPages', 1) %}
+          <a href="/portal-clientes/blog?page={{ pagination.page + 1 }}&limit={{ pagination.get('limit', 20) }}{% if tag %}&tag={{ tag }}{% endif %}" class="theme-btn2">Siguiente</a>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% else %}
+        <div class="alert alert-info" style="background-color: #d1ecf1; color: #0c5460; padding: 20px; border-radius: 4px; text-align: center; border: 1px solid #bee5eb;">
+          <p style="margin: 0; font-size: 16px;">No hay posts registrados todavía.</p>
+          <div style="margin-top: 15px;">
+            <a href="/portal-clientes/blog/new" class="theme-btn2">
+              <i class="fa-regular fa-plus"></i> Crear Primer Post
+            </a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== BLOG LIST AREA END =======-->
+
+{% include 'partials/back-to-top.html' %}
+{% endblock page_content %}
+
