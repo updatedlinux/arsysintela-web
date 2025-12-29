@@ -6,6 +6,13 @@ from   flask_migrate import Migrate
 from   flask_minify  import Minify
 from   sys import exit
 from   werkzeug.middleware.proxy_fix import ProxyFix
+from   dotenv import load_dotenv
+
+# Cargar variables de entorno desde .env
+# Buscar .env en el directorio raíz del proyecto
+basedir = os.path.abspath(os.path.dirname(__file__))
+env_path = os.path.join(basedir, '.env')
+load_dotenv(env_path)
 
 from apps.config import config_dict
 from apps import create_app, db
@@ -51,6 +58,8 @@ if DEBUG:
     app.logger.info('Page Compression = ' + 'FALSE' if DEBUG else 'TRUE' )
     app.logger.info('DBMS             = ' + app_config.SQLALCHEMY_DATABASE_URI)
     app.logger.info('ASSETS_ROOT      = ' + app_config.ASSETS_ROOT )
+    app.logger.info('RECAPTCHA_SITE_KEY = ' + (app_config.RECAPTCHA_SITE_KEY[:10] + '...' if app_config.RECAPTCHA_SITE_KEY else 'No configurada'))
+    app.logger.info('RECAPTCHA_SECRET_KEY = ' + ('Configurada' if app_config.RECAPTCHA_SECRET_KEY else 'No configurada'))
 
 if __name__ == "__main__":
     app.run()

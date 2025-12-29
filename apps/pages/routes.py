@@ -92,14 +92,14 @@ def login_post():
     recaptcha_token = request.form.get('g-recaptcha-response', '')
     
     if not email or not password:
-        return render_template('pages/login.html', error='Por favor, completa todos los campos.', segment='login')
+        return render_template('pages/login.html', error='Por favor, completa todos los campos.', segment='login', config=current_app.config)
     
     # Validar reCAPTCHA v3
     if current_app.config.get('RECAPTCHA_SECRET_KEY'):
         is_valid, score, error_msg = verify_recaptcha(recaptcha_token, request.remote_addr)
         if not is_valid:
             current_app.logger.warning(f"Login bloqueado por reCAPTCHA: score={score}, error={error_msg}")
-            return render_template('pages/login.html', error='Verificación de seguridad fallida. Intenta nuevamente.', segment='login')
+            return render_template('pages/login.html', error='Verificación de seguridad fallida. Intenta nuevamente.', segment='login', config=current_app.config)
     
     try:
         # Llamar a la API de login
