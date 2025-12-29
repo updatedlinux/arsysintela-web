@@ -34,24 +34,12 @@
 </div>
 <!--===== HERO AREA END =======-->
 
-<!--===== CLIENTES LIST AREA START =======-->
-<div class="blog-area sp">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        
-        {% if error %}
-        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb;">
-          <strong>Error:</strong> {{ error }}
-        </div>
-        {% endif %}
-
-        {% if is_user %}
-        {# Vista para usuarios con rol 'user': mostrar información del cliente y productos asociados #}
-        
-        {% if client %}
-        {# Mostrar información del cliente #}
-        <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 40px; margin-top: 30px;">
+{% if is_user and client %}
+{# Contenedor de información del cliente - fuera del blog-area para mejor posicionamiento #}
+<div class="container" style="position: relative; z-index: 10; margin-top: -80px; margin-bottom: 40px;">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
             <div class="headding2" style="margin-bottom: 0;">
               <h2>Mi Información</h2>
@@ -80,13 +68,13 @@
                   </p>
                   <p style="margin-bottom: 15px; display: flex; align-items: center;">
                     <i class="fa-regular fa-phone" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
-                    <span><strong>Teléfono:</strong> {{ client.get('phone', 'No especificado') }}</span>
+                    <span><strong>Teléfono:</strong> {% if client.get('phone') %}{{ client.phone }}{% else %}No especificado{% endif %}</span>
                   </p>
                 </div>
                 <div class="col-md-6">
                   <p style="margin-bottom: 15px; display: flex; align-items: center;">
                     <i class="fa-regular fa-building" style="width: 20px; margin-right: 10px; color: var(--qt-text-h-text2, #1a1a1a);"></i>
-                    <span><strong>Empresa:</strong> {{ client.get('company', 'No especificado') }}</span>
+                    <span><strong>Empresa:</strong> {% if client.get('company') %}{{ client.company }}{% else %}No especificado{% endif %}</span>
                   </p>
                   {% if client.get('notes') %}
                   <p style="margin-bottom: 15px; display: flex; align-items: flex-start;">
@@ -99,8 +87,27 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!--===== CLIENTES LIST AREA START =======-->
+<div class="blog-area sp">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        
+        {% if error %}
+        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 30px; border: 1px solid #f5c6cb;">
+          <strong>Error:</strong> {{ error }}
+        </div>
         {% endif %}
 
+        {% if is_user %}
+        {# Vista para usuarios con rol 'user': mostrar productos asociados #}
+        
         <div class="headding2" style="margin-bottom: 30px;">
           <h2>Mis Productos</h2>
         </div>
