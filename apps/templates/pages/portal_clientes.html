@@ -512,9 +512,12 @@ body.portal-clientes-page .pages-hero.portal-clientes-hero .container {
 }
 </style>
 
-{% if config.RECAPTCHA_SITE_KEY %}
+{% if config and config.RECAPTCHA_SITE_KEY %}
 <!-- Google reCAPTCHA v3 -->
-<script src="https://www.google.com/recaptcha/api.js?render={{ config.RECAPTCHA_SITE_KEY }}"></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ config.RECAPTCHA_SITE_KEY }}&badge=bottomright"></script>
+<script>
+console.log('[reCAPTCHA] Script cargado para Portal de Clientes');
+</script>
 {% endif %}
 
 <script>
@@ -748,19 +751,25 @@ body.portal-clientes-page .pages-hero.portal-clientes-hero .container {
       try {
         // Obtener token de reCAPTCHA si está configurado
         let recaptchaToken = '';
-        {% if config.RECAPTCHA_SITE_KEY %}
+        {% if config and config.RECAPTCHA_SITE_KEY %}
         if (typeof grecaptcha !== 'undefined') {
           try {
+            console.log('[reCAPTCHA] Obteniendo token para actualizar cliente...');
             recaptchaToken = await new Promise(function(resolve, reject) {
               grecaptcha.ready(function() {
                 grecaptcha.execute('{{ config.RECAPTCHA_SITE_KEY }}', {action: 'update_client'})
-                  .then(resolve)
+                  .then(function(token) {
+                    console.log('[reCAPTCHA] ✓ Token obtenido para update_client');
+                    resolve(token);
+                  })
                   .catch(reject);
               });
             });
           } catch (error) {
-            console.error('Error obteniendo token reCAPTCHA:', error);
+            console.error('[reCAPTCHA] ✗ Error obteniendo token:', error);
           }
+        } else {
+          console.warn('[reCAPTCHA] grecaptcha no disponible');
         }
         {% endif %}
         

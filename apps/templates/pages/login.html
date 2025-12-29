@@ -81,50 +81,90 @@
 {% endblock content %}
 
 {% block extra_javascript %}
-{% if config.RECAPTCHA_SITE_KEY %}
+{% if config and config.RECAPTCHA_SITE_KEY %}
 <!-- Google reCAPTCHA v3 -->
-<script src="https://www.google.com/recaptcha/api.js?render={{ config.RECAPTCHA_SITE_KEY }}"></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ config.RECAPTCHA_SITE_KEY }}&badge=bottomright"></script>
 <script>
 (function() {
   'use strict';
   
   const siteKey = '{{ config.RECAPTCHA_SITE_KEY }}';
   
-  if (!siteKey) {
-    console.warn('reCAPTCHA SITE_KEY no configurada');
+  console.log('[reCAPTCHA] Inicializando...', {siteKey: siteKey ? '✓ Configurada' : '✗ No configurada'});
+  
+  if (!siteKey || siteKey === 'None' || siteKey === '') {
+    console.warn('[reCAPTCHA] SITE_KEY no configurada o vacía');
     return;
   }
   
-  const loginForm = document.getElementById('loginForm');
-  const submitBtn = document.getElementById('loginSubmitBtn');
+  // Esperar a que el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRecaptcha);
+  } else {
+    initRecaptcha();
+  }
   
-  if (loginForm && submitBtn) {
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Deshabilitar botón para evitar múltiples envíos
-      submitBtn.disabled = true;
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Verificando...';
-      
-      // Ejecutar reCAPTCHA v3
-      grecaptcha.ready(function() {
-        grecaptcha.execute(siteKey, {action: 'login'}).then(function(token) {
-          // Agregar token al formulario
-          document.getElementById('g-recaptcha-response').value = token;
-          
-          // Enviar formulario
-          loginForm.submit();
-        }).catch(function(error) {
-          console.error('Error en reCAPTCHA:', error);
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-          alert('Error en la verificación de seguridad. Intenta nuevamente.');
+  function initRecaptcha() {
+    const loginForm = document.getElementById('loginForm');
+    const submitBtn = document.getElementById('loginSubmitBtn');
+    
+    if (!loginForm || !submitBtn) {
+      console.error('[reCAPTCHA] No se encontraron los elementos del formulario');
+      return;
+    }
+    
+    // Verificar que grecaptcha se cargó (puede tardar un momento)
+    function checkGrecaptcha() {
+      if (typeof grecaptcha !== 'undefined') {
+        console.log('[reCAPTCHA] Script cargado correctamente');
+        console.log('[reCAPTCHA] Badge debería estar visible en la esquina inferior derecha');
+        setupFormHandler();
+      } else {
+        console.warn('[reCAPTCHA] Esperando a que el script se cargue...');
+        setTimeout(checkGrecaptcha, 100);
+      }
+    }
+    
+    function setupFormHandler() {
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        console.log('[reCAPTCHA] Formulario enviado, obteniendo token...');
+        
+        // Deshabilitar botón para evitar múltiples envíos
+        submitBtn.disabled = true;
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Verificando...';
+        
+        // Ejecutar reCAPTCHA v3
+        grecaptcha.ready(function() {
+          grecaptcha.execute(siteKey, {action: 'login'}).then(function(token) {
+            console.log('[reCAPTCHA] ✓ Token obtenido exitosamente (longitud:', token.length, 'caracteres)');
+            
+            // Agregar token al formulario
+            document.getElementById('g-recaptcha-response').value = token;
+            
+            // Enviar formulario
+            loginForm.submit();
+          }).catch(function(error) {
+            console.error('[reCAPTCHA] ✗ Error obteniendo token:', error);
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            alert('Error en la verificación de seguridad. Intenta nuevamente.');
+          });
         });
       });
-    });
+      
+      console.log('[reCAPTCHA] ✓ Listo para usar');
+    }
+    
+    checkGrecaptcha();
   }
 })();
+</script>
+{% else %}
+<script>
+console.warn('[reCAPTCHA] No configurado - Verifica que RECAPTCHA_SITE_KEY esté en el .env');
 </script>
 {% endif %}
 {% endblock extra_javascript %}
