@@ -135,17 +135,20 @@ def portal_clientes():
     user_id = user.get('id') if user else None
     
     try:
-        # Si el usuario es 'user', obtener sus productos asociados
-        if user_role == 'user' and user_id:
-            # Llamar a la API para obtener productos del cliente
-            response_json, status_code = api_get(f'/clients/{user_id}/products')
+        # Si el usuario es 'user', obtener su cliente asociado y productos
+        if user_role == 'user':
+            # Llamar a la API para obtener el cliente asociado al usuario
+            # El endpoint /clients/me devuelve el cliente con sus productos incluidos
+            response_json, status_code = api_get('/clients/me')
             
             if status_code == 200:
-                # Éxito: mostrar productos del usuario
-                products = response_json if isinstance(response_json, list) else []
+                # Éxito: mostrar información del cliente y sus productos
+                client_data = response_json
+                products = client_data.get('products', [])
                 
                 return render_template(
                     'pages/portal_clientes.html',
+                    client=client_data,
                     products=products,
                     user=user,
                     segment='portal-clientes',
@@ -159,20 +162,24 @@ def portal_clientes():
                 return redirect(url_for('pages_blueprint.login', error='Sesión expirada, por favor inicia sesión nuevamente.'))
             
             elif status_code == 404:
-                # Cliente no encontrado o sin productos
+                # Usuario no tiene cliente asociado
+                error_message = response_json.get('message', 'No se encontró un cliente asociado a tu cuenta.')
                 return render_template(
                     'pages/portal_clientes.html',
+                    client=None,
                     products=[],
                     user=user,
+                    error=error_message,
                     segment='portal-clientes',
                     is_user=True
                 )
             
             else:
                 # Otro error
-                error_message = response_json.get('message', 'Error al cargar los productos.')
+                error_message = response_json.get('message', 'Error al cargar la información del cliente.')
                 return render_template(
                     'pages/portal_clientes.html',
+                    client=None,
                     products=[],
                     user=user,
                     error=error_message,

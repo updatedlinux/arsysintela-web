@@ -61,7 +61,34 @@
         {% endif %}
 
         {% if is_user %}
-        {# Vista para usuarios con rol 'user': mostrar productos asociados #}
+        {# Vista para usuarios con rol 'user': mostrar información del cliente y productos asociados #}
+        
+        {% if client %}
+        {# Mostrar información del cliente #}
+        <div class="client-info-card" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 40px;">
+          <div class="headding2" style="margin-bottom: 20px;">
+            <h2>Mi Información</h2>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p style="margin-bottom: 10px;"><strong>Nombre:</strong> {{ client.get('name', 'N/A') }}</p>
+              <p style="margin-bottom: 10px;"><strong>Email:</strong> {{ client.get('email', 'N/A') }}</p>
+              {% if client.get('phone') %}
+              <p style="margin-bottom: 10px;"><strong>Teléfono:</strong> {{ client.phone }}</p>
+              {% endif %}
+            </div>
+            <div class="col-md-6">
+              {% if client.get('company') %}
+              <p style="margin-bottom: 10px;"><strong>Empresa:</strong> {{ client.company }}</p>
+              {% endif %}
+              {% if client.get('notes') %}
+              <p style="margin-bottom: 10px;"><strong>Notas:</strong> {{ client.notes }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
         <div class="headding2" style="margin-bottom: 30px;">
           <h2>Mis Productos</h2>
         </div>
@@ -81,16 +108,17 @@
               </tr>
             </thead>
             <tbody>
-              {% for product_rel in products %}
+              {% for product in products %}
+              {% set client_product = product.get('ClientProduct', {}) %}
               <tr style="border-bottom: 1px solid #eee;">
-                <td style="padding: 15px;">{{ product_rel.get('product', {}).get('code', 'N/A') }}</td>
-                <td style="padding: 15px;">{{ product_rel.get('product', {}).get('name', 'N/A') }}</td>
+                <td style="padding: 15px;">{{ product.get('code', 'N/A') }}</td>
+                <td style="padding: 15px;">{{ product.get('name', 'N/A') }}</td>
                 <td style="padding: 15px;">
-                  {% if product_rel.get('product', {}).get('description') %}
-                    {% if product_rel.product.description|length > 50 %}
-                      {{ product_rel.product.description[:50] }}...
+                  {% if product.get('description') %}
+                    {% if product.description|length > 50 %}
+                      {{ product.description[:50] }}...
                     {% else %}
-                      {{ product_rel.product.description }}
+                      {{ product.description }}
                     {% endif %}
                   {% else %}
                     -
@@ -98,38 +126,38 @@
                 </td>
                 <td style="padding: 15px;">
                   <span style="padding: 5px 10px; border-radius: 4px; font-size: 12px; 
-                    {% if product_rel.get('status') == 'activo' %}
+                    {% if client_product.get('status') == 'activo' %}
                       background-color: #d4edda; color: #155724;
-                    {% elif product_rel.get('status') == 'suspendido' %}
+                    {% elif client_product.get('status') == 'suspendido' %}
                       background-color: #fff3cd; color: #856404;
-                    {% elif product_rel.get('status') == 'finalizado' %}
+                    {% elif client_product.get('status') == 'finalizado' %}
                       background-color: #f8d7da; color: #721c24;
                     {% else %}
                       background-color: #e2e3e5; color: #383d41;
                     {% endif %}">
-                    {{ product_rel.get('status', 'N/A')|title }}
+                    {{ client_product.get('status', 'N/A')|title }}
                   </span>
                 </td>
                 <td style="padding: 15px;">
-                  {% if product_rel.get('startDate') %}
-                    {{ product_rel.startDate }}
+                  {% if client_product.get('startDate') %}
+                    {{ client_product.startDate }}
                   {% else %}
                     -
                   {% endif %}
                 </td>
                 <td style="padding: 15px;">
-                  {% if product_rel.get('endDate') %}
-                    {{ product_rel.endDate }}
+                  {% if client_product.get('endDate') %}
+                    {{ client_product.endDate }}
                   {% else %}
                     -
                   {% endif %}
                 </td>
                 <td style="padding: 15px;">
-                  {% if product_rel.get('notes') %}
-                    {% if product_rel.notes|length > 50 %}
-                      {{ product_rel.notes[:50] }}...
+                  {% if client_product.get('notes') %}
+                    {% if client_product.notes|length > 50 %}
+                      {{ client_product.notes[:50] }}...
                     {% else %}
-                      {{ product_rel.notes }}
+                      {{ client_product.notes }}
                     {% endif %}
                   {% else %}
                     -
